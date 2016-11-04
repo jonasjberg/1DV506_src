@@ -12,7 +12,6 @@ package js224eh_lab1;
  *
  *    Skriv in en rad text:  I wish I was a punk rocker with flowers in my hair.
  *    Citat: "I wish I was a punk rocker with flowers in my hair."
- *
  */
 
 import java.util.Scanner;
