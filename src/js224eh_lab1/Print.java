@@ -1,16 +1,16 @@
 package js224eh_lab1;
-
-/**
+/*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-04.
  *
  * Lektion 2 - (Input/Output, Operations on Primitive Types)
  *
  * 5. Utskrifter
  *    Skriv ett program Print.java som skriver ut frasen _Kunskap är makt!_
- *      - på en rad
- *      - på tre rader. Ett ord på varje rad
- *      - inuti en rektangel gjord av tecknen = och |.
+ *    - på en rad
+ *    - på tre rader. Ett ord på varje rad
+ *    - inuti en rektangel gjord av tecknen = och |.
  */
+
 public class Print {
     public static final String STR_KNOWLEDGE_POWER = "Kunskap är makt!";
 
@@ -35,7 +35,7 @@ public class Print {
 
     /**
      * Prints a string on three lines with one word per line.
-     * <p>
+     *
      * The string is split on whitespace with a maximum of three splits.
      * If the string can be split into more than three parts, the third
      * part will contain more than one whitespace-separated word.
@@ -66,8 +66,7 @@ public class Print {
     }
 
     /**
-     * Prints a string surrounded by a rectangle made from characters '=' and
-     * '|'.
+     * Prints a string surrounded by a rectangle made up by '=' and * '|'.
      *
      * @param stringToPrint The string to print.
      */
@@ -79,14 +78,15 @@ public class Print {
 
         final String CHAR_HORIZ = "=";
         final String CHAR_VERTI = "|";
+        final String CHAR_PAD   = " ";
 
-        // +2 for the whitespace "padding".
-        int rectangleWidth = stringToPrint.length() + CHAR_HORIZ.length()
-                             + CHAR_VERTI.length() + 2;
+        int rectangleWidth = stringToPrint.length() + CHAR_HORIZ.length() +
+                             CHAR_VERTI.length() + (CHAR_PAD.length() * 2);
 
         printStringNtimes(CHAR_HORIZ, rectangleWidth);
-        System.out.println("\n" + CHAR_VERTI + " " + stringToPrint + " " +
-                           "" + "" + CHAR_VERTI);
+        System.out.println(
+                "\n" + CHAR_VERTI + CHAR_PAD + stringToPrint + CHAR_PAD +
+                CHAR_VERTI);
         printStringNtimes(CHAR_HORIZ, rectangleWidth);
     }
 
