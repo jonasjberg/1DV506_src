@@ -26,9 +26,35 @@ public class SummaAvTre
     {
         final String MSG_PROMPT_THREE_DIGITS = "Ange ett tresiffrigt heltal: ";
 
-        int threeDigitNumber = promptUserForThreeDigitInt(MSG_PROMPT_THREE_DIGITS);
+        int   threeDigitNumber = promptUserForThreeDigitInt(MSG_PROMPT_THREE_DIGITS);
+        int[] numberArray      = splitIntIntoIntArray(threeDigitNumber);
 
-        System.out.println(threeDigitNumber);
+        int sum = 0;
+        for (int number : numberArray) {
+            sum += number;
+        }
+
+        System.out.printf("Summan av siffrorna i heltalet är: %d\n", sum);
+    }
+
+    /**
+     * Splits an integer into an array of integers with one number per index.
+     *
+     * @param number The number to split into an array.
+     * @return An array of integers with one number in each array position.
+     */
+    private static int[] splitIntIntoIntArray(int number)
+    {
+        final String numberString   = String.valueOf(number);
+        final int    numberOfDigits = numberString.length();
+        int[]        numberArray    = new int[numberOfDigits];
+
+        for (int i = 0; i < numberOfDigits; i++) {
+            numberArray[i] = Integer
+                    .parseInt(String.valueOf(numberString.charAt(i)));
+        }
+
+        return numberArray;
     }
 
     /**

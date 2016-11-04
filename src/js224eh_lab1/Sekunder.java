@@ -13,11 +13,11 @@ import java.util.Scanner;
  *    Tex, 1 timme, 28 minuter och 42 sekunder är samma sak som 5322 sekunder.
  *    En exekvering kan se ut enligt följande:
  *
- *     Timmar: 1
- *     Minuter: 28
- *     Sekunder: 42
+ *        Timmar: 1
+ *        Minuter: 28
+ *        Sekunder: 42
  *
- *     Totala antalet sekunder: 5322
+ *        Totala antalet sekunder: 5322
  */
 public class Sekunder
 {
