@@ -25,6 +25,7 @@ public class Citat
     {
         final String text = promptForTextLine(MSG_PROMPT_FOR_LINE);
         System.out.println(MSG_PRE_QUOTE + surroundWithQuoteMarks(text));
+        System.exit(0);
     }
 
     /**
