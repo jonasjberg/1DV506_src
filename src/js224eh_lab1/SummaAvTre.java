@@ -35,6 +35,7 @@ public class SummaAvTre
         }
 
         System.out.printf("Summan av siffrorna i heltalet är: %d\n", sum);
+        System.exit(0);
     }
 
     /**
