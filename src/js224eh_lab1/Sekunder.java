@@ -99,12 +99,12 @@ public class Sekunder
     /**
      * Prompts the user for 'n' number of values, separated by commas.
      *
-     * A message prompt is contiously shown until the user input matches the
-     * conditions; array of 'numberOfValues' digits, separated by commas.
-     * All whitespace is stripped. The array must contain ONLY digits.
+     * A message prompt is repeatedly displayed until the user input matches the
+     * conditions: User entered 'numberOfValues' positive numbers, separated by
+     * commas. All whitespace is stripped. The array must contain ONLY digits.
      *
      * @param numberOfValues The number of comma separated values to get.
-     * @param promptMessage The message to display when prompting the user.
+     * @param promptMessage  The message to display when prompting the user.
      * @return An array of integers with length 'numberOfValues'.
      */
     private static int[] promptUserForNCommaSepValues(int numberOfValues,
@@ -113,13 +113,18 @@ public class Sekunder
         String[] commaSepValues = null;
         Scanner  scan           = new Scanner(System.in);
         String   userInput      = null;
+        boolean  inputValidated = false;
 
         do {
             queryUser(promptMessage);
             userInput = scan.nextLine().replaceAll("\\s+", "");
             commaSepValues = userInput.split(",", numberOfValues);
-        } while (commaSepValues.length < numberOfValues ||
-                 !stringArrayContainsOnlyDigits(commaSepValues));
+
+            if (commaSepValues.length == numberOfValues &&
+                stringArrayContainsOnlyPositiveNumbers(commaSepValues)) {
+                inputValidated = true;
+            }
+        } while (!inputValidated);
 
         scan.close();
         return convertStringArrayToIntArray(commaSepValues);
@@ -148,17 +153,22 @@ public class Sekunder
     }
 
     /**
-     * Tests that an array of strings contains only digits.
+     * Tests that an array of strings contains only positive numbers.
      *
      * @param arrayToTest The array whose contents will be tested.
-     * @return True if the array contains only digits, else False.
+     * @return True if the array contains only positive numbers, else False.
      */
-    private static boolean stringArrayContainsOnlyDigits(String[] arrayToTest)
+    private static boolean stringArrayContainsOnlyPositiveNumbers(String[]
+                                                                  arrayToTest)
     {
         for (String arrayEntry : arrayToTest) {
+            int number;
             try {
-                Integer.parseInt(arrayEntry);
+                number = Integer.parseInt(arrayEntry);
             } catch (NumberFormatException e) {
+                return false;
+            }
+            if (number < 0) {
                 return false;
             }
         }
