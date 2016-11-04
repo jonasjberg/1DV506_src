@@ -145,7 +145,6 @@ public class Sekunder
                 integerArray[i] = Integer.parseInt(arrayToConvert[i]);
             } catch (NumberFormatException e) {
                 /* TODO: Handle illegal array contents properly .. */
-                continue;
             }
         }
 

@@ -12,7 +12,7 @@ package js224eh_lab1;
  */
 
 public class Print {
-    public static final String STR_KNOWLEDGE_POWER = "Kunskap är makt!";
+    private static final String STR_KNOWLEDGE_POWER = "Kunskap är makt!";
 
     public static void main(String[] args) {
         printStringOnOneLine(STR_KNOWLEDGE_POWER);
@@ -60,8 +60,8 @@ public class Print {
         }
 
         String[] subStrings = stringToPrint.split("\\s+", 3);
-        for (int i = 0; i < subStrings.length; i++) {
-            System.out.println(subStrings[i]);
+        for (String subString : subStrings) {
+            System.out.println(subString);
         }
     }
 
@@ -96,7 +96,7 @@ public class Print {
      * @param n             Number of times the string is printed. Must be a
      *                      positive integer.
      */
-    public static void printStringNtimes(String stringToPrint, int n) {
+    private static void printStringNtimes(String stringToPrint, int n) {
         if (n < 0) {
             return;
         }

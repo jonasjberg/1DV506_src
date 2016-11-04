@@ -67,8 +67,7 @@ public class Citat
 
         do {
             queryUser(strPromptForLine);
-            userInput = scan.nextLine();
-            userInput = userInput.trim();
+            userInput = scan.nextLine().trim();
         } while (userInput == null || userInput.isEmpty());
 
         scan.close();
