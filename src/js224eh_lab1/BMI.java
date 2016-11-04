@@ -26,18 +26,25 @@ public class BMI
     {
         final String MSG_PROMPT_FOR_HEIGHT = "Ange din längd i meter: ";
         final String MSG_PROMPT_FOR_WEIGHT = "Ange din vikt i kilogram: ";
-        final String MSG_BMI_RESULT = "Ditt BMI är: ";
+        final String MSG_BMI_RESULT        = "Ditt BMI är: ";
 
         final double height = promptUserForNumber(MSG_PROMPT_FOR_HEIGHT);
         final double weight = promptUserForNumber(MSG_PROMPT_FOR_WEIGHT);
-        final double bmi = calculateBmi(weight, height);
+        final double bmi    = calculateBmi(weight, height);
 
         System.out.println(MSG_BMI_RESULT + bmi);
     }
 
+    /**
+     * Calculates the BMI from a weight and a height.
+     *
+     * @param weight Weight in kilograms.
+     * @param height Height in meters.
+     * @return BMI calculated from the weight and height.
+     */
     private static double calculateBmi(double weight, double height)
     {
-        return weight / (Math.pow(height, 2));
+        return weight / Math.pow(height, 2);
     }
 
     /**
