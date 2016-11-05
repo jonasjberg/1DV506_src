@@ -87,6 +87,7 @@ public class Print {
         System.out.println("\n" + CHAR_VERTI + CHAR_PAD + stringToPrint +
                            CHAR_PAD + CHAR_VERTI);
         printStringNtimes(CHAR_HORIZ, rectangleWidth);
+        System.out.println();
     }
 
     /**
