@@ -1,5 +1,7 @@
 package js224eh_lab1;
 
+import java.util.Scanner;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-07.
  *
@@ -38,6 +40,72 @@ public class VaxelPengar
 {
     public static void main(String[] args)
     {
-        
+        final String MSG_PROMPT_FOR_COST = "Ange kostnaden: ";
+        final String MSG_PROMPT_FOR_AMOUNT_RECEIVED = "Ange erhållet belopp: ";
+
+        final double purchaseCost = promptUserForNumber(MSG_PROMPT_FOR_COST);
+        final double amountReceived = promptUserForNumber(MSG_PROMPT_FOR_AMOUNT_RECEIVED);
+
+        double change = amountReceived - purchaseCost;
+        int thousands = (int) change / 1000;
+        int fiveHundreds = (int) (change % 1000) / 500;
+        int hundreds = (int) ((change % 1000) % 500) / 100;
+        int fifties = (int) (((change % 1000) % 500) % 100) / 50;
+        int twenties = (int) ((((change % 1000) % 500) % 100) % 50) / 20;
+        int tens = (int) (((((change % 1000) % 500) % 100) % 50) % 20 ) / 10;
+        int fives = (int) ((((((change % 1000) % 500) % 100) % 50) % 20 ) % 10 ) / 5;
+        int ones = (int) (((((((change % 1000) % 500) % 100) % 50) % 20 ) % 10 ) % 5 ) / 1;
+
+        System.out.printf("1000-lappar: %d\n" +
+                          " 500-lappar: %d\n" +
+                          " 100-lappar: %d\n" +
+                          " 50-lappar: %d\n" +
+                          "  20-lappar: %d\n" +
+                          "  10-kronor: %d\n" +
+                          "   5-kronor: %d\n" +
+                          "   1-kronor: %d\n",
+                          thousands, fiveHundreds, hundreds, fifties,
+                          twenties, tens, fives, ones);
+    }
+
+    /**
+     * Prints a message to the user.
+     *
+     * @param message The message to print. Must not be empty.
+     */
+    private static void queryUser(String message)
+    {
+        if (message != null && message.length() > 0) {
+            System.out.print(message);
+        }
+    }
+
+    /**
+     * Prompts the user for a number.
+     *
+     * The message is shown continuously until the user has entered a valid
+     * number. Any leading and trailing whitespace is removed.
+     *
+     * @param strPromptForLine The message to display when prompting for input.
+     * @return The number entered by the user.
+     */
+    private static double promptUserForNumber(String strPromptForLine)
+    {
+        Scanner scan      = new Scanner(System.in);
+        String  userInput = null;
+        double  number;
+
+        do {
+            queryUser(strPromptForLine);
+
+            while (!scan.hasNextDouble()) {
+                queryUser(strPromptForLine);
+                scan.next();
+            }
+            number = scan.nextDouble();
+
+        } while (number <= 0);
+
+        return number;
     }
 }
