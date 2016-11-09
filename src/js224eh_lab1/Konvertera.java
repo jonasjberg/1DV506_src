@@ -1,5 +1,7 @@
 package js224eh_lab1;
 
+import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-09.
  *
@@ -21,12 +23,36 @@ public class Konvertera
 {
     public static void main(String[] args)
     {
+        final String MSG_ENTER_TEMP = "Mata in en temperatur i grader (F): ";
 
+        double tempFahr = promptUserForPositiveNumber(MSG_ENTER_TEMP);
+        double tempCels = convertFahrenheitToCelsius(tempFahr);
+
+        printTemperatureConversionResult(tempFahr, tempCels);
     }
 
+    /**
+     * Prints temperatures in Fahrenheit and Celsius.
+     *
+     * @param tempFahr The temperature in Fahrenheit.
+     * @param tempCels The temperature in Celsius.
+     */
+    private static void printTemperatureConversionResult(double tempFahr,
+                                                         double tempCels)
+    {
+        System.out.printf("\n  Fahrenheit: %.1f" +
+                          "\n     Celsius: %.1f\n",
+                          tempFahr, tempCels);
+    }
+
+    /**
+     * Converts a temperature in degrees Fahrenheit to degrees Celsius.
+     *
+     * @param fahrenheit The temperature to convert in degrees Fahrenheit.
+     * @return The given temperature in degrees Celsius.
+     */
     private static double convertFahrenheitToCelsius(double fahrenheit)
     {
-        double celsius = (fahrenheit - 32) * 5.0 / 9.0;
-        return celsius;
+        return ((fahrenheit - 32) * 5.0) / 9.0;
     }
 }
