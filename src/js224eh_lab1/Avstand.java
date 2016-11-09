@@ -6,15 +6,15 @@ package js224eh_lab1;
  * Lektion 3 - Using Library Classes
  *
  * 15. Avstånd mellan två koordinater
- * Skriv ett program Avstand.java som läser in två koordinater på formen
- * (x,y) och sedan beräknar avståndet mellan dem mha formeln
+ *     Skriv ett program Avstand.java som läser in två koordinater på formen
+ *     (x,y) och sedan beräknar avståndet mellan dem mha formeln
  *
- * avstand = Sqrt( (x1-x2)^2 + (y1-y2)^2 )
+ *         avstand = Sqrt( (x1-x2)^2 + (y1-y2)^2 )
  *
- * Här står Sqrt() för "kvadratroten ur" och ^ betyder "upphöjt till".
- * Svaret skall presenteras med 3 siffrors noggranhet.
+ *     Här står Sqrt() för "kvadratroten ur" och ^ betyder "upphöjt till".
+ *     Svaret skall presenteras med 3 siffrors noggranhet.
  *
- * Ledtråd: Använd klassen java.lang.Math för beräkning.
+ *     Ledtråd: Använd klassen java.lang.Math för beräkning.
  */
 public class Avstand
 {
