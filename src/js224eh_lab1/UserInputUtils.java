@@ -70,7 +70,6 @@ class UserInputUtils
             userInput = scan.nextLine().trim();
         } while (userInput == null || userInput.isEmpty());
 
-        scan.close();
         return userInput;
     }
 }
