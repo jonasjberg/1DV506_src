@@ -59,18 +59,6 @@ public class SummaAvTre
     }
 
     /**
-     * Prints a message to the user.
-     *
-     * @param message The message to print. Must not be empty.
-     */
-    private static void queryUser(String message)
-    {
-        if (message != null && message.length() > 0) {
-            System.out.print(message);
-        }
-    }
-
-    /**
      * Prompts the user for a number.
      *
      * The message is shown continuously until the user has entered a valid
@@ -86,10 +74,10 @@ public class SummaAvTre
         boolean hasThreeDigits = false;
 
         do {
-            queryUser(message);
+            UserInputUtils.queryUser(message);
 
             while (!scan.hasNextInt()) {
-                queryUser(message);
+                UserInputUtils.queryUser(message);
                 scan.next();
             }
             userInput = scan.nextInt();

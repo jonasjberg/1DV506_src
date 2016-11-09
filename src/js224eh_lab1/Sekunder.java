@@ -85,18 +85,6 @@ public class Sekunder
     }
 
     /**
-     * Prints a message to the user.
-     *
-     * @param message The message to print. Must not be empty.
-     */
-    private static void queryUser(String message)
-    {
-        if (message != null && message.length() > 0) {
-            System.out.print(message);
-        }
-    }
-
-    /**
      * Prompts the user for 'n' number of values, separated by commas.
      *
      * A message prompt is repeatedly displayed until the user input matches the
@@ -116,7 +104,7 @@ public class Sekunder
         boolean  inputValidated = false;
 
         do {
-            queryUser(promptMessage);
+            UserInputUtils.queryUser(promptMessage);
             userInput = scan.nextLine().replaceAll("\\s+", "");
             commaSepValues = userInput.split(",", numberOfValues);
 
