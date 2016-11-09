@@ -22,7 +22,8 @@ import static js224eh_lab1.UserInputUtils.promptForTextLine;
  */
 public class KortNamn
 {
-    private static final int LASTNAME_MAX_LENGTH = 4;
+    private static final int    LAST_NAME_MAX_LENGTH = 4;
+    private static final String SHORT_FORM_SEPARATOR = ". ";
 
     public static void main(String[] args)
     {
@@ -33,23 +34,35 @@ public class KortNamn
         String firstName = promptForTextLine(MSG_QUERY_FIRST_NAME);
         String lastName = promptForTextLine(MSG_QUERY_LAST_NAME);
 
-        String shortenedName = generateShortFormName(lastName, firstName);
-        System.out.println(MSG_NAME_SHORTENED + shortenedName);
+        String shortenedName = generateShortFormName(firstName, lastName);
 
+        System.out.println(MSG_NAME_SHORTENED + shortenedName);
         System.exit(0);
     }
 
-    private static String generateShortFormName(String lastName,
-                                                String firstName)
+    /**
+     * Generates a shortened form of a first name and last name.
+     * The short form uses the first letter of the first name followed by
+     * 'SHORT_FORM_SEPARATOR' and then the last name, truncated to
+     * 'LAST_NAME_MAX_LENGTH' characters.
+     *
+     * @param firstName The first name to shorten.
+     * @param lastName The last name to shorten.
+     * @return A shortened form of the given names.
+     */
+    private static String generateShortFormName(String firstName,
+                                                String lastName)
     {
         assert firstName != null;
         assert lastName != null;
 
+        // Get the first letter from 'firstName'.
         String shortFirstName = firstName.substring(0, 1);
 
-        int subStringEndIndex = Math.min(lastName.length(), LASTNAME_MAX_LENGTH);
+        // Handle case where last name is shorter than 'LAST_NAME_MAX_LENGTH'.
+        int subStringEndIndex = Math.min(lastName.length(), LAST_NAME_MAX_LENGTH);
         String shortLastName = lastName.substring(0, subStringEndIndex);
 
-        return shortFirstName + ". " + shortLastName;
+        return shortFirstName + SHORT_FORM_SEPARATOR + shortLastName;
     }
 }
