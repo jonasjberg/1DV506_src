@@ -14,7 +14,7 @@ package js224eh_lab1;
  *    Citat: "I wish I was a punk rocker with flowers in my hair."
  */
 
-import java.util.Scanner;
+import static js224eh_lab1.UserInputUtils.promptForTextLine;
 
 public class Citat
 {
@@ -37,40 +37,5 @@ public class Citat
     private static String surroundWithQuoteMarks(String text)
     {
         return "\"" + text + "\"";
-    }
-
-    /**
-     * Prints a message to the user.
-     *
-     * @param message The message to print. Must not be empty.
-     */
-    private static void queryUser(String message)
-    {
-        if (message != null && message.length() > 0) {
-            System.out.print(message);
-        }
-    }
-
-    /**
-     * Prompts the user for a line of input from stdin.
-     *
-     * The message is shown continuously until the input has one or more
-     * characters. Any leading and trailing whitespace is removed.
-     *
-     * @param strPromptForLine The message to display when prompting for input.
-     * @return The line of input entered by the user.
-     */
-    private static String promptForTextLine(String strPromptForLine)
-    {
-        Scanner scan      = new Scanner(System.in);
-        String  userInput = null;
-
-        do {
-            queryUser(strPromptForLine);
-            userInput = scan.nextLine().trim();
-        } while (userInput == null || userInput.isEmpty());
-
-        scan.close();
-        return userInput;
     }
 }
