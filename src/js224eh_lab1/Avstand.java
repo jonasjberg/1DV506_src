@@ -24,7 +24,6 @@ public class Avstand
     public static final String MSG_QUERY_COORDINATE = "Ange en koordinat på " +
                                                       "formen (x,y): ";
 
-
     public static void main(String[] args)
     {
         String input1 = promptForTextLine(MSG_QUERY_COORDINATE);
@@ -34,8 +33,7 @@ public class Avstand
         String cleanInput1 = cleanupString(input1);
         System.out.println("cleaned input: " + cleanInput1);
 
-        SimpleVector firstCoordinate = createCoordinateFromString(cleanupString(
-                input1));
+        SimpleVector firstCoordinate = createCoordinateFromString(cleanupString(input1));
 
         double       coordX2          = 1;
         double       coordY2          = 1;
@@ -61,10 +59,9 @@ public class Avstand
         return string;
     }
 
-    private static SimpleVector createCoordinateFromString(String coordFirst)
+    private static SimpleVector createCoordinateFromString(String string)
     {
-        String cleanedString = coordFirst.replace("^[0-9]+", "");
-        System.out.println(cleanedString);
+        double x = string.
 
         return new SimpleVector(1, 2);
     }
