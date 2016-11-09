@@ -18,7 +18,7 @@ package js224eh_lab1;
  *    Notera: BMI är alltid ett heltal.
  */
 
-import java.util.Scanner;
+import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
 
 public class BMI
 {
@@ -28,11 +28,11 @@ public class BMI
         final String MSG_PROMPT_FOR_WEIGHT = "Ange din vikt i kilogram: ";
         final String MSG_BMI_RESULT        = "Ditt BMI är: ";
 
-        final double height = promptUserForNumber(MSG_PROMPT_FOR_HEIGHT);
-        final double weight = promptUserForNumber(MSG_PROMPT_FOR_WEIGHT);
+        final double height = promptUserForPositiveNumber(MSG_PROMPT_FOR_HEIGHT);
+        final double weight = promptUserForPositiveNumber(MSG_PROMPT_FOR_WEIGHT);
         final double bmi    = calculateBmi(weight, height);
 
-        System.out.println(MSG_BMI_RESULT + bmi);
+        System.out.println(MSG_BMI_RESULT + Math.round(bmi));
     }
 
     /**
@@ -45,46 +45,5 @@ public class BMI
     private static double calculateBmi(double weight, double height)
     {
         return weight / Math.pow(height, 2);
-    }
-
-    /**
-     * Prints a message to the user.
-     *
-     * @param message The message to print. Must not be empty.
-     */
-    private static void queryUser(String message)
-    {
-        if (message != null && message.length() > 0) {
-            System.out.print(message);
-        }
-    }
-
-    /**
-     * Prompts the user for a number.
-     *
-     * The message is shown continuously until the user has entered a valid
-     * number. Any leading and trailing whitespace is removed.
-     *
-     * @param strPromptForLine The message to display when prompting for input.
-     * @return The number entered by the user.
-     */
-    private static double promptUserForNumber(String strPromptForLine)
-    {
-        Scanner scan      = new Scanner(System.in);
-        String  userInput = null;
-        double  number;
-
-        do {
-            queryUser(strPromptForLine);
-
-            while (!scan.hasNextDouble()) {
-                queryUser(strPromptForLine);
-                scan.next();
-            }
-            number = scan.nextDouble();
-
-        } while (number <= 0);
-
-        return number;
     }
 }
