@@ -1,6 +1,6 @@
 package js224eh_lab1;
 
-import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
+import static js224eh_lab1.UserInputUtils.promptForPositiveNumber;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-07.
@@ -43,8 +43,8 @@ public class VaxelPengar
         final String MSG_PROMPT_FOR_COST            = "Ange kostnaden: ";
         final String MSG_PROMPT_FOR_AMOUNT_RECEIVED = "Ange erhållet belopp: ";
 
-        final double purchaseCost   = promptUserForPositiveNumber(MSG_PROMPT_FOR_COST);
-        final double amountReceived = promptUserForPositiveNumber(MSG_PROMPT_FOR_AMOUNT_RECEIVED);
+        final double purchaseCost   = promptForPositiveNumber(MSG_PROMPT_FOR_COST);
+        final double amountReceived = promptForPositiveNumber(MSG_PROMPT_FOR_AMOUNT_RECEIVED);
 
         double changeToReturn = amountReceived - purchaseCost;
 

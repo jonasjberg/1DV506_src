@@ -1,6 +1,6 @@
 package js224eh_lab1;
 
-import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
+import static js224eh_lab1.UserInputUtils.promptForPositiveNumber;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-09.
@@ -25,7 +25,7 @@ public class Konvertera
     {
         final String MSG_ENTER_TEMP = "Mata in en temperatur i grader (F): ";
 
-        double tempFahr = promptUserForPositiveNumber(MSG_ENTER_TEMP);
+        double tempFahr = promptForPositiveNumber(MSG_ENTER_TEMP);
         double tempCels = convertFahrenheitToCelsius(tempFahr);
 
         printTemperatureConversionResult(tempFahr, tempCels);

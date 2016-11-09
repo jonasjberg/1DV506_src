@@ -1,6 +1,6 @@
 package js224eh_lab1;
 
-import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
+import static js224eh_lab1.UserInputUtils.promptForPositiveNumber;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-04.
@@ -21,7 +21,7 @@ public class Tid
     {
         final String MSG_PROMPT_FOR_SECONDS = "Ange antal sekunder: ";
 
-        int secondsTotal = (int) promptUserForPositiveNumber(MSG_PROMPT_FOR_SECONDS);
+        int secondsTotal = (int) promptForPositiveNumber(MSG_PROMPT_FOR_SECONDS);
 
         int hours   = secondsTotal / 3600;
         int minutes = (secondsTotal % 3600) / 60;

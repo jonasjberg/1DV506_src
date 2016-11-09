@@ -32,7 +32,7 @@ class UserInputUtils
      * @param strPromptForLine The message to display when prompting for input.
      * @return The number entered by the user.
      */
-    static double promptUserForPositiveNumber(String strPromptForLine)
+    static double promptForPositiveNumber(String strPromptForLine)
     {
         Scanner scan = new Scanner(System.in);
         double  number;

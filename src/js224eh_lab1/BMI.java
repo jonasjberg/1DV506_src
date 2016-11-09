@@ -18,7 +18,7 @@ package js224eh_lab1;
  *    Notera: BMI är alltid ett heltal.
  */
 
-import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
+import static js224eh_lab1.UserInputUtils.promptForPositiveNumber;
 
 public class BMI
 {
@@ -28,8 +28,8 @@ public class BMI
         final String MSG_PROMPT_FOR_WEIGHT = "Ange din vikt i kilogram: ";
         final String MSG_BMI_RESULT        = "Ditt BMI är: ";
 
-        final double height = promptUserForPositiveNumber(MSG_PROMPT_FOR_HEIGHT);
-        final double weight = promptUserForPositiveNumber(MSG_PROMPT_FOR_WEIGHT);
+        final double height = promptForPositiveNumber(MSG_PROMPT_FOR_HEIGHT);
+        final double weight = promptForPositiveNumber(MSG_PROMPT_FOR_WEIGHT);
         final double bmi    = calculateBmi(weight, height);
 
         System.out.println(MSG_BMI_RESULT + Math.round(bmi));
