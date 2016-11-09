@@ -1,6 +1,8 @@
 package js224eh_lab1;
 
-/**
+import static js224eh_lab1.UserInputUtils.promptForTextLine;
+
+/*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-09.
  *
  * Lektion 3 - Using Library Classes
@@ -18,23 +20,57 @@ package js224eh_lab1;
  */
 public class Avstand
 {
+
+    public static final String MSG_QUERY_COORDINATE = "Ange en koordinat på " +
+                                                      "formen (x,y): ";
+
+
     public static void main(String[] args)
     {
-        double coordX1 = -3.1415;
-        double coordY1 = -33;
-        double coordX2 = -10;
-        double coordY2 = -1.3;
+        String input1 = promptForTextLine(MSG_QUERY_COORDINATE);
+        //String       input2      = promptForTextLine(MSG_QUERY_COORDINATE);
 
-        SimpleVector coordFirst  = new SimpleVector(coordX1, coordY1);
-        SimpleVector coordSecond = new SimpleVector(coordX2, coordY2);
+        System.out.println("raw input: " + input1);
+        String cleanInput1 = cleanupString(input1);
+        System.out.println("cleaned input: " + cleanInput1);
 
-        double distance = coordFirst.getDistance(coordSecond);
+        SimpleVector firstCoordinate = createCoordinateFromString(cleanupString(
+                input1));
+
+        double       coordX2          = 1;
+        double       coordY2          = 1;
+        SimpleVector secondCoordinate = new SimpleVector(coordX2, coordY2);
+
+        double distance = firstCoordinate.getDistance(secondCoordinate);
 
         System.out.printf("Avståndet mellan koordinaterna %s och %s är %.3f",
-                          coordFirst.toString(), coordSecond.toString(),
-                          distance);
+                          firstCoordinate.toString(),
+                          secondCoordinate.toString(), distance);
     }
+
+    private static String cleanupString(String string)
+    {
+        // Remove everything except digits, commas and periods.
+        string = string.replaceAll("[^0-9,.]", "");
+
+        // Hacky workaround for locale-dependant decimal separator ..
+        string = string.replaceAll(",", ".");
+
+        // Remove any leading and trailing periods.
+        string = string.replaceAll("^\\.+", "").replaceAll("\\.+$", "");
+        return string;
+    }
+
+    private static SimpleVector createCoordinateFromString(String coordFirst)
+    {
+        String cleanedString = coordFirst.replace("^[0-9]+", "");
+        System.out.println(cleanedString);
+
+        return new SimpleVector(1, 2);
+    }
+
 }
+
 
 class SimpleVector
 {
@@ -43,6 +79,7 @@ class SimpleVector
 
     /**
      * A simple wrapper for two values representing a vector or 2D coordinate.
+     *
      * @param x The X position of this vector/coordinate.
      * @param y The Y position of this vector/coordinate.
      */
