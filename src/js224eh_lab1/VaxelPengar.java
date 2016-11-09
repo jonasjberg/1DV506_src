@@ -40,26 +40,34 @@ public class VaxelPengar
 {
     public static void main(String[] args)
     {
-        final String MSG_PROMPT_FOR_COST = "Ange kostnaden: ";
+        final String MSG_PROMPT_FOR_COST            = "Ange kostnaden: ";
         final String MSG_PROMPT_FOR_AMOUNT_RECEIVED = "Ange erhållet belopp: ";
 
-        final double purchaseCost = promptUserForNumber(MSG_PROMPT_FOR_COST);
+        final double purchaseCost   = promptUserForNumber(MSG_PROMPT_FOR_COST);
         final double amountReceived = promptUserForNumber(MSG_PROMPT_FOR_AMOUNT_RECEIVED);
 
-        double change = amountReceived - purchaseCost;
-        int thousands = (int) change / 1000;
-        int fiveHundreds = (int) (change % 1000) / 500;
-        int hundreds = (int) ((change % 1000) % 500) / 100;
-        int fifties = (int) (((change % 1000) % 500) % 100) / 50;
-        int twenties = (int) ((((change % 1000) % 500) % 100) % 50) / 20;
-        int tens = (int) (((((change % 1000) % 500) % 100) % 50) % 20 ) / 10;
-        int fives = (int) ((((((change % 1000) % 500) % 100) % 50) % 20 ) % 10 ) / 5;
-        int ones = (int) (((((((change % 1000) % 500) % 100) % 50) % 20 ) % 10 ) % 5 ) / 1;
+        double changeToPay = amountReceived - purchaseCost;
+
+        int thousands = (int) changeToPay / 1000;
+        changeToPay = changeToPay % 1000;
+        int fiveHundreds = (int) changeToPay / 500;
+        changeToPay = changeToPay % 500;
+        int hundreds = (int) changeToPay / 100;
+        changeToPay = changeToPay % 100;
+        int fifties = (int) changeToPay / 50;
+        changeToPay = changeToPay % 50;
+        int twenties = (int) changeToPay / 20;
+        changeToPay = changeToPay % 20;
+        int tens = (int) changeToPay / 10;
+        changeToPay = changeToPay % 10;
+        int fives = (int) changeToPay / 5;
+        changeToPay = changeToPay % 5;
+        int ones = (int) Math.round(changeToPay);
 
         System.out.printf("1000-lappar: %d\n" +
                           " 500-lappar: %d\n" +
                           " 100-lappar: %d\n" +
-                          " 50-lappar: %d\n" +
+                          "  50-lappar: %d\n" +
                           "  20-lappar: %d\n" +
                           "  10-kronor: %d\n" +
                           "   5-kronor: %d\n" +
