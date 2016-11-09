@@ -29,6 +29,7 @@ public class Konvertera
         double tempCels = convertFahrenheitToCelsius(tempFahr);
 
         printTemperatureConversionResult(tempFahr, tempCels);
+        System.exit(0);
     }
 
     /**
