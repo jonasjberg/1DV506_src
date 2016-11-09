@@ -1,6 +1,6 @@
 package js224eh_lab1;
 
-import java.util.Scanner;
+import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-04.
@@ -21,7 +21,7 @@ public class Tid
     {
         final String MSG_PROMPT_FOR_SECONDS = "Ange antal sekunder: ";
 
-        int secondsTotal = promptUserForPositiveInt(MSG_PROMPT_FOR_SECONDS);
+        int secondsTotal = (int) promptUserForPositiveNumber(MSG_PROMPT_FOR_SECONDS);
 
         int hours   = secondsTotal / 3600;
         int minutes = (secondsTotal % 3600) / 60;
@@ -34,33 +34,5 @@ public class Tid
         System.out.printf("Detta motsvarar: %d %s, %d %s och %d %s.\n",
                           hours, hoursString, minutes, minutesString,
                           seconds, secondsString);
-    }
-
-    /**
-     * Prompts the user for a number.
-     *
-     * The message is shown continuously until the user has entered a valid
-     * number. Any leading and trailing whitespace is removed.
-     *
-     * @param message The message to display when prompting for input.
-     * @return The number entered by the user.
-     */
-    private static int promptUserForPositiveInt(String message)
-    {
-        Scanner scan      = new Scanner(System.in);
-        int     userInput = 0;
-
-        do {
-            UserInputUtils.queryUser(message);
-
-            while (!scan.hasNextInt()) {
-                UserInputUtils.queryUser(message);
-                scan.next();
-            }
-            userInput = scan.nextInt();
-
-        } while (userInput <= 0);
-
-        return userInput;
     }
 }
