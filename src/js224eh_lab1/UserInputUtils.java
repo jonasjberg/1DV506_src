@@ -34,9 +34,8 @@ class UserInputUtils
      */
     static double promptUserForPositiveNumber(String strPromptForLine)
     {
-        Scanner scan      = new Scanner(System.in);
-        String  userInput = null;
-        double  number    = -1;
+        Scanner scan = new Scanner(System.in);
+        double  number;
 
         do {
             queryUser(strPromptForLine);
@@ -49,7 +48,6 @@ class UserInputUtils
 
         } while (number <= 0);
 
-        scan.close();
         return number;
     }
 
