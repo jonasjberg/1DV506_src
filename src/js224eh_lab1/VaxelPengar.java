@@ -1,6 +1,6 @@
 package js224eh_lab1;
 
-import java.util.Scanner;
+import static js224eh_lab1.UserInputUtils.promptUserForPositiveNumber;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-07.
@@ -43,26 +43,26 @@ public class VaxelPengar
         final String MSG_PROMPT_FOR_COST            = "Ange kostnaden: ";
         final String MSG_PROMPT_FOR_AMOUNT_RECEIVED = "Ange erhållet belopp: ";
 
-        final double purchaseCost   = promptUserForNumber(MSG_PROMPT_FOR_COST);
-        final double amountReceived = promptUserForNumber(MSG_PROMPT_FOR_AMOUNT_RECEIVED);
+        final double purchaseCost   = promptUserForPositiveNumber(MSG_PROMPT_FOR_COST);
+        final double amountReceived = promptUserForPositiveNumber(MSG_PROMPT_FOR_AMOUNT_RECEIVED);
 
-        double changeToPay = amountReceived - purchaseCost;
+        double changeToReturn = amountReceived - purchaseCost;
 
-        int thousands = (int) changeToPay / 1000;
-        changeToPay = changeToPay % 1000;
-        int fiveHundreds = (int) changeToPay / 500;
-        changeToPay = changeToPay % 500;
-        int hundreds = (int) changeToPay / 100;
-        changeToPay = changeToPay % 100;
-        int fifties = (int) changeToPay / 50;
-        changeToPay = changeToPay % 50;
-        int twenties = (int) changeToPay / 20;
-        changeToPay = changeToPay % 20;
-        int tens = (int) changeToPay / 10;
-        changeToPay = changeToPay % 10;
-        int fives = (int) changeToPay / 5;
-        changeToPay = changeToPay % 5;
-        int ones = (int) Math.round(changeToPay);
+        int thousands = (int) changeToReturn / 1000;
+        changeToReturn = changeToReturn % 1000;
+        int fiveHundreds = (int) changeToReturn / 500;
+        changeToReturn = changeToReturn % 500;
+        int hundreds = (int) changeToReturn / 100;
+        changeToReturn = changeToReturn % 100;
+        int fifties = (int) changeToReturn / 50;
+        changeToReturn = changeToReturn % 50;
+        int twenties = (int) changeToReturn / 20;
+        changeToReturn = changeToReturn % 20;
+        int tens = (int) changeToReturn / 10;
+        changeToReturn = changeToReturn % 10;
+        int fives = (int) changeToReturn / 5;
+        changeToReturn = changeToReturn % 5;
+        int ones = (int) Math.round(changeToReturn);
 
         System.out.printf("1000-lappar: %d\n" +
                           " 500-lappar: %d\n" +
@@ -74,46 +74,5 @@ public class VaxelPengar
                           "   1-kronor: %d\n",
                           thousands, fiveHundreds, hundreds, fifties,
                           twenties, tens, fives, ones);
-    }
-
-    /**
-     * Prints a message to the user.
-     *
-     * @param message The message to print. Must not be empty.
-     */
-    private static void queryUser(String message)
-    {
-        if (message != null && message.length() > 0) {
-            System.out.print(message);
-        }
-    }
-
-    /**
-     * Prompts the user for a number.
-     *
-     * The message is shown continuously until the user has entered a valid
-     * number. Any leading and trailing whitespace is removed.
-     *
-     * @param strPromptForLine The message to display when prompting for input.
-     * @return The number entered by the user.
-     */
-    private static double promptUserForNumber(String strPromptForLine)
-    {
-        Scanner scan      = new Scanner(System.in);
-        String  userInput = null;
-        double  number;
-
-        do {
-            queryUser(strPromptForLine);
-
-            while (!scan.hasNextDouble()) {
-                queryUser(strPromptForLine);
-                scan.next();
-            }
-            number = scan.nextDouble();
-
-        } while (number <= 0);
-
-        return number;
     }
 }
