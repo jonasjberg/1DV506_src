@@ -38,30 +38,31 @@ public class Avstand
     }
 
     /**
-     * Prompts the user for a set coordinates; two (decimal) numbers, separated
-     * by commas.
+     * Prompts the user for a set coordinates; 'NUMBER_OF_VALUES' (decimal)
+     * numbers, separated by the character 'DELIMIT_CHAR'.
      *
      * A message prompt is repeatedly displayed until the user input matches the
      * conditions: User entered 'NUMBER_OF_VALUES' valid doubles, separated by
-     * commas. The input is "cleaned up" prior to parsing the numbers, which
-     * means that surrounding parenthesis are handled properly.
+     * 'DELIMIT_CHAR'. The input is "cleaned up" prior to parsing the numbers,
+     * which means that surrounding parenthesis are handled properly.
      *
      * @param promptMessage The message to display when prompting the user.
      * @return An array of doubles with length 'NUMBER_OF_VALUES'.
      */
     private static double[] promptUserForCoordinates(String promptMessage)
     {
-        final int NUMBER_OF_VALUES = 2;
-        Scanner   scan             = new Scanner(System.in);
-        String[]  commaSepValues   = null;
-        String    userInput        = null;
-        boolean   inputValidated   = false;
+        final int    NUMBER_OF_VALUES = 2;
+        final String DELIMIT_CHAR     = ",";
+        Scanner      scan             = new Scanner(System.in);
+        String[]     commaSepValues   = null;
+        String       userInput        = null;
+        boolean      inputValidated   = false;
 
         do {
             UserInputUtils.queryUser(promptMessage);
             userInput = scan.nextLine();
             userInput = cleanupString(userInput);
-            commaSepValues = userInput.split(",", NUMBER_OF_VALUES);
+            commaSepValues = userInput.split(DELIMIT_CHAR, NUMBER_OF_VALUES);
 
             if (commaSepValues.length == NUMBER_OF_VALUES &&
                 stringArrayContainsOnlyValidDoubles(commaSepValues)) {
@@ -106,7 +107,7 @@ public class Avstand
     {
         for (String arrayEntry : arrayToTest) {
             try {
-                double number = Double.parseDouble(arrayEntry);
+                Double.parseDouble(arrayEntry);
             } catch (NumberFormatException e) {
                 return false;
             }
@@ -125,17 +126,9 @@ public class Avstand
      */
     private static String cleanupString(String string)
     {
-        System.out.println("cleanupString got: " + string);
-        // Remove whitespace. Then remove everything that is not
+        // Remove whitespace, then remove everything except
         // digits, dashes, commas or periods.
         string = string.replaceAll("\\s+", "").replaceAll("[^0-9,.-]", "");
-
-        // // Hacky workaround for locale-dependant decimal separator ..
-        // string = string.replaceAll(",", ".");
-
-        // // Remove any leading and trailing periods.
-        // string = string.replaceAll("^\\.+", "").replaceAll("\\.+$", "");
-        System.out.println("cleanupString returns: " + string);
         return string;
     }
 
@@ -155,7 +148,9 @@ public class Avstand
 
 class SimpleVector
 {
-    // Getters and setters left out for brevity ..
+    // NOTE:  - Getters and setters left out for brevity.
+    //        - Multiple classes in one source file is generally
+    //          considered "bad practice" and should be avoided.
     double x, y;
 
     /**
