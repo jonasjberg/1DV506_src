@@ -1,5 +1,7 @@
 package js224eh_lab1;
 
+import static js224eh_lab1.UserInputUtils.promptForNumber;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-10.
  *
@@ -23,6 +25,22 @@ public class VindAvkylning
 {
     public static void main(String[] args)
     {
-        /* TODO: Implement .. */
+        final String MSG_PROMPT_FOR_TEMPERATURE = "Ange temperatur: ";
+        final String MSG_PROMPT_FOR_WIND_SPEED = "Ange vindhastigheten: ";
+
+        double temperature = promptForNumber(MSG_PROMPT_FOR_TEMPERATURE);
+        double windSpeed = promptForNumber(MSG_PROMPT_FOR_WIND_SPEED);
+
+        double apparentTemperature = calculateApparentTemperature(temperature,
+                                                                  windSpeed);
+    }
+
+    private static double calculateApparentTemperature(double temperature,
+                                                       double windSpeed)
+    {
+        // Tapparent(°C) = 33 + (Tair- 33)*(0.474 + 0.454√(v)-0.0454.v)
+
+        double result = 33 + (temperature - 33) *
+                             (0.474 + (0.454 * Math.sqrt(windSpeed)));
     }
 }

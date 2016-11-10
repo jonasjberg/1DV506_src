@@ -24,7 +24,7 @@ class UserInputUtils
     }
 
     /**
-     * Prompts the user for a number.
+     * Prompts the user for a positive number.
      *
      * The message is shown continuously until the user has entered a valid
      * number. Any leading and trailing whitespace is removed.
@@ -49,6 +49,27 @@ class UserInputUtils
         } while (number <= 0);
 
         return number;
+    }
+
+    /**
+     * Prompts the user for a decimal number.
+     *
+     * The message is shown continuously until the user has entered a valid
+     * number. Any leading and trailing whitespace is removed.
+     *
+     * @param strPromptForLine The message to display when prompting for input.
+     * @return The number entered by the user.
+     */
+    static double promptForNumber(String strPromptForLine)
+    {
+        Scanner scan = new Scanner(System.in);
+
+        while (!scan.hasNextDouble()) {
+            queryUser(strPromptForLine);
+            scan.next();
+        }
+
+        return scan.nextDouble();
     }
 
     /**
