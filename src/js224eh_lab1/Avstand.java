@@ -20,21 +20,19 @@ import java.util.Scanner;
  */
 public class Avstand
 {
-
-    public static final String MSG_QUERY_COORDINATE = "Ange en koordinat på " +
-                                                      "formen (x,y): ";
-
     public static void main(String[] args)
     {
-        double[] coords1 = promptUserForCoordinates();
-        double[] coords2 = promptUserForCoordinates();
+        double[] coords1 = promptUserForCoordinates(
+                "Ange en första koordinat på formen (x,y): ");
+        double[] coords2 = promptUserForCoordinates(
+                "Ange den andra koordinaten på formen (x,y): ");
 
-        SimpleVector firstCoordinate = createSimpleVector(coords1);
+        SimpleVector firstCoordinate  = createSimpleVector(coords1);
         SimpleVector secondCoordinate = createSimpleVector(coords2);
 
         double distance = firstCoordinate.getDistanceTo(secondCoordinate);
 
-        System.out.printf("Avståndet mellan koordinaterna %s och %s är %.3f",
+        System.out.printf("%nAvståndet mellan koordinaterna %s och %s är %.3f",
                           firstCoordinate.toString(),
                           secondCoordinate.toString(), distance);
     }
@@ -47,9 +45,10 @@ public class Avstand
      * by commas. Everything but commas, periods, dashes and digits is removed
      * prior to parsing the numbers.
      *
+     * @param promptMessage The message to display when prompting the user.
      * @return An array of integers with length 'NUMBER_OF_VALUES'.
      */
-    private static double[] promptUserForCoordinates()
+    private static double[] promptUserForCoordinates(String promptMessage)
     {
         final int NUMBER_OF_VALUES = 2;
         Scanner   scan             = new Scanner(System.in);
@@ -58,7 +57,7 @@ public class Avstand
         boolean   inputValidated   = false;
 
         do {
-            UserInputUtils.queryUser(MSG_QUERY_COORDINATE);
+            UserInputUtils.queryUser(promptMessage);
             userInput = scan.nextLine();
             userInput = cleanupString(userInput);
             commaSepValues = userInput.split(",", NUMBER_OF_VALUES);
@@ -78,7 +77,8 @@ public class Avstand
      * @param arrayToConvert The array of strings to convert.
      * @return The resulting array of doubles.
      */
-    private static double[] convertStringArrayToDoubleArray(String[] arrayToConvert)
+    private static double[] convertStringArrayToDoubleArray(
+            String[] arrayToConvert)
     {
         double[] doubleArray = new double[arrayToConvert.length];
 
@@ -158,8 +158,8 @@ class SimpleVector
      * vector (coordinate).
      * Uses the formula:   distance = Sqrt( (x1-x2)^2 + (y1-y2)^2 )
      *
-     * @param another Distance is calculated between this vector/coordinate
-     *                and the calling object.
+     * @param another Distance is calculated between this specified
+     *                vector/coordinate ('another') and the calling object.
      * @return The distance between this object and the given SimpleVector.
      */
     double getDistanceTo(SimpleVector another)
@@ -174,6 +174,7 @@ class SimpleVector
     @Override
     public String toString()
     {
-        return "(" + this.x + ", " + this.y + ")";
+        return String.format("(%.3f,%.3f)", this.x, this.y);
+        // return "(" + this.x + ", " + this.y + ")";
     }
 }
