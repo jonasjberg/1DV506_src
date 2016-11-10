@@ -38,15 +38,16 @@ public class Avstand
     }
 
     /**
-     * Prompts the user for 'n' number of values, separated by commas.
+     * Prompts the user for a set coordinates; two (decimal) numbers, separated
+     * by commas.
      *
      * A message prompt is repeatedly displayed until the user input matches the
-     * conditions: User entered 'NUMBER_OF_VALUES' valid doubles, separated
-     * by commas. Everything but commas, periods, dashes and digits is removed
-     * prior to parsing the numbers.
+     * conditions: User entered 'NUMBER_OF_VALUES' valid doubles, separated by
+     * commas. The input is "cleaned up" prior to parsing the numbers, which
+     * means that surrounding parenthesis are handled properly.
      *
      * @param promptMessage The message to display when prompting the user.
-     * @return An array of integers with length 'NUMBER_OF_VALUES'.
+     * @return An array of doubles with length 'NUMBER_OF_VALUES'.
      */
     private static double[] promptUserForCoordinates(String promptMessage)
     {
@@ -114,8 +115,17 @@ public class Avstand
         return true;
     }
 
+    /**
+     * "Cleans up" a string by removing everything except digits, commas,
+     * periods and dashes.
+     * For example, the input '((-3.1415),(2.))' will return '-3.1415,2.'
+     *
+     * @param string The string to "clean up".
+     * @return A "cleaned up" version of the string.
+     */
     private static String cleanupString(String string)
     {
+        System.out.println("cleanupString got: " + string);
         // Remove whitespace. Then remove everything that is not
         // digits, dashes, commas or periods.
         string = string.replaceAll("\\s+", "").replaceAll("[^0-9,.-]", "");
@@ -125,14 +135,21 @@ public class Avstand
 
         // // Remove any leading and trailing periods.
         // string = string.replaceAll("^\\.+", "").replaceAll("\\.+$", "");
+        System.out.println("cleanupString returns: " + string);
         return string;
     }
 
+    /**
+     * Creates instances of the class 'SimpleVector' from an array of doubles.
+     *
+     * @param values Array of doubles to create the new vector/coordinate from.
+     * @return A new instance of the 'SimpleVector' class.
+     */
     private static SimpleVector createSimpleVector(double[] values)
     {
+        assert values.length == 2;
         return new SimpleVector(values[0], values[1]);
     }
-
 }
 
 
