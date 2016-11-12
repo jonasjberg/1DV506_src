@@ -64,6 +64,7 @@ class UserInputUtils
     {
         Scanner scan = new Scanner(System.in);
 
+        queryUser(strPromptForLine);
         while (!scan.hasNextDouble()) {
             queryUser(strPromptForLine);
             scan.next();
