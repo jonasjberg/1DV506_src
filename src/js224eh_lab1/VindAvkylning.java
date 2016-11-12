@@ -1,7 +1,5 @@
 package js224eh_lab1;
 
-import java.text.DecimalFormat;
-
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-10.
  *
@@ -35,48 +33,58 @@ public class VindAvkylning
         double windSpeed   = 8.4;
         double temperature = -7.8;
 
-        double apparentTemperature = calculateApparentTemperature(temperature,
-                                                                  windSpeed);
+        int apparentTemperature = calculateApparentTemperature(temperature,
+                                                               windSpeed);
 
-        DecimalFormat df = new DecimalFormat("0.#");
-        System.out.println(
-                MSG_CALCULATION_RESULT + df.format(apparentTemperature) +
-                MSG_CALCULATION_RESULT_UNIT);
+        System.out.println(MSG_CALCULATION_RESULT + apparentTemperature +
+                           MSG_CALCULATION_RESULT_UNIT);
     }
 
-    public static double calculateApparentTemperature(double temperature,
-                                                      double windSpeed)
+    /**
+     * Calculates the apparent temperature using Siples formula.
+     *
+     * Source: https://www.eol.ucar.edu/homes/rilling/wc_formula.html
+     *
+     *   For degrees Celsius and m/s with baseline conditions 33C and 1.8m/s:
+     *
+     *   Siple:  Twc = 33 + (T - 33)*(0.474 + 0.454 sqrt(S) - 0.0454*S)
+     *         S >= 1.79 m/s    T < 33 degrees C
+     *
+     * @param temperature The temperate in degrees Celsius
+     * @param windSpeed The wind speed in meters per second.
+     * @return The apparent temperature in degrees Celsius.
+     */
+    public static int calculateApparentTemperature(double temperature,
+                                                   double windSpeed)
     {
-        // Using formula:
-        // Tchill = 13.12 + 0.6215 ∗ Ta − 11.37 ∗ V^{0.16} + 0.3965 ∗ Ta ∗
-        // V^{0.16}
-        //
-        // With:    Tchill   wind chill in celsius
-        //          Ta       actual temperature
-        //          V        wind velocity in km/h
-        //
-        // Source: http://www.freemathhelp.com/wind-chill.html
-
         double Ta = temperature;
         double V  = windSpeed;
 
         // From source:
         // (0.045*(5.27*Math.sqrt(v)+10.45-0.28*v)*(T-33)+33).toFixed(dec)
         // Rewritten:
-        // double Tchill = 0.045 * (5.27 * Math.sqrt(V) + 10.45 - 0.28 * V) * (Ta - 33) + 33;
+        // double Tchill = 0.045 * (5.27 * Math.sqrt(V) + 10.45 - 0.28 * V) *
+        // (Ta - 33) + 33;
         // Rearranged:
-        double Tchill = 33 + (Ta - 33 ) * 0.045 * (5.27 * Math.sqrt(V) + 10.45 - (0.28 * V));
+        // double Tchill = 33 + (Ta - 33 ) * 0.045 * (5.27 * Math.sqrt(V) +
+        // 10.45 - (0.28 * V));
 
         // double Tchill = 33 + (Ta - 33) * (0.474 + (0.454 * (Math.sqrt(V) -
         // (0.0454 * V))));
         // C
-        // double Tchill = (13.12 + (0.6215 * Ta)) - (11.37 * Math.pow(V, 0.16)) + (0.3965 * (Ta * Math.pow(V, 0.16)));
+        // double Tchill = 13.12 + (0.6215 * Ta) - (11.37 * Math.pow(V, 0.16)
+        // ) + (0.3965 * Ta * Math.pow(V, 0.16));
+
+        // Twc = 33  +  ( T - 33 ) ( .474  + .454 sqrt(S)  - .0454 S )
+        double Tchill = 33 + (Ta - 33) *
+                             (0.474 + (0.454 * Math.sqrt(V)) - (0.0454 * V));
 
         // F
         // double Tchill = (35.74 + (0.6215 * Ta)) - (35.75 * Math.pow(V,
         //                                                             0.16)) +
         //                 (0.4275 * (Ta * Math.pow(V, 0.16)));
-        //return Tchill;
-        return Math.round(Tchill);
+        return (int) Math.round(Tchill);
+
+        // return Math.round(Tchill);
     }
 }

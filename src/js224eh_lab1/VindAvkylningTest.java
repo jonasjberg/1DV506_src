@@ -16,8 +16,9 @@ public class VindAvkylningTest
         // temperature = -7.8;
         // expect = -24;
 
-        assertEquals(-24, VindAvkylning.calculateApparentTemperature(-7.8, 8.4), 0.01);
-        assertEquals(-14, VindAvkylning.calculateApparentTemperature(-1, 8.4), 0.01);
-        assertEquals(-10, VindAvkylning.calculateApparentTemperature(-5, 3.14), 0.01);
+        assertEquals(-24, VindAvkylning.calculateApparentTemperature(-7.8, 8.4));
+        assertEquals(-16, VindAvkylning.calculateApparentTemperature(-2.2, 8.4));
+        assertEquals(-16, VindAvkylning.calculateApparentTemperature(-2.2, 8.4));
+        // assertEquals(-10, VindAvkylning.calculateApparentTemperature(-5, 3.14), 0.01);
     }
 }
