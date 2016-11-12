@@ -2,6 +2,8 @@ package js224eh_lab1;
 
 import java.text.DecimalFormat;
 
+import static js224eh_lab1.UserInputUtils.promptForNumber;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-10.
  *
@@ -30,10 +32,8 @@ public class VindAvkylning
         final String MSG_CALCULATION_RESULT      = "Effektiv temperatur: ";
         final String MSG_CALCULATION_RESULT_UNIT = " grader Celsius";
 
-//        double windSpeed   = promptForNumber(MSG_PROMPT_FOR_WIND_SPEED);
-//        double temperature = promptForNumber(MSG_PROMPT_FOR_TEMPERATURE);
-        double windSpeed   = 8.4;
-        double temperature = -7.8;
+        double temperature = promptForNumber(MSG_PROMPT_FOR_TEMPERATURE);
+        double windSpeed   = promptForNumber(MSG_PROMPT_FOR_WIND_SPEED);
 
         double apparentTemperature = calculateApparentTemperature(temperature,
                                                                   windSpeed);
@@ -47,19 +47,19 @@ public class VindAvkylning
     /**
      * Calculates the apparent temperature using Siples formula.
      *
-     * Source: https://www.eol.ucar.edu/homes/rilling/wc_formula.html
-     *
      * For degrees Celsius and m/s with baseline conditions 33C and 1.8m/s:
      *
-     * Siple:  Twc = 33 + (T - 33)*(0.474 + 0.454 sqrt(S) - 0.0454*S)
-     *         S >= 1.79 m/s
-     *         T < 33 degrees C
+     *      Twc = 33 + (T - 33)*(0.474 + 0.454 sqrt(S) - 0.0454*S)
+     *
+     *      With:   S >= 1.79 m/s       T < 33 degrees C
+     *
+     * Source:  https://www.eol.ucar.edu/homes/rilling/wc_formula.html
      *
      * @param temperature The temperate in degrees Celsius
      * @param windSpeed   The wind speed in meters per second.
      * @return The apparent temperature in degrees Celsius.
      */
-    public static double calculateApparentTemperature(double temperature,
+    private static double calculateApparentTemperature(double temperature,
                                                       double windSpeed)
     {
         double windChillTemp = 33 + (temperature - 33) *
