@@ -38,9 +38,19 @@ public class VindAvkylning
     private static double calculateApparentTemperature(double temperature,
                                                        double windSpeed)
     {
-        // Tapparent(°C) = 33 + (Tair- 33)*(0.474 + 0.454√(v)-0.0454.v)
+        // Using formula:
+        // Tchill = 13.12 + 0.6215 ∗ Ta − 11.37 ∗ V^{0.16} + 0.3965 ∗ Ta ∗ V^{0.16}
+        //
+        // With:    Tchill   wind chill in celsius
+        //          Ta       actual temperature
+        //          V        wind velocity in km/h
+        //
+        // Source: http://www.freemathhelp.com/wind-chill.html
 
-        double result = 33 + (temperature - 33) *
-                             (0.474 + (0.454 * Math.sqrt(windSpeed)));
+        double Ta = temperature;
+        double V = windSpeed;
+        double Tchill = 13.12 + 0.6215 * Ta - 11.37 * Math.pow(V, 0.16) +
+                        0.3965 * Ta * Math.pow(V, 0.16);
+        return Tchill;
     }
 }
