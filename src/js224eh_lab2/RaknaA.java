@@ -20,7 +20,7 @@ public class RaknaA
 {
     public static void main(String[] args)
     {
-        String text = promptForTextLine("Mata in en textrad: ");
+        String text = UserInputUtils.promptForTextLine("Mata in en textrad: ");
 
         int countLowerA = 0;
         int countUpperA = 0;
@@ -35,5 +35,6 @@ public class RaknaA
 
         System.out.println("Antal a: " + countLowerA);
         System.out.println("Antal A: " + countUpperA);
+        System.exit(0);
     }
 }
