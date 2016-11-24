@@ -1,5 +1,7 @@
 package js224eh_lab2;
 
+import static js224eh_lab2.UserInputUtils.*;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-24.
  *
@@ -16,4 +18,22 @@ package js224eh_lab2;
  */
 public class RaknaA
 {
+    public static void main(String[] args)
+    {
+        String text = promptForTextLine("Mata in en textrad: ");
+
+        int countLowerA = 0;
+        int countUpperA = 0;
+
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == 'a') {
+                countLowerA++;
+            } else if (text.charAt(i) == 'A') {
+                countUpperA++;
+            }
+        }
+
+        System.out.println("Antal a: " + countLowerA);
+        System.out.println("Antal A: " + countUpperA);
+    }
 }
