@@ -80,6 +80,9 @@ fabric.properties
 # .idea/misc.xml 
 # *.ipr
 
+# IntelliJ plugins
+.idea/sonarlint/
+
 
 ### Eclipse ###
 
