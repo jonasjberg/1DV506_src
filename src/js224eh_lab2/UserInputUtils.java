@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 /**
  * Created by Jonas Sjöberg (js224eh) on 2016-11-09.
+ * First created 2015-06-24 during the course DV017a at Högskolan i Gävle.
+ * https://github.com/jonasjberg/DV017A_lab2/commit/057fc2e41f79b3458b09d5678176c9ae6423728e
  *
  * Various utility method for getting specific input from a user through stdin.
  * Methods that were indentical and repeated in more than one file have been
