@@ -33,6 +33,32 @@ public class Triangle
 {
     public static void main(String[] args)
     {
-        
+        final String MSG_QUERY = "Mata in ett udda heltal: ";
+
+        //int triangleHeight = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
+        int triangleHeight = 7;
+        while (isEven(triangleHeight)) {
+            triangleHeight = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
+        }
+
+        System.out.println("Rätvinklig triangel:");
+        for (int i = 0; i < triangleHeight; i++) {
+            System.out.printf("%-" + triangleHeight + "s\n", "*");
+
+            int n = 4;
+            System.out.println(String.format("%"+n+"s", " "));
+        }
+
+
+    }
+
+    /**
+     * Tests if a number is even.
+     * @param number The number to test.
+     * @return True if the number is even, otherwise False.
+     */
+    private static boolean isEven(int number)
+    {
+        return number % 2 == 0;
     }
 }
