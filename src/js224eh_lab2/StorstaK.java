@@ -5,6 +5,7 @@ package js224eh_lab2;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 3
+ *
  * Skriv ett program StorstaK.java som för ett godtyckligt positivt heltal N
  * (läses in från tangentbordet) beräknar det största värdet K sådant att
  * 0+2+4+6+8+...+K < N. En körning kan se ut enligt följande:

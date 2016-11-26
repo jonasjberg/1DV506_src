@@ -5,6 +5,7 @@ package js224eh_lab2;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 8 (VG-uppgift)
+ *
  * Skriv ett program TartLjus.java som beräknar hur många askar tårtljus en
  * person behöver köpa varje år fram till hundraårsfirandet. Ni kan anta att
  * antalet ljus i tårtan är samma som det år man fyller, att man sparar

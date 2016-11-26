@@ -5,6 +5,7 @@ package js224eh_lab2;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 2
+ *
  * Skriv ett program Baklanges.java som läser in en textrad från tangent bordet
  * och sedan skriver ut den baklänges. En körning kan se ut enligt följande:
  * 

@@ -9,6 +9,7 @@ import static js224eh_lab2.UserInputUtils.promptForPositiveWholeNumber;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 4
+ *
  * Skriv ett program HighLow.java som implementerar gissningsleken High and
  * Low. Datorn väljer ett slumptal mellan 1 och 100 och låter sedan spelaren
  * gissa dess värde. Efter varje gissning ges en ledtråd av typen "högre" eller

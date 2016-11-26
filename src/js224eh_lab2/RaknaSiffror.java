@@ -7,6 +7,7 @@ import java.util.Scanner;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 7 (VG-uppgift)
+ *
  * Skriv ett program RaknaSiffror.java som för ett godtyckligt positivt heltal N
  * (läses in från tangentbordet) skriver ut antalet nollor, antalet udda siffror
  * och antalet jämna siffror. En körning kan se ut enligt följande:

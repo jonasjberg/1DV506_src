@@ -7,6 +7,7 @@ import java.util.Scanner;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 6
+ *
  * Skriv ett program NastStorsta.java som läser in tio heltal och hittar det
  * näst största talet av dem och därefter skriver ut det.
  * En körning kan se ut enligt följande:

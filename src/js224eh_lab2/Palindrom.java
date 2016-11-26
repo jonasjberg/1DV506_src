@@ -7,6 +7,7 @@ import java.util.Scanner;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 9 (VG-uppgift)
+ *
  * Skriv ett program Palindrom.java som testar om en textrad (läses in från
  * tangentbordet) är ett palindrom. Dvs, att textraden har samma sekvens av
  * bokstäver vare sig man läser den framifrån eller bakifrån. Ni skall bortse

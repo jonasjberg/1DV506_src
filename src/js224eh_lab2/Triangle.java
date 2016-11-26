@@ -5,6 +5,7 @@ package js224eh_lab2;
  *
  * Lektion 4 - Styrande satser
  * Uppgift 5
+ *
  * Skriv ett program Triangle.java som för ett godtyckligt positivt udda heltal
  * N (läses in från tangentbordet) skriver ut två olika trianglar.
  * Först en rätvinklig sedan en likbent. Exempel på körning:
