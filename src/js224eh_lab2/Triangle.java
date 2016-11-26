@@ -53,14 +53,20 @@ public class Triangle
             System.out.printf("%" + triangleBase + "s" + "\n", asterisks);
         }
 
-        System.out.println("Likbent triangel:");
-        // int asterisksThisLevel = 1;
-        // while (asterisksThisLevel < triangleBase) {
-        //     int numberOfSpaces = (triangleBase - asterisksThisLevel);
-        //     System.out.printf("%" + (numberOfSpaces / 2) + "s", " ");
+        System.out.println("\n" + "Likbent triangel:");
+        int asterisksThisLevel = 1;
+        while (asterisksThisLevel < triangleBase) {
+            int numberOfSpaces = (triangleBase - asterisksThisLevel);
+            System.out.printf("%" + (numberOfSpaces / 2) + "s", " ");
 
-        //     repeatString("*", asterisksThisLevel);
-        // }
+            System.out.printf(repeatString("*", asterisksThisLevel));
+
+            System.out.printf("%" + (numberOfSpaces / 2) + "s", " ");
+            System.out.printf("\n");
+
+            asterisksThisLevel += 2;
+        }
+        System.out.printf(repeatString("*", triangleBase));
 
 
 
