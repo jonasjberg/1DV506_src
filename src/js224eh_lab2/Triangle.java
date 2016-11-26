@@ -43,10 +43,12 @@ public class Triangle
 
         System.out.println("Rätvinklig triangel:");
         for (int i = 0; i < triangleHeight; i++) {
-            System.out.printf("%-" + triangleHeight + "s\n", "*");
+            StringBuilder asterisks = new StringBuilder();
+            for (int j = 0; j < i + 1; j++) {
+                asterisks.append("*");
+            }
 
-            int n = 4;
-            System.out.println(String.format("%"+n+"s", " "));
+            System.out.printf("%" + triangleHeight + "s" + "\n", asterisks);
         }
 
 
