@@ -36,6 +36,7 @@ package js224eh_lab2;
  */
 public class TartLjus
 {
+    /* TODO: SKRIV KLART! **FUNKAR EJ!** */
     public static void main(String[] args)
     {
         final int YEAR_FIRST = 1;
