@@ -27,36 +27,21 @@ public class Frekvenstabell
 {
     public static void main(String[] args)
     {
-        final int NUMBER_OF_DICE_THROWS = 3;
-        int[]     frequencyDistribution = new int[6];
-        System.out.println(frequencyDistribution.length);
+        final int NUMBER_OF_DICE_THROWS = 6000;
+        int[]     frequencyDistribution = new int[7];  // (index 0 används inte)
 
-        System.out.printf("Frequencies when rolling a dice %d times.%n",
-                          NUMBER_OF_DICE_THROWS);
-
-        /* Kasta tärningen. */
+        /* Simulera tärningskast. */
+        final Random random = new Random();
         for (int i = 0; i < NUMBER_OF_DICE_THROWS; i++) {
-            int rolledNumber = getRandomNumber(1, 6);
-            System.out.println("RULLADE: " + rolledNumber);
-            frequencyDistribution[rolledNumber - 1]++;
+            int score = random.nextInt(6) + 1;
+            frequencyDistribution[score]++;
         }
 
         /* Skriv ut resultatet. */
+        System.out.printf("Frequencies when rolling a dice %d times.%n",
+                          NUMBER_OF_DICE_THROWS);
         for (int i = 1; i < frequencyDistribution.length; i++) {
-            System.out.printf("%d: %d%n", i, frequencyDistribution[i - 1]);
+            System.out.printf("%d: %d%n", i, frequencyDistribution[i]);
         }
-    }
-
-    /**
-     * Generates a random number within specified range.
-     *
-     * @param min The minimum possible value of any single digit.
-     * @param max The maximum possible value of any single digit.
-     * @return A random number within the range [min:max].
-     */
-    private static int getRandomNumber(int min, int max)
-    {
-        final Random random = new Random();
-        return random.nextInt((max - min) + 1) + min;
     }
 }
