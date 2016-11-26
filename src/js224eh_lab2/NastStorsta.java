@@ -27,16 +27,16 @@ public class NastStorsta
 {
     public static void main(String[] args)
     {
-
         /* Antal tal som skall matas in ändras med 'NUMBERS_TO_GET'. */
         final int NUMBERS_TO_GET = 10;
 
-        /* Använding av klasskonstanter likt i kod jag skrev 2015-08-08 som
-         * del av kursen DV017a vid Högskolan i Gävle.
-         * https://github.com/jonasjberg/DV017A_lab4/commits/master/src/Lab4Uppg01.java
+        /* Användning av klasskonstanter och annars liknande kod jag skrev
+         * 2015-08-08 till kursen DV017a vid Högskolan i Gävle.
+         * https://github.com/jonasjberg/DV017A_lab4/commits/master/src
+         * /Lab4Uppg01.java
          */
-        int numberCount = 0;
-        int biggestYet = Integer.MIN_VALUE;
+        int numberCount      = 0;
+        int biggestYet       = Integer.MIN_VALUE;
         int secondBiggestYet = Integer.MIN_VALUE;
 
         Scanner scan = new Scanner(System.in);
@@ -45,7 +45,6 @@ public class NastStorsta
         do {
             if (scan.hasNextInt()) {
                 int input = scan.nextInt();
-                System.out.println("GOT: " + input);
 
                 if (input > biggestYet) {
                     secondBiggestYet = biggestYet;
@@ -54,10 +53,11 @@ public class NastStorsta
                     secondBiggestYet = input;
                 }
             }
-            numberCount++;
 
+            numberCount++;
         } while (numberCount < NUMBERS_TO_GET);
 
-        System.out.println("Det näst största talet är: "+ secondBiggestYet);
+        scan.close();
+        System.out.println("Det näst största talet är: " + secondBiggestYet);
     }
 }
