@@ -1,0 +1,87 @@
+package js224eh_lab2;
+
+/*
+ * Created by Jonas Sjöberg (js224eh) on 2016-11-26.
+ *
+ * Lektion 4 - Styrande satser
+ * Uppgift 8 (VG-uppgift)
+ * Skriv ett program TartLjus.java som beräknar hur många askar tårtljus en
+ * person behöver köpa varje år fram till hundraårsfirandet. Ni kan anta att
+ * antalet ljus i tårtan är samma som det år man fyller, att man sparar
+ * överblivna ljus från ett år till ett annat, och att varje ask innehåller 24
+ * ljus. I slutet av programet skall ni också skriva ut det totala antalet askar
+ * man måste köpa och hur många ljus som finns kvar efter man firat sin 100:e
+ * födelsedag. En körning kan se ut enligt följande:
+ *
+ *     Before birthday 1, buy 1 box(es)
+ *     Before birthday 7, buy 1 box(es)
+ *     Before birthday 10, buy 1 box(es)
+ *     Before birthday 12, buy 1 box(es)
+ *     Before birthday 14, buy 1 box(es)
+ *
+ *     ...
+ *
+ *     Before birthday 95, buy 3 box(es)
+ *     Before birthday 96, buy 4 box(es)
+ *     Before birthday 97, buy 5 box(es)
+ *     Before birthday 98, buy 4 box(es)
+ *     Before birthday 99, buy 4 box(es)
+ *     Before birthday 100, buy 4 box(es)
+ *
+ *     Total number of boxes: 211, Remaining candels: 14
+ *
+ * Notera: I utskriften ovan redovisar vi bara de år då man måste köpa nya
+ *         askar. De år som inte skrivs ut (tex 2-6, 8-9) klarar man sig utan
+ *         att köpa några nya ljus.
+ */
+public class TartLjus
+{
+    public static void main(String[] args)
+    {
+        final int YEAR_FIRST = 1;
+        final int YEAR_LAST = 100;
+        final int CANDLES_PER_BOX = 24;
+
+        int boxes = 0;
+        int candles = 0;
+        int totalBoxes = 0;
+
+        for (int age = YEAR_FIRST; age <= YEAR_LAST; age++) {
+            /* "Packa upp" askar med ljus. */
+            if (boxes > 0) {
+                candles += boxes * CANDLES_PER_BOX;
+                boxes = 0;
+            }
+
+            /* Ljus saknas, behöver köpa en ny ask. */
+            while (candles + (boxes * CANDLES_PER_BOX) < age) {
+                boxes++;
+                totalBoxes++;
+            }
+
+            //System.out.printf("[LOOP START] age: %02d  boxes: %02d  candles: %02d\n", age, boxes, candles);
+
+            switch (age) {
+                case 1:
+                case 7:
+                case 10:
+                case 12:
+                case 14:
+                case 95:
+                case 96:
+                case 97:
+                case 98:
+                case 99:
+                case 100:
+                    System.out.printf("Before birthday %d, buy %d box(es)\n", age, boxes);
+            }
+
+            /* Förbruka ljus till det här årets tårta. */
+            candles -= age;
+        }
+
+        System.out.printf("\nTotal number of boxes: %d, Remaining candles: %d",
+                          totalBoxes, candles);
+    }
+
+}
