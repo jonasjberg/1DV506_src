@@ -35,21 +35,33 @@ public class Triangle
     {
         final String MSG_QUERY = "Mata in ett udda heltal: ";
 
-        //int triangleHeight = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
-        int triangleHeight = 7;
-        while (isEven(triangleHeight)) {
-            triangleHeight = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
+        //int triangleBase = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
+        int triangleBase = 7;
+        while (isEven(triangleBase)) {
+            triangleBase = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
         }
 
         System.out.println("Rätvinklig triangel:");
-        for (int i = 0; i < triangleHeight; i++) {
-            StringBuilder asterisks = new StringBuilder();
-            for (int j = 0; j < i + 1; j++) {
-                asterisks.append("*");
-            }
+        for (int i = 0; i < triangleBase; i++) {
+            // StringBuilder asterisks = new StringBuilder();
+            // for (int j = 0; j < i + 1; j++) {
+            //     asterisks.append("*");
+            // }
 
-            System.out.printf("%" + triangleHeight + "s" + "\n", asterisks);
+            String asterisks = repeatString("*", i + 1);
+
+            System.out.printf("%" + triangleBase + "s" + "\n", asterisks);
         }
+
+        System.out.println("Likbent triangel:");
+        // int asterisksThisLevel = 1;
+        // while (asterisksThisLevel < triangleBase) {
+        //     int numberOfSpaces = (triangleBase - asterisksThisLevel);
+        //     System.out.printf("%" + (numberOfSpaces / 2) + "s", " ");
+
+        //     repeatString("*", asterisksThisLevel);
+        // }
+
 
 
     }
@@ -62,5 +74,16 @@ public class Triangle
     private static boolean isEven(int number)
     {
         return number % 2 == 0;
+    }
+
+    private static String repeatString(String string, int repeats)
+    {
+        assert repeats >= 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < repeats; i++) {
+            stringBuilder.append(string);
+        }
+
+        return stringBuilder.toString();
     }
 }
