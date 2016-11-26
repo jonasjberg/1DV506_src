@@ -1,5 +1,7 @@
 package js224eh_lab2;
 
+import java.util.Scanner;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-26.
  *
@@ -25,6 +27,28 @@ public class NastStorsta
 {
     public static void main(String[] args)
     {
+        final String MSG_QUERY = "Mata in 10 heltal: ";
+        final String MSG_RESULT = "Det näst största talet är: ";
+
+        /* Antal tal som skall matas in ändras med 'NUMBERS_TO_GET'. */
+        final int NUMBERS_TO_GET = 3;
+
+        int numberCount = 0;
+        int biggestYet = Integer.MIN_VALUE;
+        int secondBiggestYet;
+        Scanner scan = new Scanner(System.in);
+
+        do {
+            int input;
+            while (scan.hasNextInt()) {
+                input = scan.nextInt();
+                if (input > biggestYet) {
+                    biggestYet = input;
+                }
+            }
+
+        } while (numberCount < NUMBERS_TO_GET);
+
 
     }
 
