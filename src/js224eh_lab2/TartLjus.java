@@ -59,7 +59,7 @@ public class TartLjus
                 totalBoxes++;
             }
 
-            //System.out.printf("[LOOP START] age: %02d  boxes: %02d  candles: %02d\n", age, boxes, candles);
+            System.out.printf("[LOOP START] age: %02d  boxes: %02d  candles: %02d\n", age, boxes, candles);
 
             switch (age) {
                 case 1:
