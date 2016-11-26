@@ -38,14 +38,14 @@ public class Triangle
         final String MSG_QUERY = "Mata in ett udda heltal: ";
         int          triangleBase = 2;
 
-        while (isEven(triangleBase)) {
+        while (triangleBase % 2 == 0) {
             triangleBase = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
         }
 
         // // Enklare och bräckligare lösning:
         // Scanner scan = new Scanner(System.in);
         //
-        // while (isEven(triangleBase)) {
+        // while (triangleBase % 2 == 0) {
         //     System.out.print(MSG_QUERY);
         //     triangleBase = scan.nextInt();
         // }
@@ -62,29 +62,17 @@ public class Triangle
         }
 
         System.out.println("\n" + "Likbent triangel:");
-        int numberAsterisksThisRow = 1;
-        while (numberAsterisksThisRow < triangleBase) {
-            int numberOfSpaces = (triangleBase - numberAsterisksThisRow) / 2;
+        int asteriskCount = 1;
+        while (asteriskCount < (triangleBase + 2)) {
+            int spaceCount = (triangleBase - asteriskCount) / 2;
 
-            System.out.printf(repeatString(" ", numberOfSpaces));
-            System.out.printf(repeatString("*", numberAsterisksThisRow));
-            System.out.printf(repeatString(" ", numberOfSpaces));
+            System.out.printf(repeatString(" ", spaceCount));
+            System.out.printf(repeatString("*", asteriskCount));
+            System.out.printf(repeatString(" ", spaceCount));
             System.out.printf("\n");
 
-            numberAsterisksThisRow += 2;
+            asteriskCount += 2;
         }
-        System.out.printf(repeatString("*", triangleBase));
-    }
-
-    /**
-     * Tests if a number is even.
-     *
-     * @param number The number to test.
-     * @return True if the number is even, otherwise False.
-     */
-    private static boolean isEven(int number)
-    {
-        return number % 2 == 0;
     }
 
     /**
