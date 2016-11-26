@@ -32,19 +32,21 @@ public class OmvandOrdning
     {
         System.out.println("Mata in positiva heltal. Avsluta med ett negativt.");
 
+        /* Hämta text från användaren. */
         Scanner            scan                = new Scanner(System.in);
         ArrayList<Integer> numbers             = new ArrayList<Integer>();
         boolean            shouldGetMoreNumbers = true;
 
         do {
-            System.out.printf("tal %d: ", numbers.size());
+            System.out.printf("tal %d: ", numbers.size() + 1);
 
             while (!scan.hasNextInt()) {
                 scan.next();
             }
 
-            if (scan.nextInt() >= 0) {
-                numbers.add(scan.nextInt());
+            int number = scan.nextInt();
+            if (number >= 0) {
+                numbers.add(number);
             } else {
                 shouldGetMoreNumbers = false;
             }
@@ -52,5 +54,16 @@ public class OmvandOrdning
         } while (shouldGetMoreNumbers);
 
         scan.close();
+
+        /* Lägg elementen i omvänd ordning och skriv ut resultat. */
+        int firstPos = numbers.size() - 1;
+        for(int secondPos = 0; secondPos < firstPos; secondPos++) {
+            numbers.add(secondPos, numbers.remove(firstPos));
+        }
+
+        System.out.printf("Antal positiva: %d%n", numbers.size());
+        if (!numbers.isEmpty()) {
+            System.out.printf("Baklänges: %s%n", numbers.toString());
+        }
     }
 }
