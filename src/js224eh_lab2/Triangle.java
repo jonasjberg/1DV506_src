@@ -1,7 +1,5 @@
 package js224eh_lab2;
 
-import java.util.Scanner;
-
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-26.
  *
@@ -27,15 +25,15 @@ import java.util.Scanner;
  *      *****
  *     *******
  *
- * Notera, heltalet N bestämmer hur lång basen på varje triangel är. Programmet
- * skall avslutas med ett felmeddelande om det inmatade talet inte är ett
- * positivt udda heltal.
+ * Notera, heltalet N bestämmer hur lång basen på varje triangel är.
+ * Programmet skall avslutas med ett felmeddelande om det inmatade talet
+ * inte är ett positivt udda heltal.
  */
 public class Triangle
 {
     public static void main(String[] args)
     {
-        final String MSG_QUERY = "Mata in ett udda heltal: ";
+        final String MSG_QUERY    = "Mata in ett udda heltal: ";
         int          triangleBase = 2;
 
         while (triangleBase % 2 == 0) {
