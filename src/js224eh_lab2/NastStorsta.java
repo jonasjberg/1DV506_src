@@ -27,29 +27,37 @@ public class NastStorsta
 {
     public static void main(String[] args)
     {
-        final String MSG_QUERY = "Mata in 10 heltal: ";
-        final String MSG_RESULT = "Det näst största talet är: ";
 
         /* Antal tal som skall matas in ändras med 'NUMBERS_TO_GET'. */
-        final int NUMBERS_TO_GET = 3;
+        final int NUMBERS_TO_GET = 10;
 
+        /* Använding av klasskonstanter likt i kod jag skrev 2015-08-08 som
+         * del av kursen DV017a vid Högskolan i Gävle.
+         * https://github.com/jonasjberg/DV017A_lab4/commits/master/src/Lab4Uppg01.java
+         */
         int numberCount = 0;
         int biggestYet = Integer.MIN_VALUE;
-        int secondBiggestYet;
+        int secondBiggestYet = Integer.MIN_VALUE;
+
         Scanner scan = new Scanner(System.in);
+        System.out.print("Mata in 10 heltal: ");
 
         do {
-            int input;
-            while (scan.hasNextInt()) {
-                input = scan.nextInt();
+            if (scan.hasNextInt()) {
+                int input = scan.nextInt();
+                System.out.println("GOT: " + input);
+
                 if (input > biggestYet) {
+                    secondBiggestYet = biggestYet;
                     biggestYet = input;
+                } else if (input > secondBiggestYet) {
+                    secondBiggestYet = input;
                 }
             }
+            numberCount++;
 
         } while (numberCount < NUMBERS_TO_GET);
 
-
+        System.out.println("Det näst största talet är: "+ secondBiggestYet);
     }
-
 }
