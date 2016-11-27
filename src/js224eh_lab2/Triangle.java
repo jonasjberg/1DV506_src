@@ -1,5 +1,7 @@
 package js224eh_lab2;
 
+import java.util.Scanner;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-26.
  *
@@ -34,24 +36,26 @@ public class Triangle
 {
     public static void main(String[] args)
     {
-        final String MSG_QUERY    = "Mata in ett udda heltal: ";
-        int          triangleBase = 2;
+        final String MSG_QUERY = "Mata in ett udda heltal: ";
 
-        while (triangleBase % 2 == 0) {
-            triangleBase = UserInputUtils.promptForPositiveWholeNumber(MSG_QUERY);
-        }
+        /* Hämta inmatning från användaren. */
+        Scanner scan = new Scanner(System.in);
 
-        // // Enklare och bräckligare lösning:
-        // Scanner scan = new Scanner(System.in);
-        //
-        // while (triangleBase % 2 == 0) {
-        //     System.out.print(MSG_QUERY);
-        //     triangleBase = scan.nextInt();
-        // }
-        //
-        // scan.close();
+        int triangleBase;
+        do {
+            System.out.print(MSG_QUERY);
 
+            while (!scan.hasNextInt()) {
+                System.out.print(MSG_QUERY);
+                scan.next();
+            }
+            triangleBase = scan.nextInt();
 
+        } while (triangleBase <= 0 || triangleBase % 2 == 0);
+
+        scan.close();
+
+        /* Skriv ut trianglar. */
         System.out.println("Rätvinklig triangel:");
         for (int i = 0; i < triangleBase; i++) {
             String asterisks = repeatString("*", i + 1);
@@ -72,6 +76,8 @@ public class Triangle
 
             asteriskCount += 2;
         }
+
+        System.exit(0);
     }
 
     /**

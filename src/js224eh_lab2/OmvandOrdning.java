@@ -65,5 +65,7 @@ public class OmvandOrdning
         if (!numbers.isEmpty()) {
             System.out.printf("Baklänges: %s%n", numbers.toString());
         }
+
+        System.exit(0);
     }
 }

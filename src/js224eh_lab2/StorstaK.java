@@ -1,5 +1,7 @@
 package js224eh_lab2;
 
+import java.util.Scanner;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-24.
  *
@@ -15,7 +17,19 @@ package js224eh_lab2;
  */
 public class StorstaK {
     public static void main(String[] args) {
-        int n = UserInputUtils.promptForPositiveWholeNumber("Mata in ett positivt heltal: ");
+        Scanner scan = new Scanner(System.in);
+        int     n;
+
+        do {
+            System.out.print("Mata in ett positivt heltal: ");
+
+            while (!scan.hasNextInt()) {
+                System.out.print("Mata in ett positivt heltal: ");
+                scan.next();
+            }
+            n = scan.nextInt();
+
+        } while (n <= 0);
 
         int k = 0;
         int sum = 0;

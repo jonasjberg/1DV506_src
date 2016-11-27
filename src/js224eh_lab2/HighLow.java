@@ -1,8 +1,7 @@
 package js224eh_lab2;
 
 import java.util.Random;
-
-import static js224eh_lab2.UserInputUtils.promptForPositiveWholeNumber;
+import java.util.Scanner;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-24.
@@ -28,26 +27,30 @@ public class HighLow
 {
     public static void main(String[] args)
     {
-        final int correctAnswer   = getRandomNumber(1, 100);
-        int       guessCount = 1;
+        final int MAX_NUMBER_OF_GUESSES = 10;
+
+        final Random random        = new Random();
+        final int    correctAnswer = random.nextInt(100) + 1;
+        int          guessCount    = 1;
 
         int guess = promptForPositiveWholeNumber("Gissning " + guessCount + ": ");
         if (guess == correctAnswer) {
-            System.out.printf("   Rätt svar efter bara %d gissningar - Strålande!", guessCount);
+            System.out.printf("   Rätt svar efter bara %d gissningar" +
+                              " - Strålande!", guessCount);
         }
 
-        while (guess != correctAnswer) {
+        while (guess != correctAnswer && guessCount < MAX_NUMBER_OF_GUESSES) {
             guessCount++;
-            System.out.println("   Ledtråd: " + (guess > correctAnswer ? "lägre" : "högre"));
+
+            System.out.println("   Ledtråd: " +
+                               (guess > correctAnswer ? "lägre" : "högre"));
 
             guess = promptForPositiveWholeNumber("Gissning " + guessCount + ": ");
             if (guess == correctAnswer) {
-                System.out.printf("   Rätt svar efter bara %d gissningar - Strålande!", guessCount);
-                break;
-            }
-            if (guessCount == 10) {
+                System.out.printf("   Rätt svar efter bara %d gissningar" +
+                                  " - Strålande!", guessCount);
+            } else if (guessCount == MAX_NUMBER_OF_GUESSES) {
                 System.out.println("   Max antal gissningar överskridet!");
-                break;
             }
         }
 
@@ -55,15 +58,33 @@ public class HighLow
     }
 
     /**
-     * Generates a random number within specified range.
+     * First created 2015-06-24 during the course DV017a at Högskolan i Gävle.
+     * https://github.com/jonasjberg/DV017A_lab2/commit/057fc2e41f79b3458b09d5678176c9ae6423728e
      *
-     * @param min The minimum possible value of any single digit.
-     * @param max The maximum possible value of any single digit.
-     * @return A random number within the range [min:max].
+     * Prompts the user for a positive whole number.
+     *
+     * The message is shown continuously until the user has entered a valid
+     * whole number. Any leading and trailing whitespace is removed.
+     *
+     * @param strPromptForLine The message to display when prompting for input.
+     * @return The number entered by the user.
      */
-    private static int getRandomNumber(int min, int max)
+    static int promptForPositiveWholeNumber(String strPromptForLine)
     {
-        final Random random = new Random();
-        return random.nextInt((max - min) + 1) + min;
+        Scanner scan = new Scanner(System.in);
+        int     number;
+
+        do {
+            System.out.print(strPromptForLine);
+
+            while (!scan.hasNextInt()) {
+                System.out.print(strPromptForLine);
+                scan.next();
+            }
+            number = scan.nextInt();
+
+        } while (number <= 0);
+
+        return number;
     }
 }

@@ -64,6 +64,6 @@ public class TartLjus
 
         System.out.printf("\nTotal number of boxes: %d, Remaining candles: %d",
                           boxesTotal, candles);
+        System.exit(0);
     }
-
 }

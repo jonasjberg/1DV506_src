@@ -43,5 +43,7 @@ public class Frekvenstabell
         for (int i = 1; i < frequencyDistribution.length; i++) {
             System.out.printf("%d: %d%n", i, frequencyDistribution[i]);
         }
+
+        System.exit(0);
     }
 }

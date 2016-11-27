@@ -34,12 +34,13 @@ public class BytaPlats
         System.out.println(text);
 
         for (int charOnePos = 0; charOnePos < (text.length / 2); charOnePos++) {
-            int  charTwoPos = text.length - charOnePos - 1;
-            char temp       = text[charOnePos];
+            int charTwoPos = text.length - charOnePos - 1;
+            char temp      = text[charOnePos];
             text[charOnePos] = text[charTwoPos];
             text[charTwoPos] = temp;
         }
 
         System.out.println(text);
+        System.exit(0);
     }
 }
