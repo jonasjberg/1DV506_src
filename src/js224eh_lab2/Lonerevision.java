@@ -68,19 +68,28 @@ public class Lonerevision
         System.exit(0);
     }
 
-    private static int calculateDistribution(ArrayList<Integer> salaries)
+    /**
+     * Calculates the distribution (range) of a
+     * @param numbers
+     * @return
+     */
+    private static int calculateDistribution(ArrayList<Integer> numbers)
     {
-        return 0;
+        Collections.sort(numbers);
+        int range = numbers.get(0) - numbers.get(numbers.size() - 1);
+        return Math.abs(range);
     }
 
+    /**
+     * Calculates the median of an ArrayList of integers.
+     * @param numbers The list of integers from which to calculate the median.
+     * @return The median of the numbers in the given list.
+     */
     private static int calculateMedian(ArrayList<Integer> numbers)
     {
-        System.out.println("calculateMedian got: " + numbers);
         Collections.sort(numbers);
-        System.out.println("sorted: " + numbers);
 
         int midPos = numbers.size() / 2;
-
         if (numbers.size() % 2 == 0) {
             return (numbers.get(midPos) + numbers.get(midPos - 1)) / 2;
         } else {
@@ -89,9 +98,9 @@ public class Lonerevision
     }
 
     /**
-     * Calculates the mean of a ArrayList of integers.
+     * Calculates the mean of an ArrayList of integers.
      * @param numbers The list of integers from which to calculate the mean.
-     * @return The mean of the numbers in the given list 'numbers'.
+     * @return The mean of the numbers in the given list.
      */
     private static int calculateMean(ArrayList<Integer> numbers)
     {

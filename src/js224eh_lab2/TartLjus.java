@@ -37,53 +37,33 @@ package js224eh_lab2;
  */
 public class TartLjus
 {
-    /* TODO: SKRIV KLART! **FUNKAR EJ!** */
     public static void main(String[] args)
     {
-        final int YEAR_FIRST = 1;
-        final int YEAR_LAST = 100;
+        final int YEAR_FIRST      = 1;
+        final int YEAR_LAST       = 100;
         final int CANDLES_PER_BOX = 24;
 
-        int boxes = 0;
-        int candles = 0;
-        int totalBoxes = 0;
+        int boxes      = 0;
+        int candles    = 0;
+        int boxesTotal = 0;
 
         for (int age = YEAR_FIRST; age <= YEAR_LAST; age++) {
-            /* "Packa upp" askar med ljus. */
-            if (boxes > 0) {
-                candles += boxes * CANDLES_PER_BOX;
-                boxes = 0;
-            }
-
-            /* Ljus saknas, behöver köpa en ny ask. */
-            while (candles + (boxes * CANDLES_PER_BOX) < age) {
+            /* Köp fler om det saknas för nästkommande födelsedagstårta. */
+            while (candles < age) {
                 boxes++;
-                totalBoxes++;
+                boxesTotal++;
+                candles += CANDLES_PER_BOX;
             }
 
-            System.out.printf("[LOOP START] age: %02d  boxes: %02d  candles: %02d\n", age, boxes, candles);
+            System.out.printf("Before birthday %d, buy %d box(es)%n", age, boxes);
+            boxes = 0;
 
-            switch (age) {
-                case 1:
-                case 7:
-                case 10:
-                case 12:
-                case 14:
-                case 95:
-                case 96:
-                case 97:
-                case 98:
-                case 99:
-                case 100:
-                    System.out.printf("Before birthday %d, buy %d box(es)\n", age, boxes);
-            }
-
-            /* Förbruka ljus till det här årets tårta. */
+            /* Förbruka lika många ljus som antal år man fyller. */
             candles -= age;
         }
 
         System.out.printf("\nTotal number of boxes: %d, Remaining candles: %d",
-                          totalBoxes, candles);
+                          boxesTotal, candles);
     }
 
 }
