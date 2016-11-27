@@ -1,5 +1,7 @@
 package js224eh_lab2;
 
+import java.util.Scanner;
+
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-11-24.
  *
@@ -18,7 +20,16 @@ public class RaknaA
 {
     public static void main(String[] args)
     {
-        String text = UserInputUtils.promptForTextLine("Mata in en textrad: ");
+        Scanner scan = new Scanner(System.in);
+        String  text = null;
+
+        do {
+            System.out.print("Mata in en textrad: ");
+            text = scan.nextLine().trim();
+        } while (text.isEmpty());
+
+        scan.close();
+
 
         int countLowerA = 0;
         int countUpperA = 0;
