@@ -9,9 +9,25 @@ public class Arrays
 {
     public static void main(String[] args)
     {
-        int[] n = {3,4,5,6,7};
+        int[]  n   = {3, 4, 5, 6, 7};
         String str = Arrays.toString(n);
         System.out.println("n = " + str);
+
+        System.out.println("nSum = " + Arrays.sum(n));
+
+        int[] nAdded = Arrays.addN(n, 6);
+        System.out.println("nAdded = " + Arrays.toString(nAdded));
+
+        int[] nReversed = Arrays.reverse(n);
+        System.out.println("nReversed = " + Arrays.toString(nReversed));
+
+        System.out.println("hasN (N=6) = " + Arrays.hasN(n, 6));
+
+        Arrays.replaceAll(n, 6, 667);
+        System.out.println("nReplacedAll = " + Arrays.toString(n));
+
+        int[] nSorted = Arrays.sort(n);
+        System.out.println("nSorted = " + Arrays.toString(nSorted));
     }
 
     private static int sum(int[] arr)
@@ -37,5 +53,80 @@ public class Arrays
 
         sb.append("]");
         return sb.toString();
+    }
+
+    private static int[] addN(int[] arr, int n)
+    {
+        int[] result = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = arr[i] + n;
+        }
+
+        return result;
+    }
+
+    private static int[] reverse(int[] arr)
+    {
+        int[] result = new int[arr.length];
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            result[i] = arr[arr.length - 1 - i];
+        }
+
+        return result;
+    }
+
+    private static boolean hasN(int[] arr, int n)
+    {
+        for (int i : arr) {
+            if (i == n) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static void replaceAll(int[] arr, int old, int nw)
+    {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == old) {
+                arr[i] = nw;
+            }
+        }
+    }
+
+    public static int[] sort(int[] arr)
+    {
+        int[] result = arr.clone();
+
+        /* Gå parvis och byt plats inom paret så att det mindre talet hamnar
+         * före det större. Fortsätt tills inget av paren behövs korrigeras.
+         * Det är alltså någon variant av "bubble sort".
+         * https://en.wikipedia.org/wiki/Bubble_sort
+         */
+        boolean doAnotherPass;
+        do {
+            doAnotherPass = false;
+
+            for (int i = 0; i < arr.length - 1; i++) {
+                int elemOne = result[i];
+                int elemTwo = result[i + 1];
+
+                if (elemOne > elemTwo) {
+                    /* Byt plats på talen i det aktuella paret. */
+                    result[i] = elemTwo;
+                    result[i + 1] = elemOne;
+                    doAnotherPass = true;
+                } else {
+                    result[i] = elemOne;
+                    result[i + 1] = elemTwo;
+                }
+            }
+
+        } while (doAnotherPass);
+
+        return result;
     }
 }
