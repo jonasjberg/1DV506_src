@@ -16,7 +16,7 @@ public class ArraySortTest
     private int[] inputArray;
     private int[] expectedResult;
 
-     /* Varje parameter placeras som argument här. När en runner körs så skickar
+    /* Varje parameter placeras som argument här. När en runner körs så skickar
      * den argumenten från parametrar definierade i testData()-metoden. */
     public ArraySortTest(int[] inputArray, int[] expectedResult)
     {
