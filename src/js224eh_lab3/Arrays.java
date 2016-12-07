@@ -28,6 +28,10 @@ public class Arrays
 
         int[] nSorted = Arrays.sort(n);
         System.out.println("nSorted = " + Arrays.toString(nSorted));
+
+        System.out.println(Arrays.hasSubsequence(new int[] {1, 2, 3, 4, 5},
+                                                 new int[] {3, 4, 5}));
+
     }
 
     private static int sum(int[] arr)
@@ -128,5 +132,27 @@ public class Arrays
         } while (doAnotherPass);
 
         return result;
+    }
+
+    public static boolean hasSubsequence(int[] arr, int[] sub)
+    {
+        if (sub.length > arr.length) {
+            return false;
+        } else if (arr.length == 0 || sub.length == 0) {
+            return false;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < sub.length; j++) {
+                if (!(sub[j] == arr[j + i])) {
+                    System.out.println("Testing if " + sub[j] + " == " + arr[j + i]);
+                    break;
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }
