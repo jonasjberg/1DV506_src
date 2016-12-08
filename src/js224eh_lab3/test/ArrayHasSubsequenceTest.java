@@ -1,5 +1,7 @@
-package js224eh_lab3;
+package js224eh_lab3.test;
 
+import js224eh_lab3.Arrays;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -45,6 +47,7 @@ public class ArrayHasSubsequenceTest
     @Test
     public void testArraysHasSubsequence()
     {
-        assertEquals(expectedResult, Arrays.hasSubsequence(inputArray, inputSubArray));
+        Assert.assertEquals(expectedResult, Arrays
+                .hasSubsequence(inputArray, inputSubArray));
     }
 }

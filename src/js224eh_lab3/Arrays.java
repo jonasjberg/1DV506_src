@@ -136,6 +136,7 @@ public class Arrays
 
     public static boolean hasSubsequence(int[] arr, int[] sub)
     {
+        /* TODO: Fixa till denna. */
         if (sub.length > arr.length) {
             return false;
         } else if (arr.length == 0 || sub.length == 0) {
