@@ -1,4 +1,4 @@
-package lab3;
+package js224eh_lab3;
 
 public class AlarmClock {
 	/* Current time */
