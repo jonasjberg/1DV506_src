@@ -21,12 +21,17 @@ public class Fraction
             this.denominator = denominator * -1;
         }
 
-        if (numerator == 0) {
-            this.denominator = 0;
-            this.numerator = 0;
-        } else {
+        // if (numerator == 0) {
+        //     this.denominator = 0;
+        //     this.numerator = 0;
+        // } else {
             this.denominator = denominator;
             this.numerator = numerator;
+        // }
+
+        if (this.denominator == this.numerator) {
+            this.denominator = 1;
+            this.numerator = 1;
         }
     }
 
@@ -68,6 +73,24 @@ public class Fraction
     }
 
     /**
+     * Subtracts a fraction from this fraction.
+     * Uses the formula:   T1/N1 - T2/N2 = (T1*N2 - N1*T2)/(N1*N2)
+     * @param fraction
+     * @return
+     */
+    public Fraction subtract(Fraction fraction)
+    {
+        if (denominator == fraction.getDenominator()) {
+            return new Fraction(numerator - fraction.getNumerator(), denominator);
+        } else {
+            int resultT = (numerator * fraction.getDenominator()) -
+                          (denominator * fraction.getNumerator());
+            int resultN = denominator * fraction.getDenominator();
+            return new Fraction(resultT, resultN);
+        }
+    }
+
+    /**
      * Multiplies two fractions using the formula:
      *
      *     (T1/N1)*(T2/N2) = (T1*T2)/(N1*N2)
@@ -85,8 +108,7 @@ public class Fraction
 
     public boolean isEqualTo(Fraction fraction)
     {
-        return numerator == fraction.getNumerator() &&
-               denominator == fraction.getDenominator();
+        return equals(fraction);
     }
 
     @Override
