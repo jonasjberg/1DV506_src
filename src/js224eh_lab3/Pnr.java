@@ -55,6 +55,11 @@ public class Pnr
         return false;
     }
 
+    public static boolean areEqual(String personalOne, String personalTwo)
+    {
+        return personalOne.equals(personalTwo);
+    }
+
     public static boolean isCorrect(String personal)
     {
         /* TODO: Skriv klart denna. Fungerar inte as-is. */

@@ -43,6 +43,13 @@ public class PnrTest
     }
 
     @Test
+    public void testAreEqual() throws Exception
+    {
+        assertEquals(false, Pnr.areEqual("19850212-9029", "19860224-7614"));
+        assertEquals(true, Pnr.areEqual("19860224-7614", "19860224-7614"));
+    }
+
+    @Test
     public void testIsCorrect() throws Exception
     {
         assertEquals(false, Pnr.isMaleNumber(""));
