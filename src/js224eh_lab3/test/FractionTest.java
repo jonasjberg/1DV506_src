@@ -11,7 +11,8 @@ import static org.junit.Assert.*;
  */
 public class FractionTest
 {
-    private Fraction f1, f2, f3, f4;
+    private Fraction f1, f2, f3, f4, f5;
+
     @Before
     public void setup()
     {
@@ -19,6 +20,7 @@ public class FractionTest
         f2 = new Fraction(3, 1);
         f3 = new Fraction(1, 2);
         f4 = new Fraction(-1, 2);
+        f5 = new Fraction(50, 100);
     }
 
     @Test
@@ -28,6 +30,7 @@ public class FractionTest
         assertEquals(3, f2.getNumerator());
         assertEquals(1, f3.getNumerator());
         assertEquals(-1, f4.getNumerator());
+        assertEquals(1, f5.getNumerator());
     }
 
     @Test
@@ -37,6 +40,7 @@ public class FractionTest
         assertEquals(1, f2.getDenominator());
         assertEquals(2, f3.getDenominator());
         assertEquals(2, f4.getDenominator());
+        assertEquals(2, f5.getDenominator());
     }
 
     @Test
@@ -46,6 +50,7 @@ public class FractionTest
         assertFalse(f2.isNegative());
         assertFalse(f3.isNegative());
         assertTrue(f4.isNegative());
+        assertFalse(f5.isNegative());
     }
 
     @Test
@@ -97,5 +102,6 @@ public class FractionTest
         assertEquals("3/1", f2.toString());
         assertEquals("1/2", f3.toString());
         assertEquals("-1/2", f4.toString());
+        assertEquals("1/2", f5.toString());
     }
 }

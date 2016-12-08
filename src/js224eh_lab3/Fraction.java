@@ -17,7 +17,7 @@ public class Fraction
         }
 
         if (denominator < 0) {
-            this.numerator =  numerator * -1;
+            this.numerator = numerator * -1;
             this.denominator = denominator * -1;
         }
 
@@ -25,14 +25,15 @@ public class Fraction
         //     this.denominator = 0;
         //     this.numerator = 0;
         // } else {
-            this.denominator = denominator;
-            this.numerator = numerator;
+        this.denominator = denominator;
+        this.numerator = numerator;
         // }
 
-        if (this.denominator == this.numerator) {
-            this.denominator = 1;
-            this.numerator = 1;
-        }
+        // if (this.denominator == this.numerator) {
+        //     this.denominator = 1;
+        //     this.numerator = 1;
+        // }
+        reduce();
     }
 
     public int getNumerator()
@@ -53,17 +54,17 @@ public class Fraction
     /**
      * Adds two fractions using the formula:
      *
-     *     T1/N1 + T2/N2 = (T1*N2 + N1*T2)/(N1*N2)
+     * T1/N1 + T2/N2 = (T1*N2 + N1*T2)/(N1*N2)
      *
      * @param fraction The fraction to add to this fraction.
      * @return The sum of this fraction and operand as a new Fraction.
      */
     public Fraction add(Fraction fraction)
     {
-        int t1 = numerator;
-        int n1 = denominator;
-        int t2 = fraction.getNumerator();
-        int n2 = fraction.getDenominator();
+        int t1      = numerator;
+        int n1      = denominator;
+        int t2      = fraction.getNumerator();
+        int n2      = fraction.getDenominator();
         int resultT = (t1 * n2) + (n1 * t2);
         int resultN = n1 * n2;
         //int resultT = (numerator * fraction.getDenominator()) +
@@ -75,13 +76,15 @@ public class Fraction
     /**
      * Subtracts a fraction from this fraction.
      * Uses the formula:   T1/N1 - T2/N2 = (T1*N2 - N1*T2)/(N1*N2)
+     *
      * @param fraction
      * @return
      */
     public Fraction subtract(Fraction fraction)
     {
         if (denominator == fraction.getDenominator()) {
-            return new Fraction(numerator - fraction.getNumerator(), denominator);
+            return new Fraction(numerator - fraction.getNumerator(),
+                                denominator);
         } else {
             int resultT = (numerator * fraction.getDenominator()) -
                           (denominator * fraction.getNumerator());
@@ -93,7 +96,7 @@ public class Fraction
     /**
      * Multiplies two fractions using the formula:
      *
-     *     (T1/N1)*(T2/N2) = (T1*T2)/(N1*N2)
+     * (T1/N1)*(T2/N2) = (T1*T2)/(N1*N2)
      *
      * @param fraction
      * @return
@@ -106,6 +109,35 @@ public class Fraction
 
     }
 
+    /**
+     * Calculates the greatest common divisor of this fractions numerator and
+     * denominator.
+     *
+     * @return The greatest common divisor for the numerator and denominator of
+     *         this fraction.
+     */
+    private int getGreatestCommonDivisor()
+    {
+        int tmp;
+        int t = Math.abs(numerator);
+        int n = Math.abs(denominator);
+
+        while (t > 0) {
+            tmp = t;
+            t = n % t;
+            n = tmp;
+        }
+
+        return n;
+    }
+
+    public void reduce()
+    {
+        int scalar = getGreatestCommonDivisor();
+        this.numerator /= scalar;
+        this.denominator /= scalar;
+    }
+
     public boolean isEqualTo(Fraction fraction)
     {
         return equals(fraction);
@@ -114,15 +146,13 @@ public class Fraction
     @Override
     public boolean equals(Object o)
     {
-        if(this == o) {
+        if (this == o) {
             return true;
-        }
-
-        else if(!(o instanceof Fraction)) {
+        } else if (!(o instanceof Fraction)) {
             return false;
         }
 
-        Fraction fraction = (Fraction)o;
+        Fraction fraction = (Fraction) o;
         return numerator == fraction.getNumerator() &&
                denominator == fraction.getDenominator();
     }
