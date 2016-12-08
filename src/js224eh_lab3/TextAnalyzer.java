@@ -68,6 +68,9 @@ public class TextAnalyzer
 
     public boolean containsString(String s)
     {
+        if (s.isEmpty()) {
+            return false;
+        }
         return text.contains(s);
     }
 }

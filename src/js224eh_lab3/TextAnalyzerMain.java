@@ -15,7 +15,7 @@ public class TextAnalyzerMain
         System.out.println("Char Count: " + ta.charCount());
         System.out.println("Upper Case Count: " + ta.upperCaseCount());
         System.out.println("Whitespace Count: " + ta.whitespaceCount());
-        System.out.println("Digit Count " + ta.digitCount());
+        System.out.println("Digit Count: " + ta.digitCount());
 
         if (ta.containsChar('x'))
             System.out.println("The text contains char \'x\'");
@@ -26,18 +26,17 @@ public class TextAnalyzerMain
 
         System.out.println("-------------------------------------------------");
 
-        String       text2 = "";
-        TextAnalyzer ta2   = new TextAnalyzer(text2);
+        TextAnalyzer ta2   = new TextAnalyzer(" ");
 
         System.out.println("Char Count: " + ta2.charCount());
         System.out.println("Upper Case Count: " + ta2.upperCaseCount());
         System.out.println("Whitespace Count: " + ta2.whitespaceCount());
-        System.out.println("Digit Count " + ta2.digitCount());
+        System.out.println("Digit Count: " + ta2.digitCount());
 
-        if (ta2.containsChar('x'))
-            System.out.println("The text contains char \'x\'");
+        if (ta2.containsChar(' '))
+            System.out.println("The text contains char \' \'");
 
-        if (ta2.containsString("nakin"))
-            System.out.println("The text contains substring \"nakin\"");
+        if (ta2.containsString(""))
+            System.out.println("The text contains substring \"\"");
     }
 }
