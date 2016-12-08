@@ -57,6 +57,7 @@ public class Pnr
 
     public static boolean isCorrect(String personal)
     {
+        /* TODO: Skriv klart denna. Fungerar inte as-is. */
         String  firstPart       = getFirstPart(personal);
         String  secondPart      = getSecondPart(personal);
         boolean firstPartValid  = false;
@@ -78,12 +79,12 @@ public class Pnr
         int[] doubledDigits = new int[9];
         ArrayList<Integer> splitProducts = new ArrayList<>();
 
-        for (int i = 0; i < secondPart.length(); i++) {
+        for (int i = 0; i < personal.length(); i++) {
             if (Character.isDigit(secondPart.charAt(i))) {
                 int digit = Integer.parseInt(String.valueOf(secondPart.charAt(i)));
 
                 char[] digits = Character.toChars(digit);
-                splitProducts.add(Integer.parseInt(String.valueOf(digit)))
+                splitProducts.add(Integer.parseInt(String.valueOf(digit)));
             }
         }
 
