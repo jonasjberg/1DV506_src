@@ -10,6 +10,13 @@ public class Fraction
     private int numerator;
     private int denominator = 1;
 
+    /**
+     * Creates a new fraction from the given numerator and denominator.
+     *
+     * @param numerator The numerator of this new fraction.
+     * @param denominator The denominator of this new fraction.
+     *                    Throws an IllegalArgumentException if 0.
+     */
     public Fraction(int numerator, int denominator)
     {
         if (denominator == 0) {
@@ -21,18 +28,9 @@ public class Fraction
             this.denominator = denominator * -1;
         }
 
-        // if (numerator == 0) {
-        //     this.denominator = 0;
-        //     this.numerator = 0;
-        // } else {
         this.denominator = denominator;
         this.numerator = numerator;
-        // }
 
-        // if (this.denominator == this.numerator) {
-        //     this.denominator = 1;
-        //     this.numerator = 1;
-        // }
         reduce();
     }
 
@@ -46,6 +44,10 @@ public class Fraction
         return denominator;
     }
 
+    /**
+     * Tests if this fraction is negative.
+     * @return True if this fraction is negative.
+     */
     public boolean isNegative()
     {
         return this.numerator < 0;
@@ -106,7 +108,6 @@ public class Fraction
         int resultT = numerator * fraction.getNumerator();
         int resultN = denominator * fraction.getDenominator();
         return new Fraction(resultT, resultN);
-
     }
 
     /**
@@ -131,6 +132,10 @@ public class Fraction
         return n;
     }
 
+    /**
+     * Reduces this fraction to the smallest equivalent fraction.
+     * Modifies the fraction in place, does not return a new instance.
+     */
     public void reduce()
     {
         int scalar = getGreatestCommonDivisor();
@@ -138,6 +143,11 @@ public class Fraction
         this.denominator /= scalar;
     }
 
+    /**
+     * Tests if this fraction is equal to another fraction.
+     * @param fraction The fraction to compare this fraction with.
+     * @return True if this fraction is equivalent to the specified fraction.
+     */
     public boolean isEqualTo(Fraction fraction)
     {
         return equals(fraction);

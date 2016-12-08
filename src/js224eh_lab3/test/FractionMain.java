@@ -36,6 +36,12 @@ public class FractionMain
 
         Fraction sumOfF3F4 = f3.add(f4);
         printFractionInfo("sumOfF3F4", sumOfF3F4);
+
+        Fraction f5 = new Fraction(50, 100);
+        printFractionInfo("f5", f5);
+
+        Fraction f6 = new Fraction(-50, 100);
+        printFractionInfo("f6", f6);
     }
 
     private static void printFractionInfo(String fName, Fraction f)
