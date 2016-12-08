@@ -1,4 +1,6 @@
-package js224eh_lab3;
+package js224eh_lab3.test;
+
+import js224eh_lab3.Fraction;
 
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-12-08.
