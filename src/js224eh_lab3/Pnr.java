@@ -60,41 +60,60 @@ public class Pnr
         return personalOne.equals(personalTwo);
     }
 
+    /**
+     * Validates the personal.
+     *
+     * @param personal The personal to validate.
+     * @return True if the personal is correct, otherwise false.
+     */
     public static boolean isCorrect(String personal)
     {
-        /* TODO: Skriv klart denna. Fungerar inte as-is. */
         String  firstPart       = getFirstPart(personal);
         String  secondPart      = getSecondPart(personal);
         boolean firstPartValid  = false;
         boolean secondPartValid = false;
 
-        if (!(firstPart.length() == 6 && secondPart.length() == 4)) {
+        if (firstPart.length() != 6 || secondPart.length() != 4) {
             return false;
         }
 
-        int year  = Integer.parseInt(firstPart.substring(0, 1));
-        int month = Integer.parseInt(firstPart.substring(2, 3));
-        int day   = Integer.parseInt(firstPart.substring(4, 5));
+        int year  = Integer.parseInt(firstPart.substring(0, 2));
+        int month = Integer.parseInt(firstPart.substring(2, 4));
+        int day   = Integer.parseInt(firstPart.substring(4, 6));
         if ((year >= 0 && year <= 99) &&
             (month > 0 && month <= 12) &&
             (day > 1 && day <= 31)) {
             firstPartValid = true;
         }
 
-        int[] doubledDigits = new int[9];
-        ArrayList<Integer> splitProducts = new ArrayList<>();
-
-        for (int i = 0; i < personal.length(); i++) {
-            if (Character.isDigit(secondPart.charAt(i))) {
-                int digit = Integer.parseInt(String.valueOf(secondPart.charAt(i)));
-
-                char[] digits = Character.toChars(digit);
-                splitProducts.add(Integer.parseInt(String.valueOf(digit)));
+        int sum = 0;
+        boolean multiplyByTwoBistable = true;
+        for (char c : personal.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                continue;
             }
+
+            int digit = Character.getNumericValue(c);
+            if (multiplyByTwoBistable) {
+                digit *= 2;
+            }
+            while (digit > 0) {
+                sum = sum + digit % 10;
+                digit = digit / 10;
+            }
+
+            multiplyByTwoBistable = !multiplyByTwoBistable;
         }
 
-        for (int i = 0; i < doubledDigits.length; i++) {
+        int nextPowerOfTen = 0;
+        while (sum >= nextPowerOfTen) {
+            nextPowerOfTen += 10;
+        }
 
+        int controlDigit = nextPowerOfTen - sum;
+
+        if (controlDigit % 10 == 0) {
+            secondPartValid = true;
         }
 
         return firstPartValid && secondPartValid;

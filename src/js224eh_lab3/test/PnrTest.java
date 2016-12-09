@@ -31,33 +31,34 @@ public class PnrTest
     @Test
     public void testIsFemaleNumber() throws Exception
     {
-        assertEquals(true, Pnr.isFemaleNumber("19850212-9029"));
-        assertEquals(false, Pnr.isFemaleNumber("19850212-7614"));
+        assertEquals(true, Pnr.isFemaleNumber("850212-9029"));
+        assertEquals(false, Pnr.isFemaleNumber("850212-7614"));
     }
 
     @Test
     public void testIsMaleNumber() throws Exception
     {
-        assertEquals(false, Pnr.isMaleNumber("19850212-9029"));
-        assertEquals(true, Pnr.isMaleNumber("19860224-7614"));
+        assertEquals(false, Pnr.isMaleNumber("850212-9029"));
+        assertEquals(true, Pnr.isMaleNumber("860224-7614"));
     }
 
     @Test
     public void testAreEqual() throws Exception
     {
-        assertEquals(false, Pnr.areEqual("19850212-9029", "19860224-7614"));
-        assertEquals(true, Pnr.areEqual("19860224-7614", "19860224-7614"));
+        assertEquals(false, Pnr.areEqual("850212-9029", "860224-7614"));
+        assertEquals(true, Pnr.areEqual("860224-7614", "860224-7614"));
     }
 
     @Test
     public void testIsCorrect() throws Exception
     {
-        assertEquals(false, Pnr.isMaleNumber(""));
-        assertEquals(false, Pnr.isMaleNumber(" "));
-        assertEquals(false, Pnr.isMaleNumber("198602247614"));
-        assertEquals(false, Pnr.isMaleNumber("19860224 7614"));
-        assertEquals(false, Pnr.isMaleNumber("1986022417614"));
-        assertEquals(false, Pnr.isMaleNumber("1986022417614"));
-        assertEquals(true, Pnr.isMaleNumber("19860224-7614"));
+        assertEquals(false, Pnr.isCorrect(""));
+        assertEquals(false, Pnr.isCorrect(" "));
+        assertEquals(false, Pnr.isCorrect("198602247614"));
+        assertEquals(false, Pnr.isCorrect("19860224 7614"));
+        assertEquals(false, Pnr.isCorrect("1986022417614"));
+        assertEquals(false, Pnr.isCorrect("1986022417614"));
+        assertEquals(true, Pnr.isCorrect("860224-7614"));
+        assertEquals(true, Pnr.isCorrect("820712-7567"));
     }
 }
