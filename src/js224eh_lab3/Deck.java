@@ -36,17 +36,19 @@ public class Deck {
 
     /**
      * Shuffles the deck, I.E. randomizes the ordering of the cards.
-     * Uses the "Fisher-Yates Shuffle" algorithm.
-     * <p>
-     * https://bost.ocks.org/mike/shuffle/
-     * https://blog.codinghorror.com/the-danger-of-naivete/
+     * Uses the "Fisher-Yates Shuffle" algorithm. The deck is modified
+     * in place.
+     *
+     *     https://bost.ocks.org/mike/shuffle/
+     *     https://blog.codinghorror.com/the-danger-of-naivete/
      */
     public void shuffle() {
         if (cards.size() != 52) {
             return;
         }
 
-        /* Algoritmen "Fisher-Yates Shuffle" used during the course 1DV021.
+        /* The algorithm "Fisher-Yates Shuffle" was used during the course 1DV021.
+         * Roughly "translated" from my JavaScript implementation.
          * https://github.com/1dv021/js224eh-examination-3/blob/master/src/carddeck.js
          */
         int m = cards.size();
@@ -68,7 +70,7 @@ public class Deck {
      * @return The first card in this deck of cards as a Card..
      */
     public Card dealCard() {
-        /* Handles case of empty deck without returning null. */
+        /* Avoid returning null when deck is empty. */
         if (cards.isEmpty()) {
             cards = createDeck();
         }
