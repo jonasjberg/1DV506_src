@@ -143,17 +143,37 @@ public class Arrays
             return false;
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < sub.length; j++) {
-                if (!(sub[j] == arr[j + i])) {
-                    System.out.println("Testing if " + sub[j] + " == " + arr[j + i]);
-                    break;
-                }
+        boolean result = true;
+        int totalShifts = arr.length - sub.length;
+        for (int i = 0; i < totalShifts; i++) {
+            printArray("arr", arr, i);
 
-                return true;
+            result = true;
+            for (int j = 0; j < sub.length; j++) {
+                printArray("sub", sub, j);
+                if (arr[i + j] != sub[j]) {
+                    result = false;
+                }
             }
         }
 
-        return false;
+        return result;
+    }
+
+    public static void printArray(String name, int[] arr, int pos) {
+        System.out.println();
+        System.out.print(name + ":      ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("[" + arr[i] + "] ");
+        }
+        System.out.print("\n");
+        System.out.print("pos: " + pos);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("    ");
+            if (i == pos) {
+                System.out.print(" ^");
+            }
+        }
+        System.out.print("\n");
     }
 }

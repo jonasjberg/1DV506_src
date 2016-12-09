@@ -35,6 +35,7 @@ public class ArrayHasSubsequenceTest
         return java.util.Arrays.asList(new Object[][] {
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4, 5 }, true },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 2, 1 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 1 }, false },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2 }, true },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3 }, true },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 0 }, false },
