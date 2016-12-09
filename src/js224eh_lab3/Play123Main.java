@@ -25,6 +25,11 @@ public class Play123Main
         System.out.printf("Probability: %.2f%%%n", probability);
     }
 
+    /**
+     * Plays a game of "Patiens123" until completion.
+     *
+     * @return True if the game was won, otherwise false.
+     */
     private static boolean playGame()
     {
         Deck deck = new Deck();
@@ -43,10 +48,12 @@ public class Play123Main
                     if (card.getRank() == Card.Rank.TWO) {
                         return false;
                     }
+                    break;
                 case 3:
                     if (card.getRank() == Card.Rank.THREE) {
                         return false;
                     }
+                    break;
             }
 
             count++;
