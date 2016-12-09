@@ -5,11 +5,9 @@ package js224eh_lab3;
  *
  * Laboration 3  --  Uppgift 1
 * */
-public class Arrays
-{
-    public static void main(String[] args)
-    {
-        int[]  n   = {3, 4, 5, 6, 7};
+public class Arrays {
+    public static void main(String[] args) {
+        int[] n = {3, 4, 5, 6, 7};
         String str = Arrays.toString(n);
         System.out.println("n = " + str);
 
@@ -29,13 +27,12 @@ public class Arrays
         int[] nSorted = Arrays.sort(n);
         System.out.println("nSorted = " + Arrays.toString(nSorted));
 
-        System.out.println(Arrays.hasSubsequence(new int[] {1, 2, 3, 4, 5},
-                                                 new int[] {3, 4, 5}));
+        System.out.println(Arrays.hasSubsequence(new int[]{1, 2, 3, 4, 5},
+                new int[]{3, 4, 5}));
 
     }
 
-    private static int sum(int[] arr)
-    {
+    private static int sum(int[] arr) {
         int sum = 0;
         for (int i : arr) {
             sum += i;
@@ -44,8 +41,7 @@ public class Arrays
         return sum;
     }
 
-    private static String toString(int[] arr)
-    {
+    private static String toString(int[] arr) {
         StringBuilder sb = new StringBuilder("[");
 
         for (int i = 0; i < arr.length; i++) {
@@ -59,8 +55,7 @@ public class Arrays
         return sb.toString();
     }
 
-    private static int[] addN(int[] arr, int n)
-    {
+    private static int[] addN(int[] arr, int n) {
         int[] result = new int[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
@@ -70,8 +65,7 @@ public class Arrays
         return result;
     }
 
-    private static int[] reverse(int[] arr)
-    {
+    private static int[] reverse(int[] arr) {
         int[] result = new int[arr.length];
 
         for (int i = arr.length - 1; i >= 0; i--) {
@@ -81,8 +75,7 @@ public class Arrays
         return result;
     }
 
-    private static boolean hasN(int[] arr, int n)
-    {
+    private static boolean hasN(int[] arr, int n) {
         for (int i : arr) {
             if (i == n) {
                 return true;
@@ -92,8 +85,7 @@ public class Arrays
         return false;
     }
 
-    private static void replaceAll(int[] arr, int old, int nw)
-    {
+    private static void replaceAll(int[] arr, int old, int nw) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == old) {
                 arr[i] = nw;
@@ -101,8 +93,7 @@ public class Arrays
         }
     }
 
-    public static int[] sort(int[] arr)
-    {
+    public static int[] sort(int[] arr) {
         int[] result = arr.clone();
 
         /* Gå parvis och byt plats inom paret så att det mindre talet hamnar
@@ -134,8 +125,7 @@ public class Arrays
         return result;
     }
 
-    public static boolean hasSubsequence(int[] arr, int[] sub)
-    {
+    public static boolean hasSubsequence(int[] arr, int[] sub) {
         /* TODO: Fixa till denna. */
         if (sub.length > arr.length) {
             return false;
@@ -144,20 +134,23 @@ public class Arrays
         }
 
         boolean result = true;
-        int totalShifts = arr.length - sub.length;
-        for (int i = 0; i < totalShifts; i++) {
-            printArray("arr", arr, i);
+        int k = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == sub[k]) {
+                for (int j = 0; j < sub.length; j++) {
+                    if (k == arr.length - 1) {
+                        k--;
+                    }
 
-            result = true;
-            for (int j = 0; j < sub.length; j++) {
-                printArray("sub", sub, j);
-                if (arr[i + j] != sub[j]) {
-                    result = false;
+                    if (arr[k] == sub[j]) {
+                        result = true;
+                    } else {
+                        result = false;
+                    }
                 }
             }
         }
-
-        return result;
+        return false;
     }
 
     public static void printArray(String name, int[] arr, int pos) {

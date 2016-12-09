@@ -8,39 +8,47 @@ import java.util.Random;
  *
  * Laboration 3  --  Uppgift 8
  */
-public class Deck
-{
+public class Deck {
     private ArrayList<Card> cards;
-    
-    public Deck()
-    {
-        cards = new ArrayList<>();
+
+    public Deck() {
+        cards = createDeck();
+        shuffle();
+    }
+
+    /**
+     * Creates a new deck of cards.
+     *
+     * @return A new deck of cards as an ArrayList of Card.
+     */
+    private ArrayList<Card> createDeck() {
+        ArrayList<Card> newDeck = new ArrayList<>();
 
         for (int i = 0; i < Card.Suit.values().length; i++) {
             for (int j = 0; j < Card.Rank.values().length; j++) {
-                cards.add(new Card(Card.Rank.values()[j],
-                                   Card.Suit.values()[i]));
+                newDeck.add(new Card(Card.Rank.values()[j],
+                        Card.Suit.values()[i]));
             }
         }
 
-        shuffle();
+        return newDeck;
     }
 
     /**
      * Shuffles the deck, I.E. randomizes the ordering of the cards.
      * Uses the "Fisher-Yates Shuffle" algorithm.
-     *
-     *    https://bost.ocks.org/mike/shuffle/
-     *    https://blog.codinghorror.com/the-danger-of-naivete/
+     * <p>
+     * https://bost.ocks.org/mike/shuffle/
+     * https://blog.codinghorror.com/the-danger-of-naivete/
      */
-    public void shuffle()
-    {
+    public void shuffle() {
         if (cards.size() != 52) {
             return;
         }
 
-        /* Algoritmen "Fisher-Yates Shuffle" användes under kursen 1DV021.
-         * Här mer eller mindre direkt översatt från min JavaScript-version. */
+        /* Algoritmen "Fisher-Yates Shuffle" used during the course 1DV021.
+         * https://github.com/1dv021/js224eh-examination-3/blob/master/src/carddeck.js
+         */
         int m = cards.size();
         int i;
         Card t;
@@ -59,19 +67,19 @@ public class Deck
      *
      * @return The first card in this deck of cards as a Card..
      */
-    public Card dealCard()
-    {
+    public Card dealCard() {
+        /* Handles case of empty deck without returning null. */
         if (cards.isEmpty()) {
-            /* TODO: Throw exception? */
+            cards = createDeck();
         }
+
         return cards.remove(0);
     }
 
     /**
      * @return The number of cards in this deck of cards.
      */
-    public int getNumberOfCards()
-    {
+    public int getNumberOfCards() {
         return cards.size();
     }
 }
