@@ -1,9 +1,9 @@
 package js224eh_lab3.test;
 
 import js224eh_lab3.Fraction;
+
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**

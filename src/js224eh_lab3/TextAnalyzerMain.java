@@ -28,7 +28,7 @@ public class TextAnalyzerMain
 
         System.out.println();
         System.out.println("-------------------------------------------------");
-        System.out.println("Additional tests:");
+        System.out.println("Additional tests with text \" \":");
         System.out.println();
 
         TextAnalyzer ta2   = new TextAnalyzer(" ");
