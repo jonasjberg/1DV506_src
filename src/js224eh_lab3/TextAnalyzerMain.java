@@ -1,4 +1,4 @@
-package js224eh_lab3.test;
+package js224eh_lab3;
 
 import js224eh_lab3.TextAnalyzer;
 
@@ -26,7 +26,10 @@ public class TextAnalyzerMain
             System.out.println("The text contains substring \"nakin\"");
 
 
+        System.out.println();
         System.out.println("-------------------------------------------------");
+        System.out.println("Additional tests:");
+        System.out.println();
 
         TextAnalyzer ta2   = new TextAnalyzer(" ");
 

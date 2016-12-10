@@ -1,6 +1,4 @@
-package js224eh_lab3.test;
-
-import js224eh_lab3.MultiDisplay;
+package js224eh_lab3;
 
 /**
  * Created by Jonas Sjöberg (js224eh) on 2016-12-08.
