@@ -26,7 +26,7 @@ public class Play123Main
     }
 
     /**
-     * Plays a game of "Patiens123" until completion.
+     * Starts a new game of "Patiens123" and runs it until completion.
      *
      * @return True if the game was won, otherwise false.
      */

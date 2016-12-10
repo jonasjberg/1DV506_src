@@ -1,4 +1,4 @@
-package js224eh_lab3.test;
+package js224eh_lab3;
 
 import js224eh_lab3.Fraction;
 
@@ -37,6 +37,7 @@ public class FractionMain
         Fraction sumOfF3F4 = f3.add(f4);
         printFractionInfo("sumOfF3F4", sumOfF3F4);
 
+        /* Demonstrates reduce(), called internally. */
         Fraction f5 = new Fraction(50, 100);
         printFractionInfo("f5", f5);
 

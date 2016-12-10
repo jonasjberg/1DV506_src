@@ -11,6 +11,9 @@ import java.util.Random;
 public class Deck {
     private ArrayList<Card> cards;
 
+    /**
+     * Creates a new deck instance.
+     */
     public Deck() {
         cards = createDeck();
         shuffle();

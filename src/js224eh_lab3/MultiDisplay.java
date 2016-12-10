@@ -10,12 +10,20 @@ public class MultiDisplay
     private String displayMessage;
     private int displayCount;
 
+    /**
+     * Creates a new MultiDisplay instance with default parameters.
+     */
     public MultiDisplay()
     {
         setDisplayMessage("");
         setDisplayCount(1);
     }
 
+    /**
+     * Creates a new MultiDisplay instance.
+     * @param displayMessage The message to display.
+     * @param displayCount The number of times the message is displayed.
+     */
     public MultiDisplay(String displayMessage, int displayCount)
     {
         setDisplayMessage(displayMessage);
@@ -32,6 +40,10 @@ public class MultiDisplay
         return this.displayMessage;
     }
 
+    /**
+     * Sets the number of times the text should be display.
+     * @param displayCount The number of times to display the text.
+     */
     public void setDisplayCount(int displayCount)
     {
         if (displayCount >= 0) {
@@ -39,6 +51,9 @@ public class MultiDisplay
         }
     }
 
+    /**
+     * Displays the message a previously set number of times.
+     */
     public void display()
     {
         for (int i = 0; i < this.displayCount; i++) {
@@ -46,6 +61,11 @@ public class MultiDisplay
         }
     }
 
+    /**
+     * Displays a specified message a certain number of times.
+     * @param displayMessage The message to display.
+     * @param displayCount The number of times the message is displayed.
+     */
     public void display(String displayMessage, int displayCount)
     {
         setDisplayMessage(displayMessage);
