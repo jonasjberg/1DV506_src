@@ -5,11 +5,20 @@ package js224eh_lab3;
  *
  * Laboration 3  --  Uppgift 2
  */
-public class Pnr
-{
-    public static void main(String[] args)
-    {
-
+public class Pnr {
+    public static void main(String[] args) {
+        String personNummer = "860224-7614";
+        String personNummer2 = "860220-7614";
+        String FORMAT = "%-38.38s: %s%n";
+        System.out.printf(FORMAT, "personNummer", personNummer);
+        System.out.printf(FORMAT, "getFirstPart(personNummer)", getFirstPart(personNummer));
+        System.out.printf(FORMAT, "getSecondPart(personNummer)", getSecondPart(personNummer));
+        System.out.printf(FORMAT, "isFemaleNumber(personNummer)", isFemaleNumber(personNummer));
+        System.out.printf(FORMAT, "isMaleNumber(personNummer)", isMaleNumber(personNummer));
+        System.out.printf(FORMAT, "personNummer2", personNummer2);
+        System.out.printf(FORMAT, "areEqual(personNummer, personNummer2)", areEqual(personNummer, personNummer2));
+        System.out.printf(FORMAT, "isCorrect(personNummer)", isCorrect(personNummer));
+        System.out.printf(FORMAT, "isCorrect(personNummer2)", isCorrect(personNummer2));
     }
 
     public static String getFirstPart(String personal)
