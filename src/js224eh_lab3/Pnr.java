@@ -1,7 +1,5 @@
 package js224eh_lab3;
 
-import java.util.ArrayList;
-
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-12-08.
  *

@@ -1,7 +1,5 @@
 package js224eh_lab3;
 
-import js224eh_lab3.AlarmClock;
-
 /*
  * Created by Jonas Sjöberg (js224eh) on 2016-12-08.
  *
