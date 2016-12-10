@@ -33,14 +33,33 @@ public class ArrayHasSubsequenceTest
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return java.util.Arrays.asList(new Object[][] {
-                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4, 5 }, true },
-                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 2, 1 }, false },
-                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 1 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 1 }, true },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 }, true },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4, 5 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 4, 5 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 5 }, true },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 1 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 2 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 4, 3 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 2, 1 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 4, 3, 2 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3 }, false },
+                { new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4 }, false },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] { 0 }, false },
                 { new int[] { 1, 2, 3, 4, 5 }, new int[] {}, false },
                 { new int[] { 1 }, new int[] { 2 }, false },
+                { new int[] { 2 }, new int[] { 1 }, false },
+                { new int[] { 1 }, new int[] { 1, 2 }, false },
+                { new int[] { 1 }, new int[] { 1, 2, 3 }, false },
+                { new int[] { 1, 2 }, new int[] { 1, 2, 3 }, false },
                 { new int[] {}, new int[] {}, false }
                 });
     }
