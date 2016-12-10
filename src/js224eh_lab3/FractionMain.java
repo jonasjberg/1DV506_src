@@ -2,7 +2,7 @@ package js224eh_lab3;
 
 import js224eh_lab3.Fraction;
 
-/*
+/**
  * Created by Jonas Sjöberg (js224eh) on 2016-12-08.
  *
  * Laboration 3  --  Uppgift 7
