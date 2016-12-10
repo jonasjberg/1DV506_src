@@ -58,6 +58,10 @@ public class FractionTest
     {
         assertEquals(new Fraction(24, 7), f1.add(f2));
         assertEquals(new Fraction(0, 4), f3.add(f4));
+        assertEquals(new Fraction(7, 2), f2.add(f3));
+        assertEquals(new Fraction(0, 2), f3.add(f4));
+        assertEquals(new Fraction(0, 100), f4.add(f5));
+        assertEquals(new Fraction(13, 14), f1.add(f5));
     }
 
     @Test
@@ -79,6 +83,7 @@ public class FractionTest
     {
         assertEquals(new Fraction(9, 7), f1.multiply(f2));
         assertEquals(new Fraction(-1, 4), f3.multiply(f4));
+        assertEquals(new Fraction(3, 14), f1.multiply(f5));
     }
 
     @Test
