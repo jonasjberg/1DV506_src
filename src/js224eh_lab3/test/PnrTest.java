@@ -1,8 +1,8 @@
 package js224eh_lab3.test;
 
 import js224eh_lab3.Pnr;
-import org.junit.Test;
 
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**

@@ -1,14 +1,13 @@
 package js224eh_lab3.test;
 
 import js224eh_lab3.Arrays;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Collection;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Jonas Sjöberg (js224eh) on 2016-12-06.

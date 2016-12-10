@@ -2,7 +2,7 @@ package js224eh_lab3.test;
 
 import js224eh_lab3.MultiDisplay;
 
-/*
+/**
  * Created by Jonas Sjöberg (js224eh) on 2016-12-08.
  *
  * Laboration 3  --  Uppgift 3
