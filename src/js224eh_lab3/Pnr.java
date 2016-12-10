@@ -99,26 +99,25 @@ public class Pnr {
      * @param personal The personal to validate.
      * @return True if the personal is correct, otherwise false.
      */
-    public static boolean isCorrect(String personal)
-    {
-        String  firstPart       = getFirstPart(personal);
-        String  secondPart      = getSecondPart(personal);
-        boolean firstPartValid  = false;
-        boolean secondPartValid = false;
+    public static boolean isCorrect(String personal) {
+        String firstPart = getFirstPart(personal);
+        String secondPart = getSecondPart(personal);
 
         if (firstPart.length() != 6 || secondPart.length() != 4) {
             return false;
         }
 
-        int year  = Integer.parseInt(firstPart.substring(0, 2));
+        /* Check for valid date. */
+        int year = Integer.parseInt(firstPart.substring(0, 2));
         int month = Integer.parseInt(firstPart.substring(2, 4));
-        int day   = Integer.parseInt(firstPart.substring(4, 6));
-        if ((year >= 0 && year <= 99) &&
+        int day = Integer.parseInt(firstPart.substring(4, 6));
+        if (!((year >= 0 && year <= 99) &&
             (month > 0 && month <= 12) &&
-            (day > 1 && day <= 31)) {
-            firstPartValid = true;
+            (day > 1 && day <= 31))) {
+            return false;
         }
 
+        /* Validate control digit. */
         int sum = 0;
         boolean multiplyByTwoBistable = true;
         for (char c : personal.toCharArray()) {
@@ -126,10 +125,13 @@ public class Pnr {
                 continue;
             }
 
+            /* Multiply every other digit by 2. */
             int digit = Character.getNumericValue(c);
             if (multiplyByTwoBistable) {
                 digit *= 2;
             }
+
+            /* Split numbers into digits and add to running sum. */
             while (digit > 0) {
                 sum = sum + digit % 10;
                 digit = digit / 10;
@@ -144,11 +146,6 @@ public class Pnr {
         }
 
         int controlDigit = nextPowerOfTen - sum;
-
-        if (controlDigit % 10 == 0) {
-            secondPartValid = true;
-        }
-
-        return firstPartValid && secondPartValid;
+        return controlDigit % 10 == 0;
     }
 }
