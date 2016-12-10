@@ -66,7 +66,6 @@ public class ArrayHasSubsequenceTest
     @Test
     public void testArraysHasSubsequence()
     {
-        Assert.assertEquals(expectedResult, Arrays
-                .hasSubsequence(inputArray, inputSubArray));
+        Assert.assertEquals(expectedResult, Arrays.hasSubsequence(inputArray, inputSubArray));
     }
 }
