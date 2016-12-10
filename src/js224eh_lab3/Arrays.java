@@ -32,6 +32,11 @@ public class Arrays {
 
     }
 
+    /**
+     * Returns the sum of all elements in the array "arr".
+     * @param arr The array to calculate sum from.
+     * @return The sum of all elements in the array "arr".
+     */
     private static int sum(int[] arr) {
         int sum = 0;
         for (int i : arr) {
@@ -41,6 +46,11 @@ public class Arrays {
         return sum;
     }
 
+    /**
+     * Returns a human readable string representation of the array.
+     * @param arr The array to get a string representation of.
+     * @return A string representation of the array "arr" as a String.
+     */
     private static String toString(int[] arr) {
         StringBuilder sb = new StringBuilder("[");
 
@@ -55,6 +65,12 @@ public class Arrays {
         return sb.toString();
     }
 
+    /**
+     * Adds a integer "n" to all elements of the array "arr".
+     * @param arr The array to which the integers are added.
+     * @param n The integer to add to the array.
+     * @return A new array with the "n" added to all elements of "arr".
+     */
     private static int[] addN(int[] arr, int n) {
         int[] result = new int[arr.length];
 
@@ -65,6 +81,11 @@ public class Arrays {
         return result;
     }
 
+    /**
+     * Reverses the order of array "arr".
+     * @param arr The array to reverse.
+     * @return A new array with the elements of "arr" in reverse order.
+     */
     private static int[] reverse(int[] arr) {
         int[] result = new int[arr.length];
 
@@ -75,6 +96,12 @@ public class Arrays {
         return result;
     }
 
+    /**
+     * Tests if the array "arr" contains the element "n".
+     * @param arr The array to test.
+     * @param n The element to test.
+     * @return True if the array "arr" contains the element "n", else False.
+     */
     private static boolean hasN(int[] arr, int n) {
         for (int i : arr) {
             if (i == n) {
@@ -85,6 +112,12 @@ public class Arrays {
         return false;
     }
 
+    /**
+     * Replaces all instances of "old" with "nw" in the array "arr".
+     * @param arr The array to replace elements in.
+     * @param old The element to replace.
+     * @param nw The element that "old" is substituted with.
+     */
     private static void replaceAll(int[] arr, int old, int nw) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == old) {
@@ -93,6 +126,11 @@ public class Arrays {
         }
     }
 
+    /**
+     * Sorts the array using a variant of the "bubble sort" algorithm.
+     * @param arr The array to sort.
+     * @return A new sorted version of "arr".
+     */
     public static int[] sort(int[] arr) {
         int[] result = arr.clone();
 
@@ -125,8 +163,14 @@ public class Arrays {
         return result;
     }
 
+    /**
+     * Test if the array "arr" contains the array "sub" as a subarray,
+     * all elements must be sequential.
+     * @param arr The array to test for subarray.
+     * @param sub The subarray to test.
+     * @return True if the array "arr" contains the subsequence "sub", else False.
+     */
     public static boolean hasSubsequence(int[] arr, int[] sub) {
-        /* TODO: Fixa till denna. */
         if (sub.length > arr.length) {
             return false;
         } else if (arr.length == 0 || sub.length == 0) {
@@ -134,42 +178,25 @@ public class Arrays {
         }
 
         int offset = 0;
-        boolean foundMatch = false;
+        boolean foundMatch;
         while (offset < arr.length) {
+
+            foundMatch = true;
             for (int i = 0; i < sub.length; i++) {
                 if (offset > arr.length - sub.length) {
                     return false;
                 }
-                if (arr[i + offset] == sub[i]) {
-                    foundMatch = true;
-                } else {
+                if (arr[i + offset] != sub[i]) {
                     foundMatch = false;
                 }
             }
 
-            if (foundMatch == true) {
+            if (foundMatch) {
                 return true;
             }
             offset++;
         }
 
         return false;
-    }
-
-    public static void printArray(String name, int[] arr, int pos) {
-        System.out.println();
-        System.out.print(name + ":      ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("[" + arr[i] + "] ");
-        }
-        System.out.print("\n");
-        System.out.print("pos: " + pos);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("    ");
-            if (i == pos) {
-                System.out.print(" ^");
-            }
-        }
-        System.out.print("\n");
     }
 }
