@@ -31,34 +31,43 @@ public class PnrTest
     @Test
     public void testIsFemaleNumber() throws Exception
     {
-        assertEquals(true, Pnr.isFemaleNumber("850212-9029"));
-        assertEquals(false, Pnr.isFemaleNumber("850212-7614"));
+        assertTrue(Pnr.isFemaleNumber("850212-9029"));
+        assertFalse(Pnr.isFemaleNumber("850212-7614"));
+        assertTrue(Pnr.isFemaleNumber("820712-7567"));
     }
 
     @Test
     public void testIsMaleNumber() throws Exception
     {
-        assertEquals(false, Pnr.isMaleNumber("850212-9029"));
-        assertEquals(true, Pnr.isMaleNumber("860224-7614"));
+        assertFalse(Pnr.isMaleNumber("850212-9029"));
+        assertTrue(Pnr.isMaleNumber("860224-7614"));
+        assertFalse(Pnr.isMaleNumber("820712-7567"));
     }
 
     @Test
     public void testAreEqual() throws Exception
     {
-        assertEquals(false, Pnr.areEqual("850212-9029", "860224-7614"));
-        assertEquals(true, Pnr.areEqual("860224-7614", "860224-7614"));
+        assertFalse(Pnr.areEqual("850212-9029", "860224-7614"));
+        assertTrue(Pnr.areEqual("860224-7614", "860224-7614"));
     }
 
     @Test
     public void testIsCorrect() throws Exception
     {
-        assertEquals(false, Pnr.isCorrect(""));
-        assertEquals(false, Pnr.isCorrect(" "));
-        assertEquals(false, Pnr.isCorrect("198602247614"));
-        assertEquals(false, Pnr.isCorrect("19860224 7614"));
-        assertEquals(false, Pnr.isCorrect("1986022417614"));
-        assertEquals(false, Pnr.isCorrect("1986022417614"));
-        assertEquals(true, Pnr.isCorrect("860224-7614"));
-        assertEquals(true, Pnr.isCorrect("820712-7567"));
+        assertFalse(Pnr.isCorrect(""));
+        assertFalse(Pnr.isCorrect(" "));
+        assertFalse(Pnr.isCorrect("abc"));
+        assertFalse(Pnr.isCorrect("-1"));
+        assertFalse(Pnr.isCorrect("198602247614"));
+        assertFalse(Pnr.isCorrect("19860224 7614"));
+        assertFalse(Pnr.isCorrect("1986022417614"));
+        assertFalse(Pnr.isCorrect("8602247614"));
+        assertFalse(Pnr.isCorrect("860224 7614"));
+        assertFalse(Pnr.isCorrect("86022417614"));
+        assertFalse(Pnr.isCorrect("860224-7612"));
+        assertFalse(Pnr.isCorrect("860224-7613"));
+        assertFalse(Pnr.isCorrect("860224-7615"));
+        assertTrue(Pnr.isCorrect("860224-7614"));
+        assertTrue(Pnr.isCorrect("820712-7567"));
     }
 }
