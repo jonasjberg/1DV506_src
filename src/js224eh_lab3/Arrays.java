@@ -133,23 +133,26 @@ public class Arrays {
             return false;
         }
 
-        boolean result = true;
-        int k = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == sub[k]) {
-                for (int j = 0; j < sub.length; j++) {
-                    if (k == arr.length - 1) {
-                        k--;
-                    }
-
-                    if (arr[k] == sub[j]) {
-                        result = true;
-                    } else {
-                        result = false;
-                    }
+        int offset = 0;
+        boolean foundMatch = false;
+        while (offset < arr.length) {
+            for (int i = 0; i < sub.length; i++) {
+                if (offset > arr.length - sub.length) {
+                    return false;
+                }
+                if (arr[i + offset] == sub[i]) {
+                    foundMatch = true;
+                } else {
+                    foundMatch = false;
                 }
             }
+
+            if (foundMatch == true) {
+                return true;
+            }
+            offset++;
         }
+
         return false;
     }
 
