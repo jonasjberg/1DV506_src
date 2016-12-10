@@ -25,6 +25,6 @@ public class MultiDisplayMain
         md.display();                           // ==> print-out
         md.display("Goodbye cruel world!", 1);  // ==> print-out
 
-        System.out.println("Current Message: "+ md.getDisplayMessage());
+        System.out.println("Current Message: " + md.getDisplayMessage());
     }
 }
