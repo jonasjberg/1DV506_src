@@ -1,4 +1,4 @@
-package js224eh_lab3.test;
+package js224eh_lab3;
 
 import js224eh_lab3.AlarmClock;
 
