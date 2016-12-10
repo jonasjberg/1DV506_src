@@ -59,7 +59,8 @@ public class Pnr {
     public static boolean isFemaleNumber(String personal) {
         String secondPart = getSecondPart(personal);
         if (secondPart.length() == 4) {
-            return secondPart.charAt(2) % 2 == 0;
+            int thirdDigit = Character.getNumericValue(secondPart.charAt(2));
+            return (thirdDigit % 2 == 0);
         }
         return false;
     }
@@ -72,7 +73,8 @@ public class Pnr {
     public static boolean isMaleNumber(String personal) {
         String secondPart = getSecondPart(personal);
         if (secondPart.length() == 4) {
-            return secondPart.charAt(2) % 2 != 0;
+            int thirdDigit = Character.getNumericValue(secondPart.charAt(2));
+            return (thirdDigit % 2 != 0);
         }
         return false;
     }
