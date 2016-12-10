@@ -21,31 +21,42 @@ public class Pnr {
         System.out.printf(FORMAT, "isCorrect(personNummer2)", isCorrect(personNummer2));
     }
 
-    public static String getFirstPart(String personal)
-    {
+    /**
+     * Returns the first part (last 4 digits) of the personal.
+     * @param personal The personal to get the first part of.
+     * @return The first part of the personal.
+     */
+    public static String getFirstPart(String personal) {
         if (personal.isEmpty() || !personal.contains("-")) {
             return "";
         }
         return personal.split("-")[0];
     }
 
-
-    public static String getSecondPart(String personal)
-    {
+    /**
+     * Returns the second part (last 4 digits) of the personal.
+     * @param personal The personal to get the second part of.
+     * @return The second part of the personal.
+     */
+    public static String getSecondPart(String personal) {
         if (personal.isEmpty() || !personal.contains("-")) {
             return "";
         }
         return personal.split("-")[1];
     }
 
-    /*
-     * De tre första siffrorna efter skiljetecknet är personnumrets
-     * födelsenummer, som består av ett löpnummer där tredje siffran anger
-     * personens kön -- jämn siffra för kvinnor och udda för män.
-     * https://sv.wikipedia.org/wiki/Personnummer_i_Sverige
+    /**
+     * Returns whether the personal belongs to a female person.
+     *
+     * "De tre första siffrorna efter skiljetecknet är personnumrets
+     *  födelsenummer, som består av ett löpnummer där tredje siffran anger
+     *  personens kön -- jämn siffra för kvinnor och udda för män."
+     *  https://sv.wikipedia.org/wiki/Personnummer_i_Sverige
+     *
+     * @param personal The personal to test.
+     * @return True if the personal belongs to a female person, else False.
      */
-    public static boolean isFemaleNumber(String personal)
-    {
+    public static boolean isFemaleNumber(String personal) {
         String secondPart = getSecondPart(personal);
         if (secondPart.length() == 4) {
             return secondPart.charAt(2) % 2 == 0;
@@ -53,8 +64,12 @@ public class Pnr {
         return false;
     }
 
-    public static boolean isMaleNumber(String personal)
-    {
+    /**
+     * Returns whether the personal belongs to a male person.
+     * @param personal The personal to test.
+     * @return True if the personal belongs to a male person, else False.
+     */
+    public static boolean isMaleNumber(String personal) {
         String secondPart = getSecondPart(personal);
         if (secondPart.length() == 4) {
             return secondPart.charAt(2) % 2 != 0;
@@ -62,6 +77,12 @@ public class Pnr {
         return false;
     }
 
+    /**
+     * Tests if two personals are equal.
+     * @param personalOne The first personal to compare.
+     * @param personalTwo The second personal to compare.
+     * @return True if the personals are equal, else False.
+     */
     public static boolean areEqual(String personalOne, String personalTwo)
     {
         return personalOne.equals(personalTwo);
@@ -69,6 +90,9 @@ public class Pnr {
 
     /**
      * Validates the personal.
+     *
+     * Checks that the date is a valid date and tests the control digit for validity.
+     * Uses validation technique from  https://sv.wikipedia.org/wiki/Luhn-algoritmen
      *
      * @param personal The personal to validate.
      * @return True if the personal is correct, otherwise false.
