@@ -41,6 +41,18 @@ public class FractionMain
 
         Fraction f6 = new Fraction(-50, 100);
         printFractionInfo("f6", f6);
+
+        Fraction runningSum = new Fraction(0, 3);
+        for (int i = 2; i <= 10; i++) {
+            Fraction f = new Fraction(1, i);
+            runningSum = runningSum.add(f);
+        }
+
+        System.out.println("====================");
+        System.out.println(runningSum);
+
+
+
     }
 
     private static void printFractionInfo(String fName, Fraction f)

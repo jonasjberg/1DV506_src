@@ -69,9 +69,6 @@ public class Fraction
         int n2      = fraction.getDenominator();
         int resultT = (t1 * n2) + (n1 * t2);
         int resultN = n1 * n2;
-        //int resultT = (numerator * fraction.getDenominator()) +
-        //              (denominator * fraction.getNumerator());
-        //int resultN = denominator * fraction.getDenominator();
         return new Fraction(resultT, resultN);
     }
 
