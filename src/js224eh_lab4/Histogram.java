@@ -44,6 +44,7 @@ public class Histogram
     final static String             FILE_PATH       =
             "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src" +
             "/js224eh_lab4/histogram_data.txt";
+    final static int[] BUCKET_MAXs = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     static       int[]              numberFrequency = new int[101];
     static       ArrayList<Integer> numbers         = new ArrayList<>();
 
@@ -51,12 +52,6 @@ public class Histogram
 
     public static void main(String[] args)
     {
-        for (int i = 0; i < 100; i +=10) {
-            for (int j = 1; j <= 10; j++) {
-                System.out.printf("i: %02d  j: %02d  i+j: %02d%n", i, j, i + j);
-            }
-        }
-
         Scanner scan = null;
         try {
             File file = new File(FILE_PATH);
@@ -93,9 +88,14 @@ public class Histogram
         System.out.printf("Antal i intervallet [1,100]: %s%n", numbersInRange);
         System.out.printf("Övriga: %s%n", numbers.size());
         System.out.printf("Histogram%n", numbers.size());
+        //  1  - 10  | ******
+        //  91 - 100 | ***
 
-        for (int i = 1; i < 10; i++) {
-
+        int bucketLimitLow = 1;
+        int bucketLimitHigh = 10;
+        for (int i = 1; i < numberFrequency.length; i++) {
+            System.out.printf("numberFrequency[%03d] = %d%n", i, numberFrequency[i]);
+            if (numberFrequency)
         }
     }
 
