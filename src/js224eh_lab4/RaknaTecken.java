@@ -58,7 +58,7 @@ public class RaknaTecken
             Scanner scan = new Scanner(file);
             while (scan.hasNext()) {
                 String str = scan.nextLine();
-                text.append(str + "\n");
+                text.append(str).append("\n");
             }
             scan.close();
         } catch (IOException e) {
@@ -119,5 +119,17 @@ public class RaknaTecken
    explicit specificeras vid inläsning så kan det hända att metoderna från
    standardbibliotekets Character-klass som används nedan inte beter sig precis
    rätt.
+
+   Sedan tillkommer ytterligare komplexitet i och med standardbibliotekets
+   "Scanner". Dess beteende hänger på vilka definitioner av de olika
+   karaktärsklasserna som används. Då "whitespace" som agerar avskiljare
+   (delimiter) mellan "tokens" vid inläsning spelar det stor roll om definitionen
+   av whitespace inkluderar avstickare som:
+        https://en.wikipedia.org/wiki/Zero-width_space
+
+   Detta finns såklart specificerat och beskrivs grundligt i Javas dokumentation.
+   Det är VÄLDIGT svårt att skriva ett så pass enkelt program om det ska kunna
+   hantera filer med godtycklig teckenkodning och dessutom ge samma resultat
+   under Linux, Windows, OSX och alla andra operativsystem som stödjer Javas VM.
 */
 
