@@ -13,11 +13,23 @@ package js224eh_lab4.stack;
 
 public class StackMain
 {
-    StackImplementation stack = new StackImplementation();
-
     public static void main(String[] args)
     {
-        stack.
+        Stack stack = new StackImplementation();
 
+        printStackInfo(stack);
+        stack.push(new String("element1"));
+        stack.push(new String("element2"));
+        printStackInfo(stack);
+        stack.push(new String("element3"));
+        printStackInfo(stack);
+    }
+
+    public static void printStackInfo(Stack stack)
+    {
+        String FORMAT = "%-20.20s : %s%n";
+        System.out.printf("%n--------------------%n");
+        System.out.printf(FORMAT, "stack.size()", stack.size());
+        System.out.printf(FORMAT, "stack.isEmpty()", stack.isEmpty());
     }
 }

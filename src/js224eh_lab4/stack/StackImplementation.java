@@ -16,18 +16,16 @@ import java.util.Iterator;
 
 public class StackImplementation implements Stack
 {
-    final int DATA_STARTING_SIZE    = 32;
-    final int DATA_RESIZE_INCREMENT = 8;
+    final int STACK_DEFAULT_SIZE     = 32;
+    final int STACK_RESIZE_INCREMENT = 8;
 
     private Object[] data;
     private int      topElementPointer;
-    private int      currentSize;
 
     public StackImplementation()
     {
-        data = new Object[DATA_STARTING_SIZE];
-        currentSize = DATA_STARTING_SIZE;
-        topElementPointer = 0;
+        data = new Object[STACK_DEFAULT_SIZE];
+        topElementPointer = -1;
     }
 
     /**
@@ -36,19 +34,19 @@ public class StackImplementation implements Stack
     @Override
     public int size()
     {
-        return currentSize;
+        return topElementPointer + 1;
     }
 
     @Override
     public boolean isEmpty()
     {
-        return topElementPointer < 0;
+        return topElementPointer == -1;
     }
 
     /**
      * Adds an element to the top of the stack.
      *
-     * The stack size is increased by "DATA_RESIZE_INCREMENT" when the stack
+     * The stack size is increased by "STACK_RESIZE_INCREMENT" when the stack
      * is full. Available memory is plentiful so it is OK to allocate more
      * than what is currently needed right now.
      *
@@ -58,15 +56,17 @@ public class StackImplementation implements Stack
     public void push(Object element)
     {
         /* Resize the "data" array in order to fit the new element. */
-        if (topElementPointer == currentSize - 1) {
+        if (size() == data.length) {
+            System.out.println("Reallocating the stack ..");
+
             Object[] temp = data.clone();
-            data = new Object[currentSize + DATA_RESIZE_INCREMENT];
+            data = new Object[size() + STACK_RESIZE_INCREMENT];
             for (int i = 0; i < temp.length; i++) {
                 data[i] = temp[i];
             }
-        } else {
-            data[++topElementPointer] = element;
         }
+
+        data[++topElementPointer] = element;
     }
 
     /**
@@ -77,10 +77,14 @@ public class StackImplementation implements Stack
     @Override
     public Object pop()
     {
-        if (data.length == 0) {
-            return null;
+        if (isEmpty()) {
+            throw new RuntimeException("\"StackUnderFlowException\"");
         }
-        return null;
+
+        Object element = data[topElementPointer];
+        data[topElementPointer] = null;
+        topElementPointer--;
+        return element;
     }
 
     /**
@@ -91,7 +95,11 @@ public class StackImplementation implements Stack
     @Override
     public Object peek()
     {
-        return null;
+        if (isEmpty()) {
+            throw new RuntimeException("\"StackUnderFlowException\"");
+        }
+
+        return data[topElementPointer];
     }
 
     /**
