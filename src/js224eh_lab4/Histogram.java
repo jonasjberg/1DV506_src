@@ -43,18 +43,20 @@ public class Histogram
 {
     final static String FILE_PATH = "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_lab4/histogram_data.txt";
 
-    final static int[] bucketHigh = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-    final static int[] buckets    = new int[bucketHigh.length];
-
-    static int[]              numberFrequency = new int[101];
-    static ArrayList<Integer> numbers         = new ArrayList<>();
-
-
+    static int[]              buckets               = new int[10];
+    static int[]              numberFrequency       = new int[101];
+    static ArrayList<Integer> numbers               = new ArrayList<>();
+    static int                numbersInRange        = 0;
+    static int                numbersOutsideOfRange = 0;
 
     public static void main(String[] args)
     {
         // TODO: Get file path from args!
+        showFileStatistics(FILE_PATH);
+    }
 
+    private static void showFileStatistics(String path)
+    {
         Scanner scan = null;
         try {
             File file = new File(FILE_PATH);
@@ -66,12 +68,16 @@ public class Histogram
 
         System.out.printf("Läser heltal från filen: \"%s\"%n", FILE_PATH);
         while (scan.hasNextLine()) {
-            String digits;
-            digits = scan.findInLine("-?\\d+");
-            if (digits != null) {
+            String digits = scan.findInLine("-?\\d+");
+            if (digits != null && !digits.isEmpty()) {
                 try {
                     int number = Integer.parseInt(digits);
-                    numbers.add(number);
+                    if (number >= 1 && number <= 100) {
+                        numberFrequency[number]++;
+                        numbersInRange++;
+                    } else {
+                        numbersOutsideOfRange++;
+                    }
                 } catch (NumberFormatException e) {
                     continue;
                 }
@@ -80,26 +86,17 @@ public class Histogram
             scan.nextLine();
         }
 
-        int numbersInRange = 0;
-        for (int number : numbers) {
-            if (number >= 1 && number <= 100) {
-                numberFrequency[number]++;
-                numbersInRange++;
-            }
-        }
-
         System.out.printf("Antal i intervallet [1,100]: %s%n", numbersInRange);
-        System.out.printf("Övriga: %s%n", numbers.size());
-        System.out.printf("Histogram%n", numbers.size());
+        System.out.printf("Övriga: %s%n", numbersOutsideOfRange);
+        System.out.printf("Histogram%n");
 
         int b = 0;
         for (int i = 0; i < numberFrequency.length; i++) {
-             buckets[b] += numberFrequency[i];
+            buckets[b] += numberFrequency[i];
 
-            if (i % 10 == 0) {
-                b++;
-                if (b > bucketHigh.length - 1) {
-                    b = bucketHigh.length - 1;
+            if (i > 0 && i % 10 == 0) {
+                if (b < buckets.length - 1) {
+                    b++;
                 }
             }
         }
@@ -107,29 +104,16 @@ public class Histogram
         //  91 - 100 | ***
 
         int bucketLow = 1;
-        for (int i = 0; i < bucketHigh.length; i++) {
+        int bucketHigh = 10;
+        for (int i = 0; i < buckets.length; i++) {
             String bar = repeatString("*", buckets[i]);
-            System.out.printf("%2d - %3d | %s%n", bucketLow,  bucketHigh[i], bar);
+            System.out.printf("%2d - %3d | %s%n", bucketLow, bucketHigh, bar);
+
             bucketLow += 10;
+            bucketHigh += 10;
         }
 
     }
-
-/*    private Scanner getScannerForFile(String path)
-    {
-        Scanner scan = null;
-        try {
-            File file = new File(path);
-            scan = new Scanner(file);
-        }  catch (FileNotFoundException e) {
-            System.out.printf("ERROR: %s%n", e.toString());
-        } finally {
-            if (scan != null) {
-                scan.close();
-            }
-        }
-        return scan;
-    }*/
 
     /**
      * Repeats a given string a specified number of times.
