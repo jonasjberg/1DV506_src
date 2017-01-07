@@ -1,16 +1,11 @@
 package js224eh_lab4;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-/**
- * Created by Jonas Sjöberg (js224eh) on 2017-01-06.
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Created by Jonas Sjöberg (js224eh) on 2017-01-07.
  *
  * 1DV506 -- Problemlösning och Programmering, HT2016
  * Laboration 4: Exceptions, IO och interface
- * ---------------------------------------------------------------------------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Uppgift 1
  * =========
@@ -39,6 +34,13 @@ import java.util.Scanner;
  * Notera 2: Datafilens sökväg (tex C:\Temp\heltal.dat) skall vara indata till
  *           programmet (via String[] args).
  */
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Histogram
 {
     final static String FILE_PATH = "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_lab4/histogram_data.txt";
@@ -68,19 +70,23 @@ public class Histogram
 
         System.out.printf("Läser heltal från filen: \"%s\"%n", FILE_PATH);
         while (scan.hasNextLine()) {
+            /* Match one or more digits, possibly preceded by a dash. */
             String digits = scan.findInLine("-?\\d+");
-            if (digits != null && !digits.isEmpty()) {
-                try {
-                    int number = Integer.parseInt(digits);
-                    if (number >= 1 && number <= 100) {
-                        numberFrequency[number]++;
-                        numbersInRange++;
-                    } else {
-                        numbersOutsideOfRange++;
-                    }
-                } catch (NumberFormatException e) {
-                    continue;
+            if (digits == null) {
+                scan.nextLine();
+                continue;
+            }
+
+            try {
+                int number = Integer.parseInt(digits);
+                if (number >= 1 && number <= 100) {
+                    numberFrequency[number]++;
+                    numbersInRange++;
+                } else {
+                    numbersOutsideOfRange++;
                 }
+            } catch (NumberFormatException e) {
+                System.out.printf("ERROR: %s%n", e.toString());
             }
 
             scan.nextLine();
@@ -100,8 +106,6 @@ public class Histogram
                 }
             }
         }
-        //  1  - 10  | ******
-        //  91 - 100 | ***
 
         int bucketLow = 1;
         int bucketHigh = 10;
@@ -112,7 +116,6 @@ public class Histogram
             bucketLow += 10;
             bucketHigh += 10;
         }
-
     }
 
     /**

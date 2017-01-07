@@ -1,15 +1,11 @@
 package js224eh_lab4;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
-/**
- * Created by Jonas Sjöberg (js224eh) on 2017-01-06.
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Created by Jonas Sjöberg (js224eh) on 2017-01-07.
  *
  * 1DV506 -- Problemlösning och Programmering, HT2016
  * Laboration 4: Exceptions, IO och interface
- * ---------------------------------------------------------------------------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Uppgift 2
  * =========
@@ -38,6 +34,11 @@ import java.util.Scanner;
  * Om ditt resultat inte överensstämmer exakt med ovanstående ska en skriftlig
  * förklaring till skillnaderna inlämnas tillsammans med labben.
  */
+
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class RaknaTecken
 {
