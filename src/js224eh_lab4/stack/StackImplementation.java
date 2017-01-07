@@ -103,12 +103,46 @@ public class StackImplementation implements Stack
     }
 
     /**
-     * Element iterator.
-     * @return Iterable.
+     * @return A "StackImplementationIterator" iterator.
      */
     @Override
     public Iterator<Object> iterator()
     {
-        return null;
+        return new StackImplementationIterator(data, topElementPointer);
+    }
+
+}
+
+
+/**
+ * This class is lifted as-is from the 1DV506 lecture notes. Made non-public so
+ * that it can share source file with the "StackImplementation" class without
+ * generating a bunch of warnings.
+ * Original JavaDoc:  IntArrayIterator.java
+ *                    22 dec 2014
+ *                    @author jlnmsi
+ */
+class StackImplementationIterator implements Iterator<Object>
+{
+    private int nextElement = 0;
+    private final Object[] elements;
+    private final int max;
+
+    public StackImplementationIterator(Object[] values, int maxIndex)
+    {
+        elements = values;
+        max = maxIndex;
+    }
+
+    @Override
+    public boolean hasNext()
+    {
+        return nextElement < max;
+    }
+
+    @Override
+    public Object next()
+    {
+        return elements[nextElement++];
     }
 }

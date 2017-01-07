@@ -11,6 +11,9 @@
 
 package js224eh_lab4.stack;
 
+import java.util.Iterator;
+
+
 public class StackMain
 {
     public static void main(String[] args)
@@ -21,6 +24,7 @@ public class StackMain
         stack.push(new String("element1"));
         stack.push(new String("element2"));
         printStackInfo(stack);
+        stack.pop();
         stack.push(new String("element3"));
         printStackInfo(stack);
     }
@@ -31,5 +35,13 @@ public class StackMain
         System.out.printf("%n--------------------%n");
         System.out.printf(FORMAT, "stack.size()", stack.size());
         System.out.printf(FORMAT, "stack.isEmpty()", stack.isEmpty());
+
+        System.out.printf("Stack contents:%n");
+
+        Iterator<Object> iterator = stack.iterator();
+        while (iterator.hasNext()) {
+            Object o = iterator.next();
+            System.out.print(o + "  ");
+        }
     }
 }
