@@ -1,19 +1,19 @@
 package js224eh_lab4;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 /**
  * Created by Jonas Sjöberg (js224eh) on 2017-01-06.
  *
  * 1DV506 -- Problemlösning och Programmering, HT2016
  * Laboration 4: Exceptions, IO och interface
+ * ---------------------------------------------------------------------------
  *
  * Uppgift 1
+ * =========
  * Skriv ett program Histogram.java som läser ett godtyckligt antal heltal från
  * en fil och sedan ritar upp ett histogram (stapeldiagram) för de av talen som
  * är mellan 1 och 100. Notera: Alla talen i filen behöver ej vara inom
@@ -44,7 +44,7 @@ public class Histogram
     final static String             FILE_PATH       =
             "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src" +
             "/js224eh_lab4/histogram_data.txt";
-    final static int[] BUCKET_MAXs = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    final static int[] BUCKETS = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     static       int[]              numberFrequency = new int[101];
     static       ArrayList<Integer> numbers         = new ArrayList<>();
 
@@ -88,15 +88,24 @@ public class Histogram
         System.out.printf("Antal i intervallet [1,100]: %s%n", numbersInRange);
         System.out.printf("Övriga: %s%n", numbers.size());
         System.out.printf("Histogram%n", numbers.size());
+
+        int b = 0;
+        for (int i = 0; i < numberFrequency.length; i++) {
+            for (int j = 0; j < numberFrequency[i]; j++) {
+            }
+            if (i % 10 == 0) {
+                b++;
+            }
+        }
         //  1  - 10  | ******
         //  91 - 100 | ***
 
         int bucketLimitLow = 1;
         int bucketLimitHigh = 10;
-        for (int i = 1; i < numberFrequency.length; i++) {
+/*        for (int i = 1; i < numberFrequency.length; i++) {
             System.out.printf("numberFrequency[%03d] = %d%n", i, numberFrequency[i]);
             if (numberFrequency)
-        }
+        }*/
     }
 
 /*    private Scanner getScannerForFile(String path)

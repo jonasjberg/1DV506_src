@@ -1,5 +1,9 @@
 package js224eh_lab4;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * Created by Jonas Sjöberg (js224eh) on 2017-01-06.
  *
@@ -37,4 +41,82 @@ package js224eh_lab4;
 
 public class RaknaTecken
 {
+    final static String FILE_PATH = "/home/jonas/LNU/1DV506_Problemlosning/assignments/lab4/ChampagnenBlirDyrare_UTF8.txt";
+
+    private static int countUpperCase  = 0;
+    private static int countLowerCase  = 0;
+    private static int countWhitespace = 0;
+    private static int countOther      = 0;
+
+    public static void main(String[] args)
+    {
+        StringBuilder text = new StringBuilder();
+
+        try {
+            File    file = new File(FILE_PATH);
+            Scanner scan = new Scanner(file);
+            while (scan.hasNext()) {
+                String str = scan.nextLine();
+                text.append(str + "\n");
+            }
+            scan.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        runAnalysis(text.toString());
+        System.out.println("Antal stora bokstäver: " + countUpperCase);
+        System.out.println("Antal små bokstäver: " + countLowerCase);
+        System.out.println("Antal \"whitespaces\": " + countWhitespace);
+        System.out.println("Antal övriga: " + countOther);
+    }
+
+    private static void runAnalysis(String text)
+    {
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (Character.isUpperCase(c)) {
+                countUpperCase++;
+            } else if (Character.isLowerCase(c)) {
+                countLowerCase++;
+            } else {
+                if (Character.isWhitespace(c)) {
+                    countWhitespace++;
+                } else {
+                    countOther++;
+                }
+            }
+        }
+    }
 }
+
+/* Om jag laddar hem och använder exempelfilen "ChampagnenBlirDyrare.txt"
+   direkt i befintligt skick så fungerar inte mitt program alls.
+   Det beror på att jag använder använder teckenkodningen UTF-8 i dels
+   filsystemet men också som standard i texteditorer. Eftersom att det är
+   svårt att lista ut vilken teckenkodning som används så antar många
+   program i mitt system att textfiler alltid är kodade i UTF-8 och det slår
+   fel i det här fallet.
+
+   Ibland kan min implementation räkna till 462 whitespaces istället för
+   referensresultatets 463. Det kan också ha att göra med hur olika
+   operativsystem hanterar whitespace, för ASCII-kodad text hanteras
+   radbrytning olika för olika operativsystem.
+
+                       Escape-sekvens   Förkortning   ASCII-värde
+       Windows         \r \n            CR LF         0x0D 0x0A
+       UNIX-liknande      \n               LF              0x0A
+
+   Unicode gör det hela ännu krångligare. Jag är säker på att det enstaka
+   whitespace-tecken som skiljer sig åt har att göra med teckenkodningen.
+   Många gånger går det bra att läsa ASCII-filer under antagandet att de är
+   UTF-8 pga hur Unicode fungerar, kodningen för ASCII-tecken är likadana
+   i Unicode --- det kan gå att läsa in filer med skapligt resultat trots att
+   fel teckenkodning använts. Ofta så länge inte för "krångliga" tecken använts.
+   Originalfilen är kodad med ISO-8859-14 som är vanligt i Windows-världen.
+   Utan någon slags konvertering till UTF-8 eller att teckenkodningen
+   explicit specificeras vid inläsning så kan det hända att metoderna från
+   standardbibliotekets Character-klass som används nedan inte beter sig precis
+   rätt.
+*/
+
