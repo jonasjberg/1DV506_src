@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 public class StackImplementation implements Stack
 {
-    final int STACK_DEFAULT_SIZE     = 32;
+    final int STACK_INITIAL_SIZE     = 4;
     final int STACK_RESIZE_INCREMENT = 8;
 
     private Object[] data;
@@ -24,7 +24,7 @@ public class StackImplementation implements Stack
 
     public StackImplementation()
     {
-        data = new Object[STACK_DEFAULT_SIZE];
+        data = new Object[STACK_INITIAL_SIZE];
         topElementPointer = -1;
     }
 
@@ -37,6 +37,9 @@ public class StackImplementation implements Stack
         return topElementPointer + 1;
     }
 
+    /**
+     * @return True if the stack is empty, otherwise False.
+     */
     @Override
     public boolean isEmpty()
     {
@@ -111,33 +114,39 @@ public class StackImplementation implements Stack
         return new StackImplementationIterator(data, topElementPointer);
     }
 
+    /**
+     * @return Returns a human-readable string representation of the stack.
+     */
+    @Override
     public String toString()
     {
         String FORMAT = "    %-15.15s : %s%n";
+        // StringBuilder str = new StringBuilder("{\n    ");
+        StringBuilder str = new StringBuilder(this.getClass().getName());
+        str.append(" {\n");
 
-        StringBuilder str = new StringBuilder("{\n");
 
-        /* Inspired by the ToStringBuilder in "Apache Commons Lang".
-         * https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
-         */
-        str.append(this.getClass().getName()).append("@").append(Integer.toHexString(System.identityHashCode(this)));
+        // Inspired by the ToStringBuilder in "Apache Commons Lang".
+        // https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
+        str.append(String.format(FORMAT, "unique ID", Integer.toHexString(System.identityHashCode(this))));
 
         str.append(String.format(FORMAT, "stack.size()", size()));
         str.append(String.format(FORMAT, "stack.isEmpty()", isEmpty()));
 
+
         StringBuilder itStr = new StringBuilder();
         Iterator<Object> iterator = iterator();
         if (!iterator.hasNext()) {
-            itStr.append(" EMPTY");
+            itStr.append("(empty)");
         } else {
             while (iterator.hasNext()) {
                 Object o = iterator.next();
-                itStr.append(" [").append(o).append("]");
+                itStr.append("[").append(o).append("] ");
             }
         }
         str.append(String.format(FORMAT, "Stack contents", itStr.toString()));
-        str.append("}\n");
 
+        str.append("}\n");
         return str.toString();
     }
 }

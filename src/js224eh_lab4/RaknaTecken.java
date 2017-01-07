@@ -62,7 +62,7 @@ public class RaknaTecken
             }
             scan.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.printf("ERROR: %s%n", e.toString());
         }
 
         runAnalysis(text.toString());

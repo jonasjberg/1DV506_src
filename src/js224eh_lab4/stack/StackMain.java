@@ -11,9 +11,6 @@
 
 package js224eh_lab4.stack;
 
-import java.util.Iterator;
-
-
 public class StackMain
 {
     public static void main(String[] args)
@@ -28,12 +25,29 @@ public class StackMain
         System.out.println("Pushed two elements to the stack");
         System.out.println(stack);
 
+        System.out.printf("Peeking the stack: %s%n", stack.peek());
+
         stack.pop();
         System.out.println("Popped the stack");
         System.out.println(stack);
 
-        stack.push(new String("element3"));
-        System.out.println("Pushed an element to the stack");
+        System.out.printf("Peeking the stack: %s%n", stack.peek());
+
+        stack.push(new String("element4"));
+        stack.push(new String("prrrrrrr"));
+        stack.push(new String("mjaooooo"));
+        stack.push(new String("MJAAAOOO"));
+        System.out.println("Pushed four elements to the stack");
         System.out.println(stack);
+
+        System.out.println("Will attempt to pop the stack 5 times, "
+                         + "anticipating an exception to be thrown");
+        for (int i = 0; i <= 5; i++) {
+            try {
+                stack.pop();
+            } catch (RuntimeException e) {
+                System.out.printf("ERROR: %s%n", e.toString());
+            }
+        }
     }
 }
