@@ -41,17 +41,20 @@ import java.util.Scanner;
  */
 public class Histogram
 {
-    final static String             FILE_PATH       =
-            "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src" +
-            "/js224eh_lab4/histogram_data.txt";
-    final static int[] BUCKETS = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-    static       int[]              numberFrequency = new int[101];
-    static       ArrayList<Integer> numbers         = new ArrayList<>();
+    final static String FILE_PATH = "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_lab4/histogram_data.txt";
+
+    final static int[] bucketHigh = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    final static int[] buckets    = new int[bucketHigh.length];
+
+    static int[]              numberFrequency = new int[101];
+    static ArrayList<Integer> numbers         = new ArrayList<>();
 
 
 
     public static void main(String[] args)
     {
+        // TODO: Get file path from args!
+
         Scanner scan = null;
         try {
             File file = new File(FILE_PATH);
@@ -91,21 +94,25 @@ public class Histogram
 
         int b = 0;
         for (int i = 0; i < numberFrequency.length; i++) {
-            for (int j = 0; j < numberFrequency[i]; j++) {
-            }
+             buckets[b] += numberFrequency[i];
+
             if (i % 10 == 0) {
                 b++;
+                if (b > bucketHigh.length - 1) {
+                    b = bucketHigh.length - 1;
+                }
             }
         }
         //  1  - 10  | ******
         //  91 - 100 | ***
 
-        int bucketLimitLow = 1;
-        int bucketLimitHigh = 10;
-/*        for (int i = 1; i < numberFrequency.length; i++) {
-            System.out.printf("numberFrequency[%03d] = %d%n", i, numberFrequency[i]);
-            if (numberFrequency)
-        }*/
+        int bucketLow = 1;
+        for (int i = 0; i < bucketHigh.length; i++) {
+            String bar = repeatString("*", buckets[i]);
+            System.out.printf("%2d - %3d | %s%n", bucketLow,  bucketHigh[i], bar);
+            bucketLow += 10;
+        }
+
     }
 
 /*    private Scanner getScannerForFile(String path)
@@ -123,4 +130,20 @@ public class Histogram
         }
         return scan;
     }*/
+
+    /**
+     * Repeats a given string a specified number of times.
+     *
+     * @param string  The string to repeat.
+     * @param repeats The number of concatenations of the string.
+     * @return 'string' repeated 'repeats' times.
+     */
+    private static String repeatString(String string, int repeats)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < repeats; i++) {
+            stringBuilder.append(string);
+        }
+        return stringBuilder.toString();
+    }
 }
