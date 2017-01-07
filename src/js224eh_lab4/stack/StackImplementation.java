@@ -22,6 +22,9 @@ public class StackImplementation implements Stack
     private Object[] data;
     private int      topElementPointer;
 
+    /**
+     * Creates a new instance of the "StackImplementation" class.
+     */
     public StackImplementation()
     {
         data = new Object[STACK_INITIAL_SIZE];
