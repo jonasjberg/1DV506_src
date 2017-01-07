@@ -17,31 +17,42 @@ public class StackMain
     {
         Stack stack = new StackImplementation();
 
-        System.out.println("Created a new empty stack");
+        System.out.println("\nCreated a new empty stack");
         System.out.println(stack);
 
-        stack.push(new String("element1"));
-        stack.push(new String("element2"));
-        System.out.println("Pushed two elements to the stack");
+        stack.push("element1");
+        stack.push("element2");
+        System.out.println("\nPushed two elements to the stack");
         System.out.println(stack);
 
-        System.out.printf("Peeking the stack: %s%n", stack.peek());
+        System.out.println(String.format("\nPeeking the stack: [%s]", stack.peek()));
 
         stack.pop();
-        System.out.println("Popped the stack");
+        System.out.println("\nPopped the stack");
         System.out.println(stack);
 
-        System.out.printf("Peeking the stack: %s%n", stack.peek());
+        System.out.println(String.format("\nPeeking the stack: [%s]", stack.peek()));
 
-        stack.push(new String("element4"));
-        stack.push(new String("prrrrrrr"));
-        stack.push(new String("mjaooooo"));
-        stack.push(new String("MJAAAOOO"));
-        System.out.println("Pushed four elements to the stack");
+        stack.pop();
+        System.out.println("\nPopped the stack");
         System.out.println(stack);
 
-        System.out.println("Will attempt to pop the stack 5 times, "
-                         + "anticipating an exception to be thrown");
+        System.out.println("\nPeeking the stack, expecting an exception to be thrown:");
+        try {
+            System.out.println(String.format("[%s]", stack.peek()));
+        } catch (RuntimeException e) {
+            System.out.printf("ERROR: %s%n", e.toString());
+        }
+
+        stack.push("element4");
+        stack.push("prrrrrrr");
+        stack.push("mjaooooo");
+        stack.push("MJAAAOOO");
+        System.out.println("\nPushed four elements to the stack");
+        System.out.println(stack);
+
+        System.out.println("\nWill attempt to pop the stack 5 times, "
+                   + "anticipating an exception to be thrown");
         for (int i = 0; i <= 5; i++) {
             try {
                 stack.pop();
@@ -49,5 +60,7 @@ public class StackMain
                 System.out.printf("ERROR: %s%n", e.toString());
             }
         }
+
+        System.out.println(stack);
     }
 }

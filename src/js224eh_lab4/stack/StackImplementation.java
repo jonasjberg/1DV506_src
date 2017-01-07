@@ -60,8 +60,6 @@ public class StackImplementation implements Stack
     {
         /* Resize the "data" array in order to fit the new element. */
         if (size() == data.length) {
-            System.out.println("Reallocating the stack ..");
-
             Object[] temp = data.clone();
             data = new Object[size() + STACK_RESIZE_INCREMENT];
             for (int i = 0; i < temp.length; i++) {
@@ -120,21 +118,20 @@ public class StackImplementation implements Stack
     @Override
     public String toString()
     {
-        String FORMAT = "    %-15.15s : %s%n";
-        // StringBuilder str = new StringBuilder("{\n    ");
-        StringBuilder str = new StringBuilder(this.getClass().getName());
-        str.append(" {\n");
+        String FORMAT = "  %-15.15s : %s%n";
+        StringBuilder str = new StringBuilder("{\n  ");
+        str.append(this.getClass().getName()).append("\n");
 
 
         // Inspired by the ToStringBuilder in "Apache Commons Lang".
         // https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
-        str.append(String.format(FORMAT, "unique ID", Integer.toHexString(System.identityHashCode(this))));
+        str.append(String.format(FORMAT, "instance ID",
+                                 Integer.toHexString(System.identityHashCode(this))));
 
         str.append(String.format(FORMAT, "stack.size()", size()));
         str.append(String.format(FORMAT, "stack.isEmpty()", isEmpty()));
 
-
-        StringBuilder itStr = new StringBuilder();
+        StringBuilder    itStr    = new StringBuilder();
         Iterator<Object> iterator = iterator();
         if (!iterator.hasNext()) {
             itStr.append("(empty)");
@@ -146,7 +143,7 @@ public class StackImplementation implements Stack
         }
         str.append(String.format(FORMAT, "Stack contents", itStr.toString()));
 
-        str.append("}\n");
+        str.append("}");
         return str.toString();
     }
 }
@@ -164,7 +161,7 @@ class StackImplementationIterator implements Iterator<Object>
 {
     private int nextElement = 0;
     private Object[] elements;
-    private int max;
+    private int      max;
 
     public StackImplementationIterator(Object[] values, int maxIndex)
     {
