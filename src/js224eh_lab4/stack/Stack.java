@@ -42,5 +42,5 @@ public interface Stack
  * Iteratorn itererar över alla stackens element. Skriv också ett testprogram
  * StackMain.java som visar hur alla metoder fungerar.
  * Notera: Ni får inte använda några av de fördefinerade klasserna i Javas
- * klassbibliotek. Ni får dock använda arrayer.
+ *         klassbibliotek. Ni får dock använda arrayer.
  */

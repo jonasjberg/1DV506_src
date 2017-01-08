@@ -35,14 +35,15 @@ package js224eh_lab4;
  * förklaring till skillnaderna inlämnas tillsammans med labben.
  */
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class RaknaTecken
 {
-    final static String FILE_PATH = "/home/jonas/LNU/1DV506_Problemlosning/assignments/lab4/ChampagnenBlirDyrare_UTF8.txt";
+    final static String FILE_PATH =
+            "/home/jonas/LNU/1DV506_Problemlosning/assignments/lab4/ChampagnenBlirDyrare_UTF8.txt";
 
     private static int countUpperCase  = 0;
     private static int countLowerCase  = 0;

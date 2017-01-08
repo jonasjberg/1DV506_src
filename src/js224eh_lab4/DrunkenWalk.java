@@ -30,17 +30,14 @@ import java.util.concurrent.TimeUnit;
 
 public class DrunkenWalk
 {
-    static final boolean DRAW_ASCII_GRAPHICS = true;
+    static final boolean DRAW_ASCII_GRAPHICS = false;
     static int iterations, areaSize, maxNumberSteps;
 
     public static void main(String[] args)
     {
-        //areaSize = getPositiveIntegerFromUser("Ange storlek");
-        //maxNumberSteps = getPositiveIntegerFromUser("Ange max antal steg");
-        //iterations = getPositiveIntegerFromUser("Ange antal slumpvandringar");
-        areaSize = 5;
-        maxNumberSteps = 25;
-        iterations = 10;
+        areaSize = getPositiveIntegerFromUser("Ange storlek");
+        maxNumberSteps = getPositiveIntegerFromUser("Ange max antal steg");
+        iterations = getPositiveIntegerFromUser("Ange antal slumpvandringar");
 
         int deadDrunks = 0;
         for (int iteration = 1; iteration <= iterations; iteration++) {
@@ -49,6 +46,7 @@ public class DrunkenWalk
             while (walk.moreSteps()) {
                 if (DRAW_ASCII_GRAPHICS) {
                     drawAsciiGraphics(iteration, walk, deadDrunks);
+                    sleep(60);
                 }
 
                 walk.takeStep();
@@ -60,11 +58,24 @@ public class DrunkenWalk
         }
 
         double probability = (double) deadDrunks / iterations * 100;
-        String result = String.format(
-                "Av %d onyktra personer, föll %d (%.2f%%) i vattnet.%n",
-                iterations, deadDrunks, probability);
+        String result = String.format("Av %d onyktra personer, " +
+                                      "föll %d (%.2f%%) i vattnet.%n",
+                                      iterations, deadDrunks, probability);
+        System.out.printf("%n%n%s", result);
     }
 
+    /**
+     * First created 2015-06-24 during the course DV017a at Högskolan i Gävle.
+     * https://github.com/jonasjberg/DV017A_lab2/commit/057fc2e41f79b3458b09d5678176c9ae6423728e
+     *
+     * Prompts the user for a positive whole number.
+     *
+     * The message is shown continuously until the user has entered a valid
+     * whole number. Any leading and trailing whitespace is removed.
+     *
+     * @param message The message to display when prompting for input.
+     * @return The number entered by the user.
+     */
     private static int getPositiveIntegerFromUser(String message)
     {
         Scanner scan = new Scanner(System.in);
@@ -101,14 +112,13 @@ public class DrunkenWalk
         double percentDead = (double) deadDrunks / iterations * 100;
 
         clearAndResetAnsiTerminal();
-        System.out.printf("Running simulation #-%3d/%-3d%n",
+        System.out.printf("Running simulation #%-3d of %d%n",
                           iteration, iterations);
-        System.out.printf("Dead: %-5d (%.2f%%)   Lucky: %-5d%n",
+        System.out.printf("Dead: %-3d (%.2f%%)   Lucky: %-3d%n",
                           deadDrunks, percentDead, iteration - deadDrunks);
-        System.out.println("------------------------------\n");
+        System.out.println("\n");
         walk.printAsciiArtStateToStdout();
         System.out.printf("%n%s%n", walk);
-        sleep(50);
     }
 
     /**
@@ -118,14 +128,14 @@ public class DrunkenWalk
     private static void clearAndResetAnsiTerminal()
     {
         /* Method #1 */
-        // final String ANSI_CLS = "\u001b[2J";
-        // final String ANSI_HOME = "\u001b[H";
-        // System.out.print(ANSI_CLS + ANSI_HOME);
-        // System.out.flush();
+        final String ANSI_CLS  = "\u001b[2J";
+        final String ANSI_HOME = "\u001b[H";
+        System.out.print(ANSI_CLS + ANSI_HOME);
+        System.out.flush();
 
         /* Method #2 */
-        final String ESC = "\033[";
-        System.out.print(ESC + "2J");
+        // final String ESC = "\033[";
+        // System.out.print(ESC + "2J");
     }
 
     /**

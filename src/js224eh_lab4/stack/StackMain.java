@@ -51,8 +51,8 @@ public class StackMain
         System.out.println("\nPushed four elements to the stack");
         System.out.println(stack);
 
-        System.out.println("\nWill attempt to pop the stack 5 times, "
-                   + "anticipating an exception to be thrown");
+        System.out.println("\nWill attempt to pop the stack 5 times, " +
+                           "anticipating an exception to be thrown");
         for (int i = 0; i <= 5; i++) {
             try {
                 stack.pop();

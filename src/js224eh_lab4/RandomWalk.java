@@ -9,6 +9,44 @@ package js224eh_lab4;
  *
  * Uppgift 5
  * =========
+ * Skapa en klass RandomWalk.java som simulerar en slumpvandring. En
+ * slumpvandring utförs på ett begränsat plan och varje steg består av en
+ * förflyttning i en slumpmässig riktning. Vandringen upphör när ett maximalt
+ * antal steg har tagits eller när ett steg tas ut från det givna planet.
+ * Antag att planet är givet av ett rutnät, där punkt (0, 0) ligger i mitten.
+ * Storleken på planet bestäms av ett heltal; om värdet på heltalet är k så kan
+ * x- och y-koordinaterna för punkter på planet variera från –k till k.
+ *
+ * I varje steg sker en förflyttning ett steg upp, ett steg ner, ett steg till
+ * höger eller ett steg till vänster (inga diagonala steg).
+ *
+ * Klassen RandomWalk behöver följande fält:
+ *   - X-koordinaten för nuvarande position
+ *   - Y-koordinaten för nuvarande position
+ *   - Det maximala antalet steg en vandring får ha
+ *   - Antalet steg tagna hittills i vandringen
+ *   - Storleken på planet (enligt ovan)
+ *
+ * Övriga medlemmar:
+ *   - RandomWalk(int max, int size):
+ *     Det maximala antalet steg skall vara max och size är storleken på planet.
+ *     Startpositionen sätts till (0, 0).
+ *   - String toString():
+ *     Returnerar en sträng bestående av antalet steg tagna hittills och den
+ *     nuvarande positionen.
+ *   - void takeStep():
+ *     Simulerar ett steg i vandringen. Slumpa ett heltal som kan anta 4 olika
+ *     värden och låt dessa representera att steget tas uppåt, nedåt, till höger
+ *     eller till vänster. Metoden ska också öka antalet tagna steg.
+ *   - boolean moreSteps():
+ *     Returnerar true om antalet tagna steg är mindre än maxantalet, annars
+ *     returneras false.
+ *   - boolean inBounds():
+ *     Returnerar true om nuvarande position är innanför planets område, annars
+ *     returneras false.
+ *   - void walk():
+ *     Simulerar en slumpvandring, dvs ett antal steg utförs tills det maximala
+ *     antalet har uppnåtts eller tills vi vandrar ut från planets område.
  */
 
 import java.util.Random;
