@@ -34,5 +34,11 @@ public class Main
         System.out.println(dn);
         System.out.println(ex);
         System.out.println(wp);
+
+        wp.registerWithNewsAgency(tt);
+        wp.authorNewsArticles(2);
+        System.out.println(dn);
+        System.out.println(ex);
+        System.out.println(wp);
     }
 }

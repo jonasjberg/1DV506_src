@@ -26,13 +26,29 @@ public class NewsPaper implements NewsTransactor
                                        "This One Cat", "An Awesome Black Cat"};
     private final String[] VERBTENSE = {"Didn't Know about", "Must Read About",
                                         "Should Download as Audiobook"};
+    private final String[] DUMMY_TEXT = {"Lorem ipsum bla bla bla bla",
+                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                                         "wow this is really interesting",
+                                         "Nunc id urna a nisi gravida venenatis.",
+                                         "Quisque porta neque id risus viverra, id luctus lorem volutpat.",
+                                         "Duis eget est faucibus urna vestibulum ultricies.",
+                                         "Maecenas ultricies nulla sit amet dolor dictum, " +
+                                         "sed accumsan orci faucibus."};
+
     private ArrayList<News> newsItems;
     private String name;
+    private ArrayList<NewsTransactor> registeredAgencies;
 
     public NewsPaper(String name)
     {
         newsItems = new ArrayList<>();
+        registeredAgencies = new ArrayList<>();
         this.name = name;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     /**
@@ -43,40 +59,76 @@ public class NewsPaper implements NewsTransactor
      */
     public void registerWithNewsAgency(NewsAgency agency)
     {
-        if (agency == null) {
-            return;
+        registeredAgencies.add(agency);
+        for (News item : newsItems) {
+            sendNews(agency, item);
         }
     }
 
+    /**
+     * Get random entry from String array.
+     * @param entries The String array to fetch from.
+     * @return A random element from "entries".
+     */
     private String getRandomEntry(String[] entries)
     {
         int index = random.nextInt(entries.length);
         return entries[index];
     }
 
+    /**
+     * Authors a specified number of new news items/articles.
+     *
+     * @param numberOfItems The number of news items to author.
+     */
     public void authorNewsArticles(int numberOfItems)
     {
-        String title = String.format("%d %s %s %s %s", random.nextInt(21) + 1,
-                                     getRandomEntry(ADJECTIVES),
-                                     getRandomEntry(NOUNS),
-                                     getRandomEntry(PRONOUNS),
-                                     getRandomEntry(VERBTENSE));
-        String[] text = {"Lorem ipsum bla bla bla bla", "bla bla bla",
-                         "wow this is really interesting", "bla bla"};
+        if (numberOfItems < 1) {
+            return;
+        }
 
-        News freshNews = new News(title, text);
-        newsItems.add(freshNews);
+        for (int i = 1; i <= numberOfItems; i++) {
+            String title = String.format("%d %s %s %s %s",
+                                         random.nextInt(21) + 1,
+                                         getRandomEntry(ADJECTIVES),
+                                         getRandomEntry(NOUNS),
+                                         getRandomEntry(PRONOUNS),
+                                         getRandomEntry(VERBTENSE));
+
+            News freshNews = new News(title, DUMMY_TEXT, this);
+            newsItems.add(freshNews);
+            for (NewsTransactor agency : registeredAgencies) {
+                agency.receiveNews(freshNews);
+            }
+        }
     }
 
     @Override
-    public void sendNews(NewsTransactor recipient, News newsItem)
+    public void receiveNews(News... freshNews)
+    {
+        for (News news : freshNews) {
+            if (news.getAuthor() != this) {
+                newsItems.add(news);
+            }
+        }
+    }
+
+    @Override
+    public void sendNews(NewsTransactor receiver, News... newsItem)
     {
 
     }
 
     @Override
-    public void receiveNews(NewsTransactor sender, News newsItem)
+    public boolean equals(Object o)
     {
+        if (this == o) {
+            return true;
+        } else if (!(o instanceof NewsPaper)) {
+            return false;
+        }
 
+        NewsPaper newsPaper = (NewsPaper) o;
+        return getName().equals(newsPaper.getName());
     }
 }

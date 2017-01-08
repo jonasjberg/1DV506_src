@@ -12,11 +12,13 @@ package js224eh_lab4.nyhetsbyra;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
-public class NewsAgency
+public class NewsAgency implements NewsTransactor
 {
     private ArrayList<NewsPaper> newsPapers;
+    private ArrayList<News> newsItems;
     private boolean hasUndistributedNewsItems = false;
     private String name;
 
@@ -24,5 +26,22 @@ public class NewsAgency
     {
         newsPapers = new ArrayList<>();
         this.name = name;
+    }
+
+    @Override
+    public void receiveNews(News... freshNews)
+    {
+        Collections.addAll(newsItems, freshNews);
+
+        for (NewsTransactor t : newsPapers) {
+            t.receiveNews(freshNews);
+        }
+
+    }
+
+    @Override
+    public void sendNews(NewsTransactor receiver, News... newsItem)
+    {
+
     }
 }

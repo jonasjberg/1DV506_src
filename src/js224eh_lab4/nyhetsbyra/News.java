@@ -11,15 +11,18 @@ package js224eh_lab4.nyhetsbyra;
  * =========
  */
 
+
 public class News
 {
     private String headline;
     private String[] contents;
+    private NewsPaper author;
 
-    public News(String headline, String[] contents)
+    public News(String headline, String[] contents, NewsPaper author)
     {
         this.headline = headline;
         this.contents = contents;
+        this.author = author;
     }
 
     public String getHeadline()
@@ -30,5 +33,10 @@ public class News
     public String[] getContents()
     {
         return contents;
+    }
+
+    public NewsPaper getAuthor()
+    {
+        return author;
     }
 }
