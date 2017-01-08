@@ -33,6 +33,11 @@ public class SorteraOrter
 {
     public static void main(String[] args)
     {
+        if (args == null || args[0].isEmpty()) {
+            System.out.println("Usage: $(basename ${0}) [FILE]");
+            System.exit(0);
+        }
+
         OrterSorter sorter = new OrterSorter(args[0]);
         sorter.printResults();
     }
