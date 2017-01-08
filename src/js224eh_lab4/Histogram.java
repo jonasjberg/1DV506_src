@@ -35,40 +35,39 @@ package js224eh_lab4;
  *           programmet (via String[] args).
  */
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Histogram
 {
-    final static String FILE_PATH = "/home/jonas/Dropbox/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_lab4/histogram_data.txt";
-
-    static int[]              buckets               = new int[10];
-    static int[]              numberFrequency       = new int[101];
-    static ArrayList<Integer> numbers               = new ArrayList<>();
-    static int                numbersInRange        = 0;
-    static int                numbersOutsideOfRange = 0;
+    static int[] buckets               = new int[10];
+    static int[] numberFrequency       = new int[101];
+    static int   numbersInRange        = 0;
+    static int   numbersOutsideOfRange = 0;
 
     public static void main(String[] args)
     {
-        // TODO: Get file path from args!
-        showFileStatistics(FILE_PATH);
+        if (args == null || args[0].isEmpty()) {
+            System.out.println("Usage: Histogram [FILE]");
+            System.exit(0);
+        }
+
+        showFileStatistics(args[0]);
     }
 
     private static void showFileStatistics(String path)
     {
         Scanner scan = null;
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(path);
             scan = new Scanner(file);
         } catch (FileNotFoundException e) {
             System.out.printf("ERROR: %s%n", e.toString());
             System.exit(1);
         }
 
-        System.out.printf("Läser heltal från filen: \"%s\"%n", FILE_PATH);
+        System.out.printf("Läser heltal från filen: \"%s\"%n", path);
         while (scan.hasNextLine()) {
             /* Match one or more digits, possibly preceded by a dash. */
             String digits = scan.findInLine("-?\\d+");
@@ -91,13 +90,14 @@ public class Histogram
 
             scan.nextLine();
         }
+        scan.close();
 
         System.out.printf("Antal i intervallet [1,100]: %s%n", numbersInRange);
         System.out.printf("Övriga: %s%n", numbersOutsideOfRange);
         System.out.printf("Histogram%n");
 
         int b = 0;
-        for (int i = 0; i < numberFrequency.length; i++) {
+        for (int i = 1; i < numberFrequency.length; i++) {
             buckets[b] += numberFrequency[i];
 
             if (i > 0 && i % 10 == 0) {
@@ -107,7 +107,7 @@ public class Histogram
             }
         }
 
-        int bucketLow = 1;
+        int bucketLow  = 1;
         int bucketHigh = 10;
         for (int i = 0; i < buckets.length; i++) {
             String bar = repeatString("*", buckets[i]);
