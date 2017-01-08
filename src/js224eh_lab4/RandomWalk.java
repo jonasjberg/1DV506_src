@@ -16,11 +16,19 @@ import java.util.Random;
 
 public class RandomWalk
 {
+    private static final Random random = new Random();
+
     private int x, y;
     private int maxSteps;
     private int stepsTaken;
     private int absAreaMax;
 
+    /**
+     * Creates a new instance of the "RandomWalk" class.
+     *
+     * @param max The maximum number of steps to take.
+     * @param size The size of the area.
+     */
     public RandomWalk(int max, int size)
     {
         maxSteps = max;
@@ -35,8 +43,19 @@ public class RandomWalk
      */
     public String toString()
     {
-        String fmt = "steps: %-6d  position: (%3d, %3d)%n";
-        return String.format(fmt, x, y, stepsTaken);
+        String fmt = "steps: %-6d  position: (%3d, %3d)";
+        return String.format(fmt, stepsTaken, x, y);
+    }
+
+    public void drawAsString()
+    {
+        for (int y = -absAreaMax; y <= absAreaMax; y++) {
+            for (int x = -absAreaMax; x <= absAreaMax; x++) {
+                String s = (this.x == x && this.y == y) ? "@" : ".";
+                System.out.print(s + " ");
+            }
+            System.out.printf("%n");
+        }
     }
 
     /**
@@ -46,28 +65,27 @@ public class RandomWalk
      */
     public void takeStep()
     {
-        Random random = new Random();
-
-        /* 0 - up
-         * 1 - down
-         * 2 - right
-         * 3 - left
-         */
         int direction = random.nextInt(4) + 1;
         switch (direction) {
             case 0:
                 /* Up */
+                y += 1;
                 break;
             case 1:
                 /* Down */
+                y -= 1;
                 break;
             case 2:
                 /* Right */
+                x += 1;
                 break;
             case 3:
                 /* Left */
+                x -= 1;
                 break;
         }
+
+        stepsTaken++;
     }
 
     /**
@@ -76,7 +94,7 @@ public class RandomWalk
      */
     public boolean moreSteps()
     {
-
+        return stepsTaken < maxSteps;
     }
 
     /**
@@ -84,6 +102,6 @@ public class RandomWalk
      */
     public boolean inBounds()
     {
-
+        return (Math.abs(x) <= absAreaMax) && (Math.abs(y) <= absAreaMax);
     }
 }
