@@ -30,8 +30,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DrunkenWalk
 {
-    static int iterations, areaSize, maxNumberSteps;
     static final boolean DRAW_ASCII_GRAPHICS = true;
+    static int iterations, areaSize, maxNumberSteps;
 
     public static void main(String[] args)
     {
@@ -43,19 +43,12 @@ public class DrunkenWalk
         iterations = 10;
 
         int deadDrunks = 0;
-        for (int i = 1; i <= iterations; i++) {
+        for (int iteration = 1; iteration <= iterations; iteration++) {
             RandomWalk walk = new RandomWalk(maxNumberSteps, areaSize);
 
             while (walk.moreSteps()) {
                 if (DRAW_ASCII_GRAPHICS) {
-                    clearAndResetAnsiTerminal();
-                    System.out.printf("Running simulation #-%3d/%-3d%n", i, iterations);
-                    double p = (double) deadDrunks / iterations * 100;
-                    System.out.printf("Dead: %-5d (%.2f%%)   Lucky: %-5d%n", deadDrunks, p, i - deadDrunks);
-                    System.out.println("------------------------------\n");
-                    walk.drawAsString();
-                    System.out.printf("%n%s%n", walk);
-                    sleep(50);
+                    drawAsciiGraphics(iteration, walk, deadDrunks);
                 }
 
                 walk.takeStep();
@@ -67,14 +60,15 @@ public class DrunkenWalk
         }
 
         double probability = (double) deadDrunks / iterations * 100;
-        String result = String.format("Av %d onyktra personer, föll %d (%.2f%%) i vattnet.%n",
-                                      iterations, deadDrunks, probability);
+        String result = String.format(
+                "Av %d onyktra personer, föll %d (%.2f%%) i vattnet.%n",
+                iterations, deadDrunks, probability);
     }
 
     private static int getPositiveIntegerFromUser(String message)
     {
         Scanner scan = new Scanner(System.in);
-        String msg = message + ": ";
+        String  msg  = message + ": ";
         int     number;
 
         do {
@@ -85,10 +79,36 @@ public class DrunkenWalk
                 scan.next();
             }
             number = scan.nextInt();
-
         } while (number <= 0);
 
         return number;
+    }
+
+    /**
+     * Displays the simulation as an ASCII representation to a ANSI terminal.
+     *
+     * Needs support for ANSI escape-sequences in order to clear and reset the
+     * terminal between redrawing the state. Results will vary.
+     * Works fine for me in Linux with the xfce4-terminal terminal emulator.
+     *
+     * @param iteration Current iteration number.
+     * @param walk The RandomWalk instance that is used during the simulation.
+     * @param deadDrunks Amount of dead drunks.
+     */
+    private static void drawAsciiGraphics(int iteration, RandomWalk walk,
+                                          int deadDrunks)
+    {
+        double percentDead = (double) deadDrunks / iterations * 100;
+
+        clearAndResetAnsiTerminal();
+        System.out.printf("Running simulation #-%3d/%-3d%n",
+                          iteration, iterations);
+        System.out.printf("Dead: %-5d (%.2f%%)   Lucky: %-5d%n",
+                          deadDrunks, percentDead, iteration - deadDrunks);
+        System.out.println("------------------------------\n");
+        walk.printAsciiArtStateToStdout();
+        System.out.printf("%n%s%n", walk);
+        sleep(50);
     }
 
     /**

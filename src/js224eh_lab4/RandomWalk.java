@@ -47,7 +47,7 @@ public class RandomWalk
         return String.format(fmt, stepsTaken, x, y);
     }
 
-    public void drawAsString()
+    public void printAsciiArtStateToStdout()
     {
         for (int y = -absAreaMax; y <= absAreaMax; y++) {
             for (int x = -absAreaMax; x <= absAreaMax; x++) {
