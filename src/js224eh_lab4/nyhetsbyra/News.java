@@ -39,4 +39,22 @@ public class News
     {
         return author;
     }
+
+    @Override
+    public String toString()
+    {
+        String FORMAT = "  %-15.15s : %s%n";
+        StringBuilder str = new StringBuilder("{\n  ");
+
+
+        // Inspired by the ToStringBuilder in "Apache Commons Lang".
+        // https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
+        str.append(String.format(FORMAT, "instance ID",
+                                 Integer.toHexString(System.identityHashCode(this))));
+
+        str.append(String.format(FORMAT, "Author", getAuthor().getName()));
+        str.append(String.format(FORMAT, "Headline", getHeadline()));
+
+        return str.toString();
+    }
 }

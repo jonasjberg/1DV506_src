@@ -13,6 +13,6 @@ package js224eh_lab4.nyhetsbyra;
 
 public interface NewsTransactor
 {
-   void receiveNews(News... newsItem);
-   void sendNews(NewsTransactor receiver, News... newsItem);
+   void receiveNews(News... freshNews);
+   void sendNews(NewsTransactor receiver, News... freshNews);
 }

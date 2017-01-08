@@ -103,20 +103,19 @@ public class NewsPaper implements NewsTransactor
         }
     }
 
+
     @Override
     public void receiveNews(News... freshNews)
     {
         for (News news : freshNews) {
-            if (news.getAuthor() != this) {
-                newsItems.add(news);
-            }
+            receiveNews(news);
         }
     }
 
     @Override
-    public void sendNews(NewsTransactor receiver, News... newsItem)
+    public void sendNews(NewsTransactor receiver, News... freshNews)
     {
-
+        receiver.receiveNews(freshNews);
     }
 
     @Override
@@ -130,5 +129,37 @@ public class NewsPaper implements NewsTransactor
 
         NewsPaper newsPaper = (NewsPaper) o;
         return getName().equals(newsPaper.getName());
+    }
+
+
+    /**
+     * @return Returns a human-readable string representation of the newspaper.
+     */
+    @Override
+    public String toString()
+    {
+        String FORMAT = "  %-15.15s : %s%n";
+        StringBuilder str = new StringBuilder("{\n  ");
+        str.append(this.getClass().getName()).append("\n");
+
+
+        // Inspired by the ToStringBuilder in "Apache Commons Lang".
+        // https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
+        str.append(String.format(FORMAT, "instance ID",
+                                 Integer.toHexString(System.identityHashCode(this))));
+
+        str.append(String.format(FORMAT, "Name", getName()));
+        str.append(String.format(FORMAT, "Number of news items:", newsItems.size()));
+
+        if (newsItems.size() > 0) {
+            StringBuilder sbItem = new StringBuilder();
+            for (News n : newsItems) {
+                sbItem.append(n).append("\n");
+            }
+
+            // str.append(String.format(FORMAT, "News", sbItem.toString()));
+        }
+
+        return str.append("}").toString();
     }
 }
