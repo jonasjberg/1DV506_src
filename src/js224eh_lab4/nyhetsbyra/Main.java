@@ -11,34 +11,45 @@ package js224eh_lab4.nyhetsbyra;
  * =========
  */
 
+import java.util.ArrayList;
+
+
 public class Main
 {
     public static void main(String[] args)
     {
-        NewsPaper dn = new NewsPaper("Dagens Nyheter");
-        NewsPaper ex = new NewsPaper("Expressen");
-        NewsPaper wp = new NewsPaper("Washington Post");
+        NewsPaper np = new NewsPaper("");
+        np.authorNewsArticles(100);
 
-        NewsAgency reuters = new NewsAgency("Reuters");
-        NewsAgency tt      = new NewsAgency("TT");
+        ArrayList<News> news = np.getNewsArticles();
+        for (News n : news) {
+            System.out.println(n.getHeadline());
+        }
 
-        dn.registerWithNewsAgency(reuters);
-        dn.registerWithNewsAgency(tt);
-        dn.authorNewsArticles(3);
-        System.out.println(dn);
-        System.out.println(ex);
-        System.out.println(wp);
+        // NewsPaper dn = new NewsPaper("Dagens Nyheter");
+        // NewsPaper ex = new NewsPaper("Expressen");
+        // NewsPaper wp = new NewsPaper("Washington Post");
 
-        ex.registerWithNewsAgency(reuters);
-        ex.authorNewsArticles(1);
-        System.out.println(dn);
-        System.out.println(ex);
-        System.out.println(wp);
+        // NewsAgency reuters = new NewsAgency("Reuters");
+        // NewsAgency tt      = new NewsAgency("TT");
 
-        wp.registerWithNewsAgency(tt);
-        wp.authorNewsArticles(2);
-        System.out.println(dn);
-        System.out.println(ex);
-        System.out.println(wp);
+        // dn.registerWithNewsAgency(reuters);
+        // dn.registerWithNewsAgency(tt);
+        // dn.authorNewsArticles(3);
+        // System.out.println(dn);
+        // System.out.println(ex);
+        // System.out.println(wp);
+
+        // ex.registerWithNewsAgency(reuters);
+        // ex.authorNewsArticles(1);
+        // System.out.println(dn);
+        // System.out.println(ex);
+        // System.out.println(wp);
+
+        // wp.registerWithNewsAgency(tt);
+        // wp.authorNewsArticles(2);
+        // System.out.println(dn);
+        // System.out.println(ex);
+        // System.out.println(wp);
     }
 }

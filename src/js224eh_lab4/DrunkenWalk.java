@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DrunkenWalk
 {
-    static final boolean DRAW_ASCII_GRAPHICS = false;
+    static final boolean DRAW_ASCII_GRAPHICS = true;
     static int iterations, areaSize, maxNumberSteps;
 
     public static void main(String[] args)

@@ -51,6 +51,11 @@ public class NewsPaper implements NewsTransactor
         return name;
     }
 
+    public ArrayList<News> getNewsArticles()
+    {
+        return newsItems;
+    }
+
     /**
      * Register this newspaper to a news agency. This creates a subscription
      * link between them.

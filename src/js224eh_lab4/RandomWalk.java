@@ -87,13 +87,44 @@ public class RandomWalk
 
     public void printAsciiArtStateToStdout()
     {
+        System.out.println(repeatString("-", 4 + (absAreaMax * 4)));
+
         for (int y = -absAreaMax; y <= absAreaMax; y++) {
+
+            System.out.print("|");
             for (int x = -absAreaMax; x <= absAreaMax; x++) {
-                String s = (this.x == x && this.y == y) ? "@" : ".";
+                String bg = ".";
+                if (x == 0 && y == 0) {
+                    bg = "+";
+                } else if (y == 0) {
+                    bg = "-";
+                } else if (x == 0) {
+                    bg = "|";
+                }
+
+                String s = (this.x == x && this.y == y) ? "@" : bg;
                 System.out.print(s + " ");
             }
-            System.out.printf("%n");
+            System.out.printf("|%n");
         }
+
+        System.out.println(repeatString("-", 4 + (absAreaMax * 4)));
+    }
+
+    /**
+     * Repeats a given string a specified number of times.
+     *
+     * @param string  The string to repeat.
+     * @param repeats The number of concatenations of the string.
+     * @return 'string' repeated 'repeats' times.
+     */
+    private static String repeatString(String string, int repeats)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < repeats; i++) {
+            stringBuilder.append(string);
+        }
+        return stringBuilder.toString();
     }
 
     /**
