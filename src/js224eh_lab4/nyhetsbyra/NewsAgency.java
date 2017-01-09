@@ -27,22 +27,10 @@ public class NewsAgency implements NewsTransactor
         this.name = name;
     }
 
+    @Override
     public String getName()
     {
         return name;
-    }
-
-    /**
-     * Adds a subscription to this news agency if it is not currently in the
-     * list of subscribers.
-     *
-     * @param subscriber The subscriber to to add to the list of subscribers.
-     */
-    public void addSubscriber(NewsTransactor subscriber)
-    {
-        if (!subscribers.contains(subscriber)) {
-            subscribers.add(subscriber);
-        }
     }
 
     private void distributeNewsToSubs(ArrayList<News> freshNews)
@@ -81,6 +69,12 @@ public class NewsAgency implements NewsTransactor
         receiver.receiveNews(freshNews);
     }
 
+    /**
+     * Adds a subscription to this news agency if it is not currently in the
+     * list of subscribers.
+     *
+     * @param other The NewsTransactor to to add to the list of subscribers.
+     */
     @Override
     public void registerWith(NewsTransactor other)
     {

@@ -24,17 +24,22 @@ public class Main
 
     public static void main(String[] args)
     {
+        /* Make sure to use this VM option for a saner logger output format
+         * with single-line entries and less cruft:
+         *
+         * -Djava.util.logging.SimpleFormatter.format="%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n"
+         */
         logHandler.setLevel(Level.ALL);
         logger.setLevel(Level.ALL);
         logger.addHandler(logHandler);
 
         // generateFauxNewsHeadlines(100);
 
-        // Create news agencies
+        /* Create news agencies */
         NewsAgency reuters = createNewsAgencyInstance("Reuters");
         NewsAgency tt = createNewsAgencyInstance("TT");
 
-        // Create newspapers and setup connections
+        /* Create newspapers and setup connections */
         NewsPaper dn = createNewsPaperInstance("Dagens Nyheter");
         dn.registerWith(reuters);
         dn.registerWith(tt);
@@ -42,29 +47,30 @@ public class Main
         NewsPaper wp = createNewsPaperInstance("Washington Post");
         wp.registerWith(tt);
 
-        // Author some news articles
+        /* Author some news articles */
         dn.authorNewsArticles(1);
+        wp.authorNewsArticles(1);
 
-        // Add another newspaper
+        /* Add another newspaper */
         NewsPaper ex = createNewsPaperInstance("Expressen");
         ex.registerWith(reuters);
 
-        // Author some news articles
-        // ex.authorNewsArticles(1);
-        // dn.authorNewsArticles(2);
+        /* Author some news articles */
+        ex.authorNewsArticles(1);
+        dn.authorNewsArticles(2);
 
-        logger.finest("------------------------------------------");
-        logger.fine(dn.toString());
-        logger.finest("------------------------------------------");
-        logger.fine(ex.toString());
-        logger.finest("------------------------------------------");
-        logger.fine(wp.toString());
-        logger.finest("------------------------------------------");
-        logger.finest("------------------------------------------");
-        logger.fine(reuters.toString());
-        logger.finest("------------------------------------------");
-        logger.fine(tt.toString());
-        logger.finest("------------------------------------------");
+        //logger.info(dn.toString());
+        //logger.info(ex.toString());
+        //logger.info(wp.toString());
+        //logger.finest("==========================================");
+        //logger.info(reuters.toString());
+        //logger.info(tt.toString());
+        System.out.println(dn.toString());
+        System.out.println(ex.toString());
+        System.out.println(wp.toString());
+        System.out.println("==========================================");
+        System.out.println(reuters.toString());
+        System.out.println(tt.toString());
 
         // ex.registerWithNewsAgency(reuters);
         // ex.authorNewsArticles(1);
@@ -86,7 +92,8 @@ public class Main
         }
 
         NewsPaper instance = new NewsPaper(name);
-        logger.fine("Created a new NewsPaper " + instance.getName() + " ..");
+        logger.info("Created a new NewsPaper " + instance.getName() + " ..");
+        System.out.println("Created a new NewsPaper " + instance.getName() + " ..");
 
         return instance;
     }
@@ -98,7 +105,8 @@ public class Main
         }
 
         NewsAgency instance = new NewsAgency(name);
-        logger.fine("Created a new NewsAgency " + instance.getName() + " ..");
+        logger.info("Created a new NewsAgency " + instance.getName() + " ..");
+        System.out.println("Created a new NewsAgency " + instance.getName() + " ..");
 
         return instance;
     }

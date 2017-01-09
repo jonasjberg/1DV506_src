@@ -37,15 +37,16 @@ public class NewsPaper implements NewsTransactor
 
     private ArrayList<News> newsItems;
     private String name;
-    private ArrayList<NewsTransactor> registeredAgencies;
+    private ArrayList<NewsTransactor> subscribers;
 
     public NewsPaper(String name)
     {
         newsItems = new ArrayList<>();
-        registeredAgencies = new ArrayList<>();
+        subscribers = new ArrayList<>();
         this.name = name;
     }
 
+    @Override
     public String getName()
     {
         return name;
@@ -54,9 +55,6 @@ public class NewsPaper implements NewsTransactor
     public ArrayList<News> getNewsArticles()
     {
         return newsItems;
-    }
-    private void registerWithNewsAgency(NewsAgency agency)
-    {
     }
 
     /**
@@ -98,15 +96,16 @@ public class NewsPaper implements NewsTransactor
 
         System.out.printf("%s has authored %d news articles.%n",
                           getName(), numberOfItems);
+        distributeNewsToSubscribers(newsToDistribute);
     }
 
-    private void distributeNewsToRegisteredAgencies(ArrayList<News> freshNews)
+    private void distributeNewsToSubscribers(ArrayList<News> freshNews)
     {
         int agencyCount = 0;
-        for (NewsTransactor agency : registeredAgencies) {
-            // System.out.println("Sending to " + agency);
+        for (NewsTransactor t : subscribers) {
+            // System.out.println("Sending to " + t);
             for (News news : freshNews) {
-                agency.receiveNews(news);
+                t.receiveNews(news);
             }
             agencyCount++;
         }
@@ -122,8 +121,8 @@ public class NewsPaper implements NewsTransactor
         for (News news : freshNews) {
             if (!newsItems.contains(news)) {
                 newsItems.add(news);
-                newsToDistribute.add(news);
             }
+            newsToDistribute.add(news);
         }
 
         if (!newsToDistribute.isEmpty()) {
@@ -131,8 +130,8 @@ public class NewsPaper implements NewsTransactor
                               "be distributed to %d agencies%n",
                               getName(), freshNews.length,
                               newsToDistribute.size(),
-                              registeredAgencies.size());
-            distributeNewsToRegisteredAgencies(newsToDistribute);
+                              subscribers.size());
+            distributeNewsToSubscribers(newsToDistribute);
         }
     }
 
@@ -151,7 +150,7 @@ public class NewsPaper implements NewsTransactor
     @Override
     public void registerWith(NewsTransactor other)
     {
-        registeredAgencies.add(other);
+        subscribers.add(other);
         other.registerWith(this);
     }
 

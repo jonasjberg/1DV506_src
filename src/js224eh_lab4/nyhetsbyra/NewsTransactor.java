@@ -14,9 +14,11 @@ package js224eh_lab4.nyhetsbyra;
 
 public interface NewsTransactor
 {
-    void receiveNews(News... freshNews);
+    void registerWith(NewsTransactor other);
 
     void sendNews(NewsTransactor receiver, News... freshNews);
 
-    void registerWith(NewsTransactor other);
+    void receiveNews(News... freshNews);
+
+    String getName();
 }
