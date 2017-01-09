@@ -119,9 +119,7 @@ public class Main
 
         NewsPaper np = new NewsPaper("");
         np.authorNewsArticles(amount);
-
-        ArrayList<News> news = np.getNewsArticles();
-        for (News n : news) {
+        for (News n : np.getNewsArticles()) {
             System.out.println(n.getHeadline());
         }
     }
