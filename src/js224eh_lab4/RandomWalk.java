@@ -134,7 +134,7 @@ public class RandomWalk
      */
     public void takeStep()
     {
-        int direction = random.nextInt(5);
+        int direction = random.nextInt(4);
         switch (direction) {
             case 0:
                 /* Up */
