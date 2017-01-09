@@ -53,18 +53,18 @@ public class Main
         // ex.authorNewsArticles(1);
         // dn.authorNewsArticles(2);
 
-        System.out.println("------------------------------------------");
-        System.out.println(dn);
-        System.out.println("------------------------------------------");
-        System.out.println(ex);
-        System.out.println("------------------------------------------");
-        System.out.println(wp);
-        System.out.println("------------------------------------------");
-        System.out.println("------------------------------------------");
-        System.out.println(reuters);
-        System.out.println("------------------------------------------");
-        System.out.println(tt);
-        System.out.println("------------------------------------------");
+        logger.finest("------------------------------------------");
+        logger.fine(dn.toString());
+        logger.finest("------------------------------------------");
+        logger.fine(ex.toString());
+        logger.finest("------------------------------------------");
+        logger.fine(wp.toString());
+        logger.finest("------------------------------------------");
+        logger.finest("------------------------------------------");
+        logger.fine(reuters.toString());
+        logger.finest("------------------------------------------");
+        logger.fine(tt.toString());
+        logger.finest("------------------------------------------");
 
         // ex.registerWithNewsAgency(reuters);
         // ex.authorNewsArticles(1);
