@@ -12,32 +12,46 @@ package js224eh_lab4.nyhetsbyra;
  */
 
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class Main
 {
-    private static Logger logger = Logger.getAnonymousLogger();
+    public static final ConsoleHandler logHandler = new ConsoleHandler();
+    public static Logger logger = Logger.getAnonymousLogger();
 
     public static void main(String[] args)
     {
+        logHandler.setLevel(Level.ALL);
         logger.setLevel(Level.ALL);
+        logger.addHandler(logHandler);
+
         // generateFauxNewsHeadlines(100);
 
-        NewsPaper dn = new NewsPaper("Dagens Nyheter");
-        NewsPaper ex = new NewsPaper("Expressen");
-        NewsPaper wp = new NewsPaper("Washington Post");
+        // Create news agencies
+        NewsAgency reuters = createNewsAgencyInstance("Reuters");
+        NewsAgency tt = createNewsAgencyInstance("TT");
 
-        NewsAgency reuters = new NewsAgency("Reuters");
-        NewsAgency tt = new NewsAgency("TT");
+        // Create newspapers and setup connections
+        NewsPaper dn = createNewsPaperInstance("Dagens Nyheter");
+        dn.registerWith(reuters);
+        dn.registerWith(tt);
 
-        ex.registerWithNewsAgency(reuters);
-        wp.registerWithNewsAgency(tt);
+        NewsPaper wp = createNewsPaperInstance("Washington Post");
+        wp.registerWith(tt);
 
-        dn.registerWithNewsAgency(reuters);
-        dn.registerWithNewsAgency(tt);
-        dn.authorNewsArticles(3);
+        // Author some news articles
+        dn.authorNewsArticles(1);
+
+        // Add another newspaper
+        NewsPaper ex = createNewsPaperInstance("Expressen");
+        ex.registerWith(reuters);
+
+        // Author some news articles
+        // ex.authorNewsArticles(1);
+        // dn.authorNewsArticles(2);
 
         System.out.println("------------------------------------------");
         System.out.println(dn);
@@ -63,6 +77,30 @@ public class Main
         // System.out.println(dn);
         // System.out.println(ex);
         // System.out.println(wp);
+    }
+
+    private static NewsPaper createNewsPaperInstance(String name)
+    {
+        if (name.isEmpty()) {
+            name = "Unnamed Newspaper";
+        }
+
+        NewsPaper instance = new NewsPaper(name);
+        logger.fine("Created a new NewsPaper " + instance.getName() + " ..");
+
+        return instance;
+    }
+
+    private static NewsAgency createNewsAgencyInstance(String name)
+    {
+        if (name.isEmpty()) {
+            name = "Unnamed Newsagency";
+        }
+
+        NewsAgency instance = new NewsAgency(name);
+        logger.fine("Created a new NewsAgency " + instance.getName() + " ..");
+
+        return instance;
     }
 
     private static void generateFauxNewsHeadlines(int amount)

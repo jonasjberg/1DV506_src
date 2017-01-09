@@ -55,17 +55,8 @@ public class NewsPaper implements NewsTransactor
     {
         return newsItems;
     }
-
-    /**
-     * Register this newspaper to a news agency. This creates a subscription
-     * link between them.
-     *
-     * @param agency The news agency to subscribe to (register with)
-     */
-    public void registerWithNewsAgency(NewsAgency agency)
+    private void registerWithNewsAgency(NewsAgency agency)
     {
-        registeredAgencies.add(agency);
-        agency.addSubscriber(this);
     }
 
     /**
@@ -107,7 +98,6 @@ public class NewsPaper implements NewsTransactor
 
         System.out.printf("%s has authored %d news articles.%n",
                           getName(), numberOfItems);
-        distributeNewsToRegisteredAgencies(newsToDistribute);
     }
 
     private void distributeNewsToRegisteredAgencies(ArrayList<News> freshNews)
@@ -127,21 +117,21 @@ public class NewsPaper implements NewsTransactor
     @Override
     public void receiveNews(News... freshNews)
     {
-        for (News news : freshNews) {
-            receiveNews(news);
-        }
-    }
-
-    public void receiveNews(News freshNews)
-    {
         ArrayList<News> newsToDistribute = new ArrayList<>();
 
-        if (!newsItems.contains(freshNews)) {
-            newsItems.add(freshNews);
-            newsToDistribute.add(freshNews);
+        for (News news : freshNews) {
+            if (!newsItems.contains(news)) {
+                newsItems.add(news);
+                newsToDistribute.add(news);
+            }
         }
 
         if (!newsToDistribute.isEmpty()) {
+            System.out.printf("%s has received %d news items of which %d will " +
+                              "be distributed to %d agencies%n",
+                              getName(), freshNews.length,
+                              newsToDistribute.size(),
+                              registeredAgencies.size());
             distributeNewsToRegisteredAgencies(newsToDistribute);
         }
     }
@@ -150,6 +140,19 @@ public class NewsPaper implements NewsTransactor
     public void sendNews(NewsTransactor receiver, News... freshNews)
     {
         receiver.receiveNews(freshNews);
+    }
+
+    /**
+     * Register this newspaper to a NewsTransactor. This creates a subscription
+     * link between them.
+     *
+     * @param other The NewsTransactor to subscribe to (register with).
+     */
+    @Override
+    public void registerWith(NewsTransactor other)
+    {
+        registeredAgencies.add(other);
+        other.registerWith(this);
     }
 
     @Override
@@ -165,7 +168,6 @@ public class NewsPaper implements NewsTransactor
         return getName().equals(newsPaper.getName());
     }
 
-
     /**
      * @return Returns a human-readable string representation of the newspaper.
      */
@@ -180,10 +182,11 @@ public class NewsPaper implements NewsTransactor
         // Inspired by the ToStringBuilder in "Apache Commons Lang".
         // https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
         str.append(String.format(FORMAT, "instance ID",
-                                 Integer.toHexString(System.identityHashCode(this))));
+                                 Integer.toHexString(
+                                         System.identityHashCode(this))));
 
         str.append(String.format(FORMAT, "Name", getName()));
-        str.append(String.format(FORMAT, "News articles", newsItems.size()));
+        str.append(String.format(FORMAT, "News articles #", newsItems.size()));
 
         if (newsItems.size() > 0) {
             StringBuilder sbItem = new StringBuilder();

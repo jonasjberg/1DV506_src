@@ -52,7 +52,6 @@ public class NewsAgency implements NewsTransactor
                 if (!sub.equals(news.getAuthor())) {
                     sendNews(sub, news);
                 } else {
-                    // System.out.println("Skipping " + sub + " ...");
                     NewsPaper n = (NewsPaper) sub;
                     System.out.println("Skipping " + n.getName() + " ...");
                 }
@@ -63,18 +62,12 @@ public class NewsAgency implements NewsTransactor
     @Override
     public void receiveNews(News... freshNews)
     {
-        for (News news : freshNews) {
-            receiveNews(news);
-        }
-    }
-
-    public void receiveNews(News freshNews)
-    {
         ArrayList<News> newsToDistribute = new ArrayList<>();
-
-        if (!newsItems.contains(freshNews)) {
-            newsItems.add(freshNews);
-            newsToDistribute.add(freshNews);
+        for (News news : freshNews) {
+            if (!newsItems.contains(news)) {
+                newsItems.add(news);
+                newsToDistribute.add(news);
+            }
         }
 
         if (!newsToDistribute.isEmpty()) {
@@ -89,6 +82,14 @@ public class NewsAgency implements NewsTransactor
     }
 
     @Override
+    public void registerWith(NewsTransactor other)
+    {
+        if (!subscribers.contains(other)) {
+            subscribers.add(other);
+        }
+    }
+
+    @Override
     public String toString()
     {
         String FORMAT = "  %-15.15s : %s%n";
@@ -99,7 +100,8 @@ public class NewsAgency implements NewsTransactor
         // Inspired by the ToStringBuilder in "Apache Commons Lang".
         // https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
         str.append(String.format(FORMAT, "instance ID",
-                                 Integer.toHexString(System.identityHashCode(this))));
+                                 Integer.toHexString(
+                                         System.identityHashCode(this))));
 
         str.append(String.format(FORMAT, "Name", getName()));
         str.append(String.format(FORMAT, "Subscribers #", subscribers.size()));
