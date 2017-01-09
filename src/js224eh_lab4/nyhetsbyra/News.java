@@ -43,8 +43,8 @@ public class News
     @Override
     public String toString()
     {
-        String FORMAT = "  %-15.15s : %s%n";
-        StringBuilder str = new StringBuilder("{\n  ");
+        String FORMAT = "    %-13.13s : %s%n";
+        StringBuilder str = new StringBuilder("  {\n");
 
 
         // Inspired by the ToStringBuilder in "Apache Commons Lang".
@@ -55,6 +55,6 @@ public class News
         str.append(String.format(FORMAT, "Author", getAuthor().getName()));
         str.append(String.format(FORMAT, "Headline", getHeadline()));
 
-        return str.toString();
+        return str.append("  }\n").toString();
     }
 }

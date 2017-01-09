@@ -33,13 +33,22 @@ public class NewsAgency implements NewsTransactor
         return name;
     }
 
+    private void distributeNewsToSubs(News freshNews)
+    {
+        for (NewsTransactor t : subscribers) {
+            if (!t.equals(freshNews.getAuthor())) {
+                t.receiveNews(freshNews);
+            }
+        }
+    }
+
     @Override
     public void receiveNews(News... freshNews)
     {
-        Collections.addAll(newsItems, freshNews);
-
-        for (NewsTransactor t : subscribers) {
-            t.receiveNews(freshNews);
+        // Collections.addAll(newsItems, freshNews);
+        for (News news : freshNews) {
+            newsItems.add(news);
+            distributeNewsToSubs(news);
         }
     }
 

@@ -65,9 +65,9 @@ public class NewsPaper implements NewsTransactor
     public void registerWithNewsAgency(NewsAgency agency)
     {
         registeredAgencies.add(agency);
-        for (News item : newsItems) {
-            sendNews(agency, item);
-        }
+        // for (News item : newsItems) {
+        //     sendNews(agency, item);
+        // }
     }
 
     /**
@@ -103,6 +103,7 @@ public class NewsPaper implements NewsTransactor
             News freshNews = new News(title, DUMMY_TEXT, this);
             newsItems.add(freshNews);
             for (NewsTransactor agency : registeredAgencies) {
+                System.out.println(getName() + " has authored news. Sending to registered agencies.");
                 agency.receiveNews(freshNews);
             }
         }
@@ -154,15 +155,15 @@ public class NewsPaper implements NewsTransactor
                                  Integer.toHexString(System.identityHashCode(this))));
 
         str.append(String.format(FORMAT, "Name", getName()));
-        str.append(String.format(FORMAT, "Number of news items:", newsItems.size()));
+        str.append(String.format(FORMAT, "News articles", newsItems.size()));
 
         if (newsItems.size() > 0) {
             StringBuilder sbItem = new StringBuilder();
             for (News n : newsItems) {
-                sbItem.append(n).append("\n");
+                sbItem.append(n);
             }
 
-            // str.append(String.format(FORMAT, "News", sbItem.toString()));
+            str.append(sbItem.toString());
         }
 
         return str.append("}").toString();
