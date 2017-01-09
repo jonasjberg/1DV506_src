@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class DrunkenWalk
 {
     static final boolean DRAW_ASCII_GRAPHICS = true;
+    static boolean visualize = DRAW_ASCII_GRAPHICS;
     static int iterations, areaSize, maxNumberSteps;
 
     public static void main(String[] args)
@@ -38,21 +39,22 @@ public class DrunkenWalk
         areaSize = getPositiveIntegerFromUser("Ange storlek");
         maxNumberSteps = getPositiveIntegerFromUser("Ange max antal steg");
         iterations = getPositiveIntegerFromUser("Ange antal slumpvandringar");
+        visualize = getUserConfirmation("Visualisera simulering?");
 
         int deadDrunks = 0;
         for (int iteration = 1; iteration <= iterations; iteration++) {
             RandomWalk walk = new RandomWalk(maxNumberSteps, areaSize);
 
             while (walk.moreSteps()) {
-                if (DRAW_ASCII_GRAPHICS) {
-                    drawAsciiGraphics(iteration, walk, deadDrunks);
-                    sleep(60);
-                }
-
                 walk.takeStep();
                 if (!walk.inBounds()) {
                     deadDrunks++;
                     break;
+                }
+
+                if (visualize) {
+                    drawAsciiGraphics(iteration, walk, deadDrunks);
+                    sleep(60);
                 }
             }
         }
@@ -93,6 +95,26 @@ public class DrunkenWalk
         } while (number <= 0);
 
         return number;
+    }
+
+    /**
+     * Asks user to confirm by entering either "j" or "J". All other input,
+     * including just ENTER so interpreted as a negative confirmation.
+     * @param message The message to display to the user.
+     * @return True if the user pressed "j" or "J", otherwise False.
+     */
+    private static boolean getUserConfirmation(String message)
+    {
+        String CONFIRM_MSG = " [j/N]";
+        System.out.print(message + CONFIRM_MSG);
+
+        Scanner scan = new Scanner(System.in);
+        String line = scan.nextLine();
+
+        if (line == null || line.isEmpty()) {
+            return false;
+        }
+        return line.toLowerCase().matches("j");
     }
 
     /**
