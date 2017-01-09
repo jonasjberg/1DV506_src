@@ -41,6 +41,21 @@ public class News
     }
 
     @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) {
+            return true;
+        } else if (!(o instanceof News)) {
+            return false;
+        }
+
+        News otherNews = (News) o;
+        return (getHeadline().equals(otherNews.getHeadline()) &&
+                getAuthor().equals(otherNews.getAuthor()) &&
+                getContents().equals(otherNews.getContents()));
+    }
+
+    @Override
     public String toString()
     {
         String FORMAT = "    %-13.13s : %s%n";

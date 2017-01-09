@@ -65,9 +65,7 @@ public class NewsPaper implements NewsTransactor
     public void registerWithNewsAgency(NewsAgency agency)
     {
         registeredAgencies.add(agency);
-        // for (News item : newsItems) {
-        //     sendNews(agency, item);
-        // }
+        agency.addSubscriber(this);
     }
 
     /**
@@ -92,6 +90,8 @@ public class NewsPaper implements NewsTransactor
             return;
         }
 
+        ArrayList<News> newsToDistribute = new ArrayList<>();
+
         for (int i = 1; i <= numberOfItems; i++) {
             String title = String.format("%d %s %s %s %s",
                                          random.nextInt(21) + 1,
@@ -102,19 +102,47 @@ public class NewsPaper implements NewsTransactor
 
             News freshNews = new News(title, DUMMY_TEXT, this);
             newsItems.add(freshNews);
-            for (NewsTransactor agency : registeredAgencies) {
-                System.out.println(getName() + " has authored news. Sending to registered agencies.");
-                agency.receiveNews(freshNews);
-            }
+            newsToDistribute.add(freshNews);
         }
+
+        System.out.printf("%s has authored %d news articles.%n",
+                          getName(), numberOfItems);
+        distributeNewsToRegisteredAgencies(newsToDistribute);
     }
 
+    private void distributeNewsToRegisteredAgencies(ArrayList<News> freshNews)
+    {
+        int agencyCount = 0;
+        for (NewsTransactor agency : registeredAgencies) {
+            // System.out.println("Sending to " + agency);
+            for (News news : freshNews) {
+                agency.receiveNews(news);
+            }
+            agencyCount++;
+        }
+        System.out.printf("%s has distributed news articles to %d agencies.%n",
+                          getName(), agencyCount);
+    }
 
     @Override
     public void receiveNews(News... freshNews)
     {
         for (News news : freshNews) {
             receiveNews(news);
+        }
+    }
+
+    public void receiveNews(News freshNews)
+    {
+        ArrayList<News> newsToDistribute = new ArrayList<>();
+
+        if (!newsItems.contains(freshNews)) {
+            newsItems.add(freshNews);
+            newsToDistribute.add(freshNews);
+        }
+
+        if (!newsToDistribute.isEmpty()) {
+            distributeNewsToRegisteredAgencies(newsToDistribute);
         }
     }
 

@@ -12,7 +12,6 @@ package js224eh_lab4.nyhetsbyra;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class NewsAgency implements NewsTransactor
@@ -33,11 +32,30 @@ public class NewsAgency implements NewsTransactor
         return name;
     }
 
-    private void distributeNewsToSubs(News freshNews)
+    /**
+     * Adds a subscription to this news agency if it is not currently in the
+     * list of subscribers.
+     *
+     * @param subscriber The subscriber to to add to the list of subscribers.
+     */
+    public void addSubscriber(NewsTransactor subscriber)
     {
-        for (NewsTransactor t : subscribers) {
-            if (!t.equals(freshNews.getAuthor())) {
-                t.receiveNews(freshNews);
+        if (!subscribers.contains(subscriber)) {
+            subscribers.add(subscriber);
+        }
+    }
+
+    private void distributeNewsToSubs(ArrayList<News> freshNews)
+    {
+        for (NewsTransactor sub : subscribers) {
+            for (News news : freshNews) {
+                if (!sub.equals(news.getAuthor())) {
+                    sendNews(sub, news);
+                } else {
+                    // System.out.println("Skipping " + sub + " ...");
+                    NewsPaper n = (NewsPaper) sub;
+                    System.out.println("Skipping " + n.getName() + " ...");
+                }
             }
         }
     }
@@ -45,10 +63,22 @@ public class NewsAgency implements NewsTransactor
     @Override
     public void receiveNews(News... freshNews)
     {
-        // Collections.addAll(newsItems, freshNews);
         for (News news : freshNews) {
-            newsItems.add(news);
-            distributeNewsToSubs(news);
+            receiveNews(news);
+        }
+    }
+
+    public void receiveNews(News freshNews)
+    {
+        ArrayList<News> newsToDistribute = new ArrayList<>();
+
+        if (!newsItems.contains(freshNews)) {
+            newsItems.add(freshNews);
+            newsToDistribute.add(freshNews);
+        }
+
+        if (!newsToDistribute.isEmpty()) {
+            distributeNewsToSubs(newsToDistribute);
         }
     }
 
@@ -72,7 +102,8 @@ public class NewsAgency implements NewsTransactor
                                  Integer.toHexString(System.identityHashCode(this))));
 
         str.append(String.format(FORMAT, "Name", getName()));
-        str.append(String.format(FORMAT, "Number of subscribers:", subscribers.size()));
+        str.append(String.format(FORMAT, "Subscribers #", subscribers.size()));
+        str.append(String.format(FORMAT, "News articles #", newsItems.size()));
 
         if (newsItems.size() > 0) {
             StringBuilder sbItem = new StringBuilder();
