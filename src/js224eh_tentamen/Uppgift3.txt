@@ -12,15 +12,15 @@ Förklara kortfattat med egna ord vad som menas med följande begrepp
 
 1. Statiskt fält
 
-   Data som lagras i klasser kallas för fält.
+   Data som lagras i klasser kallas för fält. Vanligtvis hör fält till
+   instanser av klassen.
+   Ett statiskt fält är data som hör till _klassen i sig_ snarare än till
+   från klassen instansierade objekt.
 
-   Ett statiskt fält är data som hör till klassen i sig, snarare än
-   till från klassen instansierade objekt.
+   Statiska fält kan användas utan att först behöva skapa några objekt från
+   klassen som fältet hör till.
 
-   Statiska fält kan användas utan att först skapa ett objekt från klassen som
-   fältet hör till.
-
-   Statiska fält delas också mellan instansierade objekt från samma klass.
+   Statiska fält är gemensamma för alla instansierade objekt av en klass.
 
 
 2. Metod överlagring (eng. Method Overloading)
@@ -30,7 +30,7 @@ Förklara kortfattat med egna ord vad som menas med följande begrepp
    accepterar olika antal och/eller typ av parametrar.
 
    Vid anrop väljs den metod/funktion vars parameterlista matchar de argument
-   som skickas.
+   som skickas. Matchningen gäller argumentens typ och ordning.
    
    Man kan alltså t.ex. ha flera metoder för att skriva ut tal:
    
@@ -56,16 +56,15 @@ Förklara kortfattat med egna ord vad som menas med följande begrepp
    T.ex. innebär inkapsling av någon slags beräkningsfunktion en abstraktion av
    beräkningsproblemet -- funktionens användare behöver inte bry sig om eller
    förstå sig på hur själva beräkningen går till.
-   En klass kan hålla "implementationsdetaljer" dolda och skyddade.
+   En klass kan hålla s.k. "implementationsdetaljer" dolda och skyddade.
 
    Klasser kapslar in både data och beteende och erbjuder ett sätt att
    kontrollera och begränsa åtkomst/insyn.
-
-   Detta till skillnad från 'structs' i C-liknande språk som helt saknar
-   inkapsling -- alla "fält" är publika.
    I objektorienterade paradigmer används "mutators" (getters/setters) för att
    kontrollera hur data kan nås.  Datat kan kontrolleras för att förhindra
    otillåtna tillstånd.
+   Detta till skillnad från 'structs' i C-liknande språk som helt saknar
+   inkapsling -- alla "fält" är publika.
 
 
 4. Kompilator
@@ -85,11 +84,23 @@ Förklara kortfattat med egna ord vad som menas med följande begrepp
 5. Javas virtuella maskin (eng. Java Virtual Machine)
    
    Javas virtuella maskin exekverar kompilerad Javakod. Tanken med detta är
-   plattformsoberoende -- "Write once, run anywhere"  var en slogan som
-   användes för att marknadsföra Java. Precis som med andra
-   virtualiseringstekniker är fördelarna inkapsling eller "sandboxing" som kan
-   vara fördelaktigt ur säkerhetssynpunkt.  
-   I idealfallet "abtraherar man bort" det underliggande operativsystemet och
-   hårdvaran. T.ex. borde man kunna använda ett och samma funktionsanrop för
-   att utföra en viss funktion, oavsett arktektur och operativsystem hos det
-   underliggande systemet.
+   plattformsoberoende -- "Write once, run anywhere" är en slogan som
+   användes för att marknadsföra Java.
+
+   Fördelarna med virtualiseringen är bland annat: 
+   
+   - Inkapsling/"sandboxing", som kan vara fördelaktigt ur säkerhetssynpunkt. 
+   - I idealfallet "abtraherar man bort" det underliggande operativsystemet och
+     hårdvaran. T.ex. borde man kunna använda ett och samma funktionsanrop för
+     att utföra en viss funktion, oavsett arktektur och operativsystem hos det
+     underliggande systemet.
+
+
+   För att knyta an till fråga #4; Javas VM utgör ett extra lager mellan
+   källkod och kompilerad maskinkod:
+
+     Java-källkod  -->  Kompilator  -->  JVM  -->  Maskinkod  -->  CPU
+     
+      C++-källkod  -->  Kompilator            -->  Maskinkod  -->  CPU
+
+
