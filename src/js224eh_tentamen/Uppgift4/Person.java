@@ -15,7 +15,7 @@ public class Person
 {
     final static int DEFAULT_AGE = -1;
 
-    ArrayList<Person> parents;
+    Person[] parents = new Person[2];
     private int age;
     private String name;
 
@@ -26,7 +26,6 @@ public class Person
 
     public Person(int age, String name)
     {
-        parents = new ArrayList<>();
         this.age = age;
         this.name = name;
     }
@@ -38,12 +37,14 @@ public class Person
     */
     public void addParent(Person p) throws Exception
     {
-        if (parents.size() == 2) {
+        int numberParents = parents.length;
+
+        if (numberParents == 2) {
             throw new IllegalArgumentException("A person can not have more " +
                                                "than two parents.");
         }
 
-        parents.add(p);
+        parents[numberParents - 1] = p;
     }
 
     /*
@@ -57,25 +58,36 @@ public class Person
         {
             private int nextChild;
             private ArrayList<Person> children;
+            private ArrayList<Person> allPersons;
 
-            public PersonIterator(ArrayList<Person> children)
+            public PersonIterator(ArrayList<Person> allPersons)
             {
-                this.children = children;
+                this.allPersons = allPersons;
                 nextChild = 0;
+                children = findChildren();
             }
 
-            @Override public boolean hasNext()
+            private ArrayList<Person> findChildren()
+            {
+                for (Person p : allPersons) {
+                    //if (p.)
+                }
+            }
+
+            @Override
+            public boolean hasNext()
             {
                 return nextChild <= children.size();
             }
 
-            @Override public Person next()
+            @Override
+            public Person next()
             {
                 return children.get(nextChild++);
             }
         }
 
-        return new PersonIterator(parents);
+        return new PersonIterator(allPersons);
     }
 
 
@@ -93,5 +105,24 @@ public class Person
     public String getName()
     {
         return name;
+    }
+
+    class PersonParentLookup
+    {
+        private Person person;
+        private ArrayList<Person> children;
+
+        public PersonParentLookup(Person person)
+        {
+            this.person = person;
+            this.children = new ArrayList<>();
+        }
+
+        public void addChildren(Person... person)
+        {
+            for(Person p : person) {
+                children.add(p);
+            }
+        }
     }
 }
