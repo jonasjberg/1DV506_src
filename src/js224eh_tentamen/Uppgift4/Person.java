@@ -12,26 +12,39 @@ import java.util.Iterator;
  */
 public class Person
 {
+    // Handle age field unreachable through mutators.
     final static int DEFAULT_AGE = -1;
+
+    // Keep track of all persons. Hardcoded array sizes for brevity.
     final static int MAX_PERSONS = 100;
-
-    private static int[][] childLookup = new int[MAX_PERSONS][MAX_PERSONS];
-    private static int personCount = 0;
     private static Person[] persons = new Person[MAX_PERSONS];
+    private static int personCount = 0;
+    private static int[][] childLookup = new int[MAX_PERSONS][MAX_PERSONS];
 
+    // Public fields for fetching children from "persons" using parent ids.
     public int id;
     public int numberChildren;
 
+    // Fields
     private Person[] parents = new Person[2];
     private int parentsIndex;
     private int age;
     private String name;
 
+    /**
+     * Creates a new DEFAULT_AGE years old instance of the Person class.
+     * @param name The name of the person.
+     */
     public Person(String name)
     {
         this(DEFAULT_AGE, name);
     }
 
+    /**
+     * Creates a new instance of the Person class.
+     * @param age The age of the person.
+     * @param name The name of the person.
+     */
     public Person(int age, String name)
     {
         this.age = age;
@@ -67,9 +80,9 @@ public class Person
     {
         class PersonIterator implements Iterator<Person>
         {
-            private int nextChild;
             private Person parent;
             private int[][] childLookup;
+            private int nextChild;
 
             public PersonIterator(Person parent, int[][] childLookup)
             {
@@ -94,7 +107,6 @@ public class Person
 
         return new PersonIterator(this, childLookup);
     }
-
 
     /*
     * Hämta personens ålder.

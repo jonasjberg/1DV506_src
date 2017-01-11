@@ -36,7 +36,7 @@ public class Main
             * Detta ska generera ett undantag (eng. exception) då
             * han redan har två föräldrar (Olle & Maja).
             */
-            //kalle.addParent(stina);
+            kalle.addParent(stina);
 
         } catch (Exception e) {
             e.printStackTrace();

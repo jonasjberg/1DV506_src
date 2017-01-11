@@ -23,8 +23,7 @@ import java.util.Scanner;
  */
 public class FileHandling
 {
-    static final String DEFAULT_PATH =
-            "/home/jonas/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_tentamen/FileHandling_test.txt";
+    static final String DEFAULT_PATH = "/home/jonas/today/FileHandling_test.txt";
 
     public static void main(String[] args)
     {
