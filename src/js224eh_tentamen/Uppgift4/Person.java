@@ -19,11 +19,13 @@ public class Person
     private static int personCount = 0;
     private static Person[] persons = new Person[MAX_PERSONS];
 
+    public int id;
+    public int numberChildren;
+
     private Person[] parents = new Person[2];
+    private int parentsIndex;
     private int age;
     private String name;
-    public int id;
-    private int numberChildren = 0;
 
     public Person(String name)
     {
@@ -34,8 +36,10 @@ public class Person
     {
         this.age = age;
         this.name = name;
+        parentsIndex = 0;
+        numberChildren = 0;
         persons[personCount] = this;
-        this.id = personCount++;
+        id = personCount++;
     }
 
     /*
@@ -45,15 +49,13 @@ public class Person
     */
     public void addParent(Person p) throws Exception
     {
-        int numberParents = parents.length;
-
-        if (numberParents == 2) {
+        if (parentsIndex > 1) {
             throw new IllegalArgumentException("A person can not have more " +
                                                "than two parents.");
         }
 
-        parents[numberParents - 1] = p;
-        childLookup[p.id][numberChildren++] = this.id;
+        parents[parentsIndex++] = p;
+        childLookup[p.id][p.numberChildren++] = this.id;
     }
 
     /*
@@ -79,7 +81,7 @@ public class Person
             @Override
             public boolean hasNext()
             {
-                return nextChild <= childLookup[parent.id].length;
+                return nextChild < parent.numberChildren;
             }
 
             @Override
