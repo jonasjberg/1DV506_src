@@ -1,5 +1,6 @@
 package js224eh_tentamen;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -12,7 +13,15 @@ import java.util.Iterator;
  */
 public class Person
 {
-    // Lägg till kod här
+    ArrayList<Person> parents = new ArrayList<>();
+    private int age;
+    private String name;
+
+    public Person(int age, String name)
+    {
+        this.name = name;
+        this.age = age;
+    }
 
     /*
     * Lägger till en förälder till en person.
@@ -21,7 +30,12 @@ public class Person
     */
     public void addParent(Person p) throws Exception
     {
-        // Lägg till kod här
+        if (parents.size() == 2) {
+            throw new IllegalArgumentException("A person can not have more " +
+                                               "than two parents.");
+        }
+
+        parents.add(p);
     }
 
     /*
@@ -31,15 +45,28 @@ public class Person
     */
     public Iterator<Person> getChildren()
     {
-        // Lägg till kod här
+        class PersonIterator implements Iterator<Person>
+        {
+
+            @Override public boolean hasNext()
+            {
+                return false;
+            }
+
+            @Override public Person next()
+            {
+                return null;
+            }
+        }
     }
+
 
     /*
     * Hämta personens ålder.
     */
     public int getAge()
     {
-        // Lägg till kod här
+        return age;
     }
 
     /*
