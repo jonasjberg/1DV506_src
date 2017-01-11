@@ -13,14 +13,22 @@ import java.util.Iterator;
  */
 public class Person
 {
-    ArrayList<Person> parents = new ArrayList<>();
+    final static int DEFAULT_AGE = -1;
+
+    ArrayList<Person> parents;
     private int age;
     private String name;
 
+    public Person(String name)
+    {
+        this(DEFAULT_AGE, name);
+    }
+
     public Person(int age, String name)
     {
-        this.name = name;
+        parents = new ArrayList<>();
         this.age = age;
+        this.name = name;
     }
 
     /*
@@ -47,17 +55,27 @@ public class Person
     {
         class PersonIterator implements Iterator<Person>
         {
+            private int nextChild;
+            private ArrayList<Person> children;
+
+            public PersonIterator(ArrayList<Person> children)
+            {
+                this.children = children;
+                nextChild = 0;
+            }
 
             @Override public boolean hasNext()
             {
-                return false;
+                return nextChild <= children.size();
             }
 
             @Override public Person next()
             {
-                return null;
+                return children.get(nextChild++);
             }
         }
+
+        return new PersonIterator(parents);
     }
 
 
@@ -74,7 +92,6 @@ public class Person
     */
     public String getName()
     {
-        // Lägg till kod här
         return name;
     }
 }

@@ -30,19 +30,15 @@ public class SumOfArray
 
     public static void main(String[] args)
     {
-        // int sum1 = calculateSumOfIntArray(TEST_ARRAY_1);
-        // System.out.printf("Summan av %s = %d%n", Arrays.toString(TEST_ARRAY_1), sum1);
         printDemoCalculation(TEST_ARRAY_1);
         printDemoCalculation(TEST_ARRAY_2);
-
-        // int sum2 = calculateSumOfIntArray(TEST_ARRAY_2);
-        // System.out.printf("Summan av %s = %d%n", Arrays.toString(TEST_ARRAY_2), sum2);
     }
 
     private static void printDemoCalculation(int[] array)
     {
         int sum = calculateSumOfIntArray(array);
-        System.out.printf("calculateSumOfIntArray(%s) = %d%n", Arrays.toString(array), sum);
+        System.out.printf("calculateSumOfIntArray(%s) = %d%n",
+                          Arrays.toString(array), sum);
     }
 
     private static int calculateSumOfIntArray(int[] array)

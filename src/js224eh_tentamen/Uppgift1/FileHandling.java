@@ -23,7 +23,8 @@ import java.util.Scanner;
  */
 public class FileHandling
 {
-    static final String DEFAULT_PATH = "/home/jonas/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_tentamen/FileHandling_test.txt";
+    static final String DEFAULT_PATH =
+            "/home/jonas/LNU/1DV506_Problemlosning/src/1DV506/src/js224eh_tentamen/FileHandling_test.txt";
 
     public static void main(String[] args)
     {
@@ -45,12 +46,13 @@ public class FileHandling
     private static void reverseArrayList(ArrayList<String> words)
     {
         int firstPos = words.size() - 1;
-        for(int secondPos = 0; secondPos < firstPos; secondPos++) {
+        for (int secondPos = 0; secondPos < firstPos; secondPos++) {
             words.add(secondPos, words.remove(firstPos));
         }
     }
 
-    private static ArrayList<String> filterWordsByChecksum(ArrayList<String> words)
+    private static ArrayList<String> filterWordsByChecksum(
+            ArrayList<String> words)
     {
         ArrayList<String> filteredWords = new ArrayList<>();
 
@@ -99,6 +101,7 @@ public class FileHandling
             words.add(scan.next());
         }
 
+        scan.close();
         return words;
     }
 }
