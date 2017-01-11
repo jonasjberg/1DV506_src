@@ -1,4 +1,4 @@
-package js224eh_tentamen;
+package js224eh_tentamen.Uppgift1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
