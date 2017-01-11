@@ -19,6 +19,7 @@ import java.util.Arrays;
  * Notera att om en regel uppfyllts för det aktuella heltalet skall eventuella
  * nästföljande kontroller inte utföras, t ex om 1. uppfylls så hoppar man över
  * 2. samt 3. och går vidare till nästa heltal i array’en.
+ *
  * Dessutom, om summan överstiger 30 så halveras alla heltalen medelst
  * heltalsdivision i array’en efter att detta inträffat (heltalen, inte
  * beräkningarna!).
