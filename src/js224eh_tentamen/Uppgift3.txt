@@ -1,0 +1,95 @@
+Created by Jonas Sjöberg (js224eh) on 2017-01-11.
+
+Uppgift 3
+Förklara kortfattat med egna ord vad som menas med följande begrepp
+
+    1. Statiskt fält
+    2. Metod överlagring (eng. Method Overloading)
+    3. Inkapsling (eng. Encapsulation)
+    4. Kompilator
+    5. Javas virtuella maskin (eng. Java Virtual Machine)
+
+
+1. Statiskt fält
+
+   Data som lagras i klasser kallas för fält.
+
+   Ett statiskt fält är data som hör till klassen i sig, snarare än
+   till från klassen instansierade objekt.
+
+   Statiska fält kan användas utan att först skapa ett objekt från klassen som
+   fältet hör till.
+
+   Statiska fält delas också mellan instansierade objekt från samma klass.
+
+
+2. Metod överlagring (eng. Method Overloading)
+
+   Metodöverlagringen i Java kommer från C-liknande språk och innebär att det
+   är tillåtet att ha flera metoder/funktioner med samma namn, så länge de
+   accepterar olika antal och/eller typ av parametrar.
+
+   Vid anrop väljs den metod/funktion vars parameterlista matchar de argument
+   som skickas.
+   
+   Man kan alltså t.ex. ha flera metoder för att skriva ut tal:
+   
+      void printNumber(int n)
+      void printNumber(float n)
+      void printNumber(int n1, double n2)
+      void printNumber(int n1, int n2)
+   
+   Som kan användas:
+   
+      printNumber(42)          // Anropar printNumber(int n)
+      printNumber(4.2f)        // Anropar printNumber(float n)
+      printNumber(42, 4.20)    // Anropar printNumber(int n1, double n2)
+      printNumber(42, 1337)    // Anropar printNumber(int n1, int n2)
+
+
+3. Inkapsling (eng. Encapsulation)
+
+   Inkapsling är ett centralt koncept i objektorienterad programmering.
+   Med inkapsling menar man abstraktion och modulärisering av ett problem,
+   en funktionalitet eller mer konkret, data och beteenden i form av klasser.
+
+   T.ex. innebär inkapsling av någon slags beräkningsfunktion en abstraktion av
+   beräkningsproblemet -- funktionens användare behöver inte bry sig om eller
+   förstå sig på hur själva beräkningen går till.
+   En klass kan hålla "implementationsdetaljer" dolda och skyddade.
+
+   Klasser kapslar in både data och beteende och erbjuder ett sätt att
+   kontrollera och begränsa åtkomst/insyn.
+
+   Detta till skillnad från 'structs' i C-liknande språk som helt saknar
+   inkapsling -- alla "fält" är publika.
+   I objektorienterade paradigmer används "mutators" (getters/setters) för att
+   kontrollera hur data kan nås.  Datat kan kontrolleras för att förhindra
+   otillåtna tillstånd.
+
+
+4. Kompilator
+   
+   En kompilator tar någon slags instruktioner och översätter dem till en annan
+   slags instruktioner. Oftast sker omvandlingen från en högre abstraktionsnivå
+   till en lägre. 
+  
+   Java-kompilatorn tar källkod som är relativt lättläst för människor och
+   kompilerar den till "bytecode" (liknande assemblerkod) som i sin tur kan
+   tolkas och exekveras av Javas virtuella maskin.
+   
+   En C++ kompilator tar källkod och översätter den till ren maskinkod som är
+   på "lägre nivå" än Javas kompilerade kod.
+   
+
+5. Javas virtuella maskin (eng. Java Virtual Machine)
+   
+   Javas virtuella maskin exekverar kompilerad Javakod. Tanken med detta är
+   plattformsoberoende -- "Write once, run anywhere"  var en slogan som
+   användes för att marknadsföra Java. Precis som med andra
+   virtualiseringstekniker är fördelarna inkapsling eller "sandboxing" som kan
+   vara fördelaktigt ur säkerhetssynpunkt.  
+   I idealfallet "abtraherar man bort" det underliggande operativsystemet och
+   hårdvaran. T.ex. borde man kunna använda ett och samma funktionsanrop för
+   att utföra en viss funktion, oavsett arktektur och operativsystem hos det
+   underliggande systemet.
