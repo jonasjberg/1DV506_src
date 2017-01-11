@@ -37,7 +37,9 @@ public class FileHandling
 
         words = filterWordsByChecksum(words);
         reverseArrayList(words);
-        System.out.println(words);
+        for (String word : words) {
+            System.out.println(word);
+        }
     }
 
     private static void reverseArrayList(ArrayList<String> words)

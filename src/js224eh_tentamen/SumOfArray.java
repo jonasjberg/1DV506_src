@@ -1,5 +1,8 @@
 package js224eh_tentamen;
 
+import java.util.Arrays;
+
+
 /**
  * Created by Jonas Sjöberg (js224eh) on 2017-01-11.
  *
@@ -22,15 +25,27 @@ package js224eh_tentamen;
  */
 public class SumOfArray
 {
-    final static int[] TEST_NUMBERS = {1, 2, 3, 4, 5};
+    final static int[] TEST_ARRAY_1 = {1, 2, 3, 4, 5};
+    final static int[] TEST_ARRAY_2 = {10, 20, 21, 300, 4000};
 
     public static void main(String[] args)
     {
-        int sum = getSumOfIntArray(TEST_NUMBERS);
-        System.out.println(sum);
+        // int sum1 = calculateSumOfIntArray(TEST_ARRAY_1);
+        // System.out.printf("Summan av %s = %d%n", Arrays.toString(TEST_ARRAY_1), sum1);
+        printDemoCalculation(TEST_ARRAY_1);
+        printDemoCalculation(TEST_ARRAY_2);
+
+        // int sum2 = calculateSumOfIntArray(TEST_ARRAY_2);
+        // System.out.printf("Summan av %s = %d%n", Arrays.toString(TEST_ARRAY_2), sum2);
     }
 
-    private static int getSumOfIntArray(int[] array)
+    private static void printDemoCalculation(int[] array)
+    {
+        int sum = calculateSumOfIntArray(array);
+        System.out.printf("calculateSumOfIntArray(%s) = %d%n", Arrays.toString(array), sum);
+    }
+
+    private static int calculateSumOfIntArray(int[] array)
     {
         int sum = 0;
 
@@ -43,7 +58,7 @@ public class SumOfArray
 
             if (number > 3) {
                 sum += number + 10;
-            } else if (i % 2 != 0) {
+            } else if (i % 2 == 0) {
                 sum += (number * 2);
             } else {
                 sum += number;
