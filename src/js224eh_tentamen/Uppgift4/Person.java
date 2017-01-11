@@ -57,27 +57,18 @@ public class Person
         class PersonIterator implements Iterator<Person>
         {
             private int nextChild;
-            private ArrayList<Person> children;
-            private ArrayList<Person> allPersons;
+            private Person[] children;
 
-            public PersonIterator(ArrayList<Person> allPersons)
+            public PersonIterator(Person[] allPersons)
             {
                 this.allPersons = allPersons;
                 nextChild = 0;
-                children = findChildren();
-            }
-
-            private ArrayList<Person> findChildren()
-            {
-                for (Person p : allPersons) {
-                    //if (p.)
-                }
             }
 
             @Override
             public boolean hasNext()
             {
-                return nextChild <= children.size();
+                return nextChild <= children.length;
             }
 
             @Override
@@ -105,24 +96,5 @@ public class Person
     public String getName()
     {
         return name;
-    }
-
-    class PersonParentLookup
-    {
-        private Person person;
-        private ArrayList<Person> children;
-
-        public PersonParentLookup(Person person)
-        {
-            this.person = person;
-            this.children = new ArrayList<>();
-        }
-
-        public void addChildren(Person... person)
-        {
-            for(Person p : person) {
-                children.add(p);
-            }
-        }
     }
 }
