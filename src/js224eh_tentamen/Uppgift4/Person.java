@@ -1,4 +1,4 @@
-package js224eh_tentamen;
+package js224eh_tentamen.Uppgift4;
 
 import java.util.ArrayList;
 import java.util.Iterator;

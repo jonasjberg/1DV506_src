@@ -1,4 +1,4 @@
-package js224eh_tentamen;
+package js224eh_tentamen.Uppgift4;
 
 /**
  * Created by Jonas Sjöberg (js224eh) on 2017-01-11.
