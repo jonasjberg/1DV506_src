@@ -1,4 +1,4 @@
-package js224eh_tentamen;
+package js224eh_tentamen.Uppgift2;
 
 import java.util.Arrays;
 
